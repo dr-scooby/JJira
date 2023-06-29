@@ -17,6 +17,7 @@ public class Employee {
 	private String email;
 	private String phone;
 	private String dob;
+	private String group;
 	
 	
 	
@@ -28,6 +29,7 @@ public class Employee {
 		email = "";
 		phone = "";
 		dob = "";
+		group = "";
 	}
 
 
@@ -178,6 +180,24 @@ public class Employee {
 	 */
 	public void setDob(String dob) {
 		this.dob = dob;
+	}
+
+
+
+	/**
+	 * @return the group
+	 */
+	public String getGroup() {
+		return group;
+	}
+
+
+
+	/**
+	 * @param group the group to set
+	 */
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 
