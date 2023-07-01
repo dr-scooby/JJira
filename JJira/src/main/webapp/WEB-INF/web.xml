@@ -14,4 +14,11 @@
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/main</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/newgroup</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
