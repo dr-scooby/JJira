@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.web;
 
 import java.io.IOException;
@@ -12,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Java version 1.7
  * @author nurali
  *
  */
