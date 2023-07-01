@@ -45,6 +45,7 @@ public class ControllerServlet extends HttpServlet{
 		String action = request.getServletPath();
 		PrintWriter out = response.getWriter();
 		
+		if(action == null) {
 		// Write the response message, in an HTML page
 		// this block is to test the Servlet & web.xml is working and configure properly.
 	      try {
@@ -69,8 +70,87 @@ public class ControllerServlet extends HttpServlet{
 	      } finally {
 	         out.close();  // Always close the output writer
 	      }
+		}else {
+			try {
+				switch(action) {
+				case "/newgroup":
+					newgroup(request, response);
+				break;
+				default:
+					gohome(request, response);
+				break;
+					
+				}
+			}catch(Exception e) {
+				
+			}
+		}
 	}
 	
+	private void gohome(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				
+				 PrintWriter out;
+				// this block is to test the Servlet & web.xml is working and configure properly.
+			      try {
+			    	   	out = response.getWriter(); 			    	 
+						
+						 out.println("<!DOCTYPE html>");
+				         out.println("<html><head>");
+				         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+				         out.println("<title>Hello, World</title></head>");
+				         out.println("<body>");
+				         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello 
+				         			         
+				         out.println("</body>");
+				         out.println("</html>");
+					
+				         out.close();
+			      }catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+			      }
+	}
+
+
+	private void newgroup(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String gname = request.getParameter("groupname");
+		String gtype = request.getParameter("type");
+		String email = request.getParameter("email");
+		 PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         
+		         // Echo client's submitted information
+		         out.println("<p>Group Name" + gname + "</p>");
+		         out.println("<p>Group Type: " + gtype + "</p>");
+		         out.println("<p>Email: " + email + "</p>");
+		         
+		         
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	      
+	}
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
