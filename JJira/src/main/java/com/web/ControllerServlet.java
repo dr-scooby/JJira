@@ -74,6 +74,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/newgroup":
 					newgroup(request, response);
 				break;
+				case "/searchgroup":
+					searchgroup(request, response);
+				break;
 				default:
 					gohome(request, response);
 				break;
@@ -85,6 +88,44 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	private void searchgroup(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				String gnamesearch = request.getParameter("gnamesearch");
+				String usernamesearch = request.getParameter("usernamesearch");
+				String emailsearch = request.getParameter("emailsearch");
+				 PrintWriter out;
+				// this block is to test the Servlet & web.xml is working and configure properly.
+			      try {
+			    	   out = response.getWriter(); 
+			    	 
+						
+						 out.println("<!DOCTYPE html>");
+				         out.println("<html><head>");
+				         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+				         out.println("<title>Hello, World</title></head>");
+				         out.println("<body>");
+				         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+				         
+				         // Echo client's submitted information
+				         out.println("<p>Group Name Search" + gnamesearch + "</p>");
+				         out.println("<p>User Name Search: " + usernamesearch + "</p>");
+				         out.println("<p>Email search: " + emailsearch + "</p>");
+				         
+				         
+				         
+				         out.println("</body>");
+				         out.println("</html>");
+					
+				         out.close();
+			      }catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+			      }
+		
+	}
+
+
 	private void gohome(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
