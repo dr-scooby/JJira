@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.DB.DBModel;
+
 /**
  * Java version 1.7
  * @author nurali
@@ -30,7 +32,7 @@ public class ControllerServlet extends HttpServlet{
     
     
     public void init() {
-    	
+    	DBModel db = new DBModel();
     }
     
     
