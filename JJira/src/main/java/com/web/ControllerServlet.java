@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.DB.DBModel;
 
 /**
+ * JIRA Project
  * Java version 1.7
  * @author nurali
  *
@@ -19,7 +20,7 @@ public class ControllerServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
-	
+	private DBModel db ; // handle to the DBModel
 	
 
 	 /**
@@ -32,7 +33,7 @@ public class ControllerServlet extends HttpServlet{
     
     
     public void init() {
-    	DBModel db = new DBModel();
+    	 db = new DBModel();
     }
     
     
@@ -181,6 +182,9 @@ public class ControllerServlet extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 	      }
+	      
+	      // send data to the model to process
+	      db.anewTicket(title, summary, notes, 0);
 	}
 
 

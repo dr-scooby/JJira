@@ -5,6 +5,7 @@ package com.DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -55,6 +56,39 @@ public class DBModel {
 		}
 	}
 	
+	// create a new ticket
+	public boolean anewTicket(String title, String summary, String notes, int severity) {
+		System.out.println("\n a New ticket called in DBModel..");
+		boolean ok = false;
+		
+		String sql_insert = "insert into tickets(title, summary,notes, severity) value(?,?,?,?)";
+		
+		if(conn == null) {
+			try {
+				connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql_insert);
+			ps.setString(1, title);
+			ps.setString(2, summary);
+			ps.setString(3, notes);
+			ps.setInt(4, severity);
+			
+			ok = ps.executeUpdate() > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ok;
+	}
 	
 	// get a Connection
 	public Connection getConnection() {
