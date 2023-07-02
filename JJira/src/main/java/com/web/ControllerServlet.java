@@ -223,8 +223,8 @@ public class ControllerServlet extends HttpServlet{
 				         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
 				         out.println("<title>Hello, World</title></head>");
 				         out.println("<body>");
-				         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello 
-				         			         
+				         out.println("<h1>Hello, world! </h1>");  // says Hello 
+				         out.println("<h1>You have reached the gohome page by some strange reason. </h1>");			         
 				         out.println("</body>");
 				         out.println("</html>");
 					
