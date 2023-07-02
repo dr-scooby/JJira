@@ -89,6 +89,12 @@ public class ControllerServlet extends HttpServlet{
 				case "/searchbug":
 					searchbug(request, response);
 				break;
+				case "/newticket":
+					newticket(request, response);
+				break;
+				case "/ticketsearch":
+					ticketsearch(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -100,6 +106,82 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	private void ticketsearch(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String title = request.getParameter("title");
+		String summary = request.getParameter("summary");
+		String notes = request.getParameter("notes");
+		//severity
+		String severity = request.getParameter("severity");
+		
+		 PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>Search Bug info</h1>");
+		         // Echo client's submitted information
+		         out.println("<p>Title: " + title + "</p>");
+		         out.println("<p>Summery: " + summary + "</p>");
+		         out.println("<p>Notes: " + notes + "</p>");	
+		         out.println("<p>Severity Level: " + severity + "</p>");
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
+	private void newticket(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String title = request.getParameter("title");
+		String summary = request.getParameter("summary");
+		String notes = request.getParameter("notes");
+		//severity
+		String severity = request.getParameter("severity");
+		
+		 PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>Search Bug info</h1>");
+		         // Echo client's submitted information
+		         out.println("<p>Title: " + title + "</p>");
+		         out.println("<p>Summery: " + summary + "</p>");
+		         out.println("<p>Notes: " + notes + "</p>");	
+		         out.println("<p>Severity Level: " + severity + "</p>");
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
 	private void searchbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String firstname = request.getParameter("firstname");

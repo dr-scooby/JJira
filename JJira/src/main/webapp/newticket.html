@@ -1,303 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 
- 
-}
-
-:root{
-  --bg-color: #103f61;
-  --second-bg-color: #f1f5f7;
-  --main-color: rgb(19, 103, 237);
-  --shadow-color: rgb(197, 220, 228);
-  --shadow-over: rgb(169, 1, 40);
-}
-
-html{
-  overflow-x: hidden;
-}
-body {
-  font-family: Arial;
-  /* padding: 10px; */
-  /*  background: #f1f1f1; */
-  background: var(--second-bg-color);
-  
-}
-
-/* Header/Blog Title */
-.header {
-  padding: 30px;
-  text-align: center;
-  background: white;
-}
-
-.header h1 {
-  font-size: 50px;
-}
-
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #0f59d8;
-  
-}
-
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #af1429;
-  color: black;
-}
-
-/* A column of three that float next to each other*/
-.columna{
-  float: left;
-  
-  width: 33.33%;
-  padding: 15px;
-  /* border: 2px solid rgb(65, 8, 8); */
-  border-radius: 2px ;
-}
-
-/* the link inside the card , it's the icon */
-.columna .carda a{
-  position: relative;
-  display: inline-flex;
-  
-  /* width and height is the area of the cursor link */
-  width: 10%;
-  height: 10%;
-  font-size: 100%;
-
-  color: #0f59d8;
-}
-
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {   
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  background-color: #f1f1f1;
-  padding-left: 20px;
-}
-
-/* Fake image */
-.fakeimg {
-  background-color: #aaa;
-  width: 15%;
-  height: 50%;
-  padding: 20px;
-  font-size: 100%;
-  color: #0f59d8;
-}
-
-/* Add a card effect for the 3 columns*/
-.carda{
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    /* margin-top: 20px; */
-    margin: 20px;
-    padding: 10px;
-    border: 2px solid rgb(26, 0, 0);
-    /* border-left: solid; */
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px var(--shadow-color);
-    height: 150px;
-}
-.carda:hover{
-    background-color: red;
-    box-shadow: 5px 5px 5px rgb(169, 1, 40);
-}
-/***********************************************/
-
-/* Add a card effect for the 2 columns card */
-.empcard{
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border: 2px solid rgb(26, 0, 0);
-    border-radius: 10px;
-    /* box-shadow: 5px 5px 5px rgb(234, 115, 115); */
-    box-shadow: 5px 5px 5px var(--shadow-color);
-}
-
-.empcard:hover{
-    box-shadow: 4px 4px 4px var(--shadow-over);
-}
-
-.card {
-    
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border: 2px solid rgb(26, 0, 0);
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgb(197, 220, 228);
-}
-
-.card:hover{
-  background-color: red;
-  box-shadow: 4px 4px 4px rgb(169, 1, 40);
-}
-
-/* Form formatting */
-.form{
-    border: 2px solid green;
-    border-radius: 5px;
-    padding: 10px;
-    /* text-align: left; */
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-  margin-right: 2px;
-}
-
-.col-25 {
-    padding: 2px;
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-  border-bottom: #04AA6D;
-  border-top: none;
-  border-left: none;
-  border-right: #04AA6D;
-  border-style: none solid solid none;
-  border-width: 1px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-  
-}
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-/* Clear floats after the columns */
-.formrow::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Drop downs  */
-.dropdown{
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content{
-  display: none;
-  position: absolute;
-  color: white;
-  background-color: #103f61;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px red;
-  padding: 10px 14px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content{
-  display: block;
-}
-
-/* Footer */
-.footer {
-  position: fixed;  /* fixed, not moving */ 
-  bottom: 0;
-  width: 100%;
-  justify-content: space-between;
-  display: flex;
-  flex: wrap;
-  padding: 2rem 20px;
-  text-align: center;
-  align-items: center;
-  background: #ddd;
-   margin-top: auto; 
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
-    width: 100%;
-    padding: 0;
-  }
-
-  
-}
-
-@media screen and (max-width: 700px) {
-  .carda{
-    float: none;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    font-size: 60%;
-    margin: auto;
-  }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .topnav a {
-    float: none;
-    width: 100%;
-  }
-}
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
+<link rel='stylesheet'       href="css/style2.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -376,40 +83,40 @@ input[type=submit]:hover {
          </div>
       </div>
       <div class="form">
-      <form action="">
+      <form action="newticket" method="post">
         <div class="formrow">
             <div class="col-25">
-                <label for="fname">Title</label>
+                <label for="title">Title</label>
               </div>
               <div class="col-75">
-                <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+                <input type="text" id="title" name="title" placeholder="Title..">
               </div>
         </div>
         
         <div class="formrow">
             <div class="col-25">
-                <label for="lname">Summary</label>
+                <label for="summary">Summary</label>
               </div>
               <div class="col-75">
-                <input type="text" id="lname" name="lasttname" placeholder="Your last name..">
+                <input type="text" id="summary" name="summary" placeholder="summary..">
               </div>
         </div>
 
         <div class="formrow">
             <div class="col-25">
-                <label for="email">Notes</label>
+                <label for="notes">Notes</label>
               </div>
               <div class="col-75">
-                <input type="text" id="email" name="email" placeholder="email address..">
+                <input type="text" id="notes" name="notes" placeholder="notes..">
               </div>
         </div>
 
         <div class="formrow">
             <div class="col-25">
-                <label for="phone">Severity</label>
+                <label for="severity">Severity Level</label>
               </div>
               <div class="col-75">
-                <input type="text" id="phone" name="phone" placeholder="Phone eg: 604-999-9999">
+                <input type="text" id="severity" name="severity" placeholder="severity Level 1,2,3">
               </div>
         </div>
 
@@ -425,49 +132,49 @@ input[type=submit]:hover {
 
 
     <div class="empcard">
-        <h2>Search Employee</h2>
+        <h2>Search Ticket</h2>
         
         <div class="dropdown">
-          <span>Fill out Employee info to search</span>
+          <span>Fill out info to search</span>
            <div class="dropdown-content">
              <p>Enter full info, name, email, etc..</p>
            </div>
         </div>
         <div class="form">
-        <form action="">
+        <form action="ticketsearch" method="post">
           <div class="formrow">
               <div class="col-25">
-                  <label for="fname">First Name</label>
+                  <label for="title">Title</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+                  <input type="text" id="title" name="title" placeholder="Your Title name..">
                 </div>
           </div>
           
           <div class="formrow">
               <div class="col-25">
-                  <label for="lname">Last Name</label>
+                  <label for="summary">Summary</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="lname" name="lasttname" placeholder="Your last name..">
+                  <input type="text" id="summary" name="summary" placeholder="summary..">
                 </div>
           </div>
   
           <div class="formrow">
               <div class="col-25">
-                  <label for="email">Email address</label>
+                  <label for="notes">Notes</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="email" name="email" placeholder="email address..">
+                  <input type="text" id="notes" name="notes" placeholder="notes..">
                 </div>
           </div>
   
           <div class="formrow">
               <div class="col-25">
-                  <label for="phone">Phone</label>
+                  <label for="severity">Severity</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="phone" name="phone" placeholder="Phone eg: 604-999-9999">
+                  <input type="text" id="severity" name="severity" placeholder="severity">
                 </div>
           </div>
   
