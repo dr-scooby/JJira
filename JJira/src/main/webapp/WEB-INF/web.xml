@@ -34,4 +34,18 @@
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/searchemp</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/newbug</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/searchbug</url-pattern>
+  </servlet-mapping>
+  
+  
+  
 </web-app>

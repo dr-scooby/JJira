@@ -83,6 +83,12 @@ public class ControllerServlet extends HttpServlet{
 				case "/searchemp":
 					searchemp(request, response);
 				break;
+				case "/newbug":
+					newbug(request, response);
+				break;
+				case "/searchbug":
+					searchbug(request, response);
+				break;
 				default:
 					gohome(request, response);
 				break;
@@ -94,6 +100,80 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	private void searchbug(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String firstname = request.getParameter("firstname");
+		String lasttname = request.getParameter("lasttname");
+		String email = request.getParameter("email");
+		
+		
+		 PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>Search Bug info</h1>");
+		         // Echo client's submitted information
+		         out.println("<p>Group Name Search: " + firstname + "</p>");
+		         out.println("<p>User Name Search: " + lasttname + "</p>");
+		         out.println("<p>Email search: " + email + "</p>");		                
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
+	private void newbug(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String firstname = request.getParameter("firstname");
+		String lasttname = request.getParameter("lasttname");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		
+		 PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>New Bug info</h1>");
+		         // Echo client's submitted information
+		         out.println("<p>Group Name Search: " + firstname + "</p>");
+		         out.println("<p>User Name Search: " + lasttname + "</p>");
+		         out.println("<p>Email search: " + email + "</p>");
+		         out.println("<p>Phone search: " + phone + "</p>");
+		         
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
 	private void searchemp(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String firstname = request.getParameter("firstname");
@@ -115,7 +195,7 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>Search Employee Page</h1>");
 		         // Echo client's submitted information
-		         out.println("<p>Group Name Search" + firstname + "</p>");
+		         out.println("<p>Group Name Search: " + firstname + "</p>");
 		         out.println("<p>User Name Search: " + lasttname + "</p>");
 		         out.println("<p>Email search: " + email + "</p>");
 		         out.println("<p>Phone search: " + phone + "</p>");
@@ -153,7 +233,7 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>New Employee Page</h1>");  // says Hello
 		         // Echo client's submitted information
-		         out.println("<p>Group Name Search" + firstname + "</p>");
+		         out.println("<p>Group Name Search: " + firstname + "</p>");
 		         out.println("<p>User Name Search: " + lasttname + "</p>");
 		         out.println("<p>Email search: " + email + "</p>");
 		         out.println("<p>Phone search: " + phone + "</p>");
@@ -191,7 +271,7 @@ public class ControllerServlet extends HttpServlet{
 				         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 				         out.println("<h1>Search Group Page</h1>");
 				         // Echo client's submitted information
-				         out.println("<p>Group Name Search" + gnamesearch + "</p>");
+				         out.println("<p>Group Name Search: " + gnamesearch + "</p>");
 				         out.println("<p>User Name Search: " + usernamesearch + "</p>");
 				         out.println("<p>Email search: " + emailsearch + "</p>");
 				         
@@ -255,7 +335,7 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>New Group Page</h1>");
 		         // Echo client's submitted information
-		         out.println("<p>Group Name" + gname + "</p>");
+		         out.println("<p>Group Name: " + gname + "</p>");
 		         out.println("<p>Group Type: " + gtype + "</p>");
 		         out.println("<p>Email: " + email + "</p>");
 		         
