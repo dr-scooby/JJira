@@ -90,6 +90,41 @@ public class DBModel {
 		return ok;
 	}
 	
+	// create new employee
+	public boolean anewEmployee(String fname, String lname, String email, String phone) {
+		boolean ok = false;
+		
+		System.out.println("\n a New Employee called in DBModel..");
+		
+		
+		String sql_insert = "insert into employees(fname, lname,email, phone) value(?,?,?,?)";
+		
+		if(conn == null) {
+			try {
+				connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql_insert);
+			ps.setString(1, fname);
+			ps.setString(2, lname);
+			ps.setString(3, email);
+			ps.setString(4, phone);
+			
+			ok = ps.executeUpdate() > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ok;
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;

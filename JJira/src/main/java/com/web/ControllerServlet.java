@@ -336,6 +336,7 @@ public class ControllerServlet extends HttpServlet{
 					e.printStackTrace();
 	      }
 		
+	      db.anewEmployee(firstname, lasttname, email, phone);
 	}
 
 
