@@ -11,6 +11,11 @@
   	<servlet-class>com.web.ControllerServlet</servlet-class>
   	
   	<init-param>
+   		<param-name>dbname</param-name>
+   		<param-value>JiraDB</param-value>
+   	</init-param>
+   	
+  	<init-param>
    		<param-name>dbuser</param-name>
    		<param-value>nurali</param-value>
    	</init-param>

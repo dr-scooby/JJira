@@ -21,9 +21,10 @@ public class DBModel {
 	 * 
 	 */
 	private static final String DBNAME = "JiraDB";
-	private String dburl = "jdbc:mysql://194.168.2.69:3306/"+DBNAME;
+	private String dburl = "jdbc:mysql://194.168.2.69:3306/";
 	private String dbuser = "nurali";
 	private String dbpass = "java1973";
+	private String dbname ;
 	
 	private Connection conn; // connection to DB
 	private Connection tempconn ; // a temp conn to be used as secondary
@@ -34,6 +35,7 @@ public class DBModel {
 	public DBModel() {
 		System.out.println("init DBModel..");	
 		try {
+			dburl +=DBNAME;
 			connect();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -45,6 +47,21 @@ public class DBModel {
 	public DBModel(String user, String pass) {
 		this.dbuser = user;
 		this.dbpass = pass;
+		dburl +=DBNAME;
+		System.out.println("init DBModel..");	
+		try {
+			connect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public DBModel(String dbname, String user, String pass) {
+		this.dbname = dbname;
+		this.dbuser = user;
+		this.dbpass = pass;
+		dburl += dbname;
 		
 		System.out.println("init DBModel..");	
 		try {

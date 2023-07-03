@@ -21,7 +21,7 @@ public class ControllerServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private DBModel db ; // handle to the DBModel
-	
+	private String dbname;
 	private String dbuser;
 	private String dbpass;
 
@@ -36,10 +36,11 @@ public class ControllerServlet extends HttpServlet{
     
     public void init() {
     	// get the configs from the web.xml
+    	dbname = getServletConfig().getInitParameter("dbname");
     	dbuser = getServletConfig().getInitParameter("dbuser");
     	dbpass = getServletConfig().getInitParameter("dbpassword");
     	// pass the info to the DBModel
-    	db = new DBModel(dbuser, dbpass);
+    	db = new DBModel(dbname, dbuser, dbpass);
     }
     
     
