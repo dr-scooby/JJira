@@ -441,6 +441,7 @@ public class ControllerServlet extends HttpServlet{
 					e.printStackTrace();
 	      }
 	      
+	      db.anewTeam(gname, email);
 	}
 
 

@@ -160,6 +160,40 @@ public class DBModel {
 		return ok;
 	}
 	
+	// create a new Team Group
+	public boolean anewTeam(String name, String email) {
+		boolean ok = false;
+		
+		System.out.println("\n a New Team creation called in DBModel..");
+		
+		
+		String sql_insert = "insert into TeamGroups(name, email) value(?,?)";
+		
+		if(conn == null) {
+			try {
+				connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql_insert);
+			ps.setString(1, name);
+			ps.setString(2, email);
+						
+			
+			ok = ps.executeUpdate() > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ok;
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;
