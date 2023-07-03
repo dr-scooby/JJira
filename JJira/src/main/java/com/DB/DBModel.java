@@ -125,6 +125,41 @@ public class DBModel {
 		return ok;
 	}
 	
+	// create a new bug
+	public boolean anewBug(String name, String description, String severity, String state) {
+		boolean ok = false;
+		
+		System.out.println("\n a New Bug called in DBModel..");
+		
+		
+		String sql_insert = "insert into Bugs(name, description ,state) value(?,?,?)";
+		
+		if(conn == null) {
+			try {
+				connect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql_insert);
+			ps.setString(1, name);
+			ps.setString(2, description);
+			ps.setString(3, state);
+			
+			
+			ok = ps.executeUpdate() > 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ok;
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;

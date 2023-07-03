@@ -226,10 +226,10 @@ public class ControllerServlet extends HttpServlet{
 
 	private void newbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String firstname = request.getParameter("firstname");
-		String lasttname = request.getParameter("lasttname");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String bugname = request.getParameter("bugname");
+		String description = request.getParameter("description");
+		String severity = request.getParameter("severity");
+		String state = request.getParameter("state");
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
@@ -245,10 +245,10 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>New Bug info</h1>");
 		         // Echo client's submitted information
-		         out.println("<p>Group Name Search: " + firstname + "</p>");
-		         out.println("<p>User Name Search: " + lasttname + "</p>");
-		         out.println("<p>Email search: " + email + "</p>");
-		         out.println("<p>Phone search: " + phone + "</p>");
+		         out.println("<p>Bug Name : " + bugname + "</p>");
+		         out.println("<p>Bug description: " + description + "</p>");
+		         out.println("<p>severity Level: " + severity + "</p>");
+		         out.println("<p>State: " + state + "</p>");
 		         
 		         
 		         out.println("</body>");
@@ -259,6 +259,8 @@ public class ControllerServlet extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 	      }
+	      
+	      db.anewBug(bugname, description, severity, state);
 	}
 
 
