@@ -5,9 +5,21 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   
+  
   <servlet>
   	<servlet-name>Controller</servlet-name>
   	<servlet-class>com.web.ControllerServlet</servlet-class>
+  	
+  	<init-param>
+   		<param-name>dbuser</param-name>
+   		<param-value>nurali</param-value>
+   	</init-param>
+   	
+   	<init-param>
+   		<param-name>dbpassword</param-name>
+   		<param-value>java1973</param-value>
+   	</init-param>
+   	
   </servlet>
   
   <servlet-mapping>

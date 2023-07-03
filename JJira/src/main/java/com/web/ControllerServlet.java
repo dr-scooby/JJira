@@ -22,6 +22,8 @@ public class ControllerServlet extends HttpServlet{
 	
 	private DBModel db ; // handle to the DBModel
 	
+	private String dbuser;
+	private String dbpass;
 
 	 /**
      * @see HttpServlet#HttpServlet()
@@ -33,7 +35,9 @@ public class ControllerServlet extends HttpServlet{
     
     
     public void init() {
-    	 db = new DBModel();
+    	dbuser = getServletConfig().getInitParameter("dbuser");
+    	dbpass = getServletConfig().getInitParameter("dbpassword");
+    	 db = new DBModel(dbuser, dbpass);
     }
     
     

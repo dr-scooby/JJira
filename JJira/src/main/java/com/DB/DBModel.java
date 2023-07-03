@@ -40,6 +40,20 @@ public class DBModel {
 			e.printStackTrace();
 		}
 	}
+	
+	// get a DB user and password
+	public DBModel(String user, String pass) {
+		this.dbuser = user;
+		this.dbpass = pass;
+		
+		System.out.println("init DBModel..");	
+		try {
+			connect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
 	// connect to DB
