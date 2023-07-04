@@ -62,6 +62,17 @@ public class Bug {
 	}
 
 
+	public Bug(String name2, String description2, int severity2, String state2) {
+		// TODO Auto-generated constructor stub
+		this();
+		this.name = name2;
+		this.description = description2;
+		this.severity = severity2;
+		this.state = state2;
+	}
+
+
+
 	/**
 	 * @return the id
 	 */

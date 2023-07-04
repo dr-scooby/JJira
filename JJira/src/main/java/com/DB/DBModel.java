@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.data.Bug;
+
 /**
  * JIRA PROJECT
  * 
@@ -161,7 +163,8 @@ public class DBModel {
 		boolean ok = false;
 		
 		System.out.println("\n a New Bug called in DBModel..");
-		
+		int number = Integer.parseInt(severity);
+		Bug b = new Bug(name, description, number, state);
 		
 		String sql_insert = "insert into Bugs(name, description ,state) value(?,?,?)";
 		

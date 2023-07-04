@@ -3,6 +3,7 @@
  */
 package com.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -11,7 +12,7 @@ import java.sql.SQLException;
  */
 public class BugDAO extends DAO{
 	
-	
+	protected String createTable = "create table Bugs(id int primary key auto_increment, name varchar(50), description varchar(50), severity int, state varchar(15))";
 	
 	public BugDAO() {
 		super();
@@ -34,6 +35,13 @@ public class BugDAO extends DAO{
 	public boolean add() throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public void connection(Connection c) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
