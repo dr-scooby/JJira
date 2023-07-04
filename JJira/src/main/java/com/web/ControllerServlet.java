@@ -38,7 +38,7 @@ public class ControllerServlet extends HttpServlet{
     	// get the configs from the web.xml
     	dbname = getServletConfig().getInitParameter("dbname");
     	dbuser = getServletConfig().getInitParameter("dbuser");
-    	dbpass = getServletConfig().getInitParameter("dbpassword");
+    	dbpass = getServletConfig().getInitParameter("dbpas");
     	// pass the info to the DBModel
     	db = new DBModel(dbname, dbuser, dbpass);
     }
