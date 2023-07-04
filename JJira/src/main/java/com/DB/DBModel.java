@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.dao.BugDAO;
+import com.dao.DAO;
 import com.data.Bug;
 
 /**
@@ -164,32 +166,51 @@ public class DBModel {
 		
 		System.out.println("\n a New Bug called in DBModel..");
 		int number = Integer.parseInt(severity);
-		Bug b = new Bug(name, description, number, state);
-		
-		String sql_insert = "insert into Bugs(name, description ,state) value(?,?,?)";
-		
-		if(conn == null) {
-			try {
-				connect();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql_insert);
-			ps.setString(1, name);
-			ps.setString(2, description);
-			ps.setString(3, state);
-			
-			
-			ok = ps.executeUpdate() > 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			if(conn == null) {
+				try {
+					connect();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			Bug b = new Bug(name, description, number, state);
+			BugDAO bd = new BugDAO();
+			bd.connection(conn);
+			if(bd.addBug(b)) {
+				ok = true;
+				System.out.println("success adding bug to DB");
+			}
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+//		String sql_insert = "insert into Bugs(name, description ,state) value(?,?,?)";
+//		
+//		if(conn == null) {
+//			try {
+//				connect();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		try {
+//			PreparedStatement ps = conn.prepareStatement(sql_insert);
+//			ps.setString(1, name);
+//			ps.setString(2, description);
+//			ps.setString(3, state);
+//			
+//			
+//			ok = ps.executeUpdate() > 0;
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return ok;
 	}
