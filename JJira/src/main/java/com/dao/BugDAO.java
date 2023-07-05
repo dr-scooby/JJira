@@ -5,7 +5,9 @@ package com.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.data.Bug;
 
@@ -78,6 +80,39 @@ public class BugDAO extends DAO{
 		}
 		
 		return ok;
+	}
+	
+	
+	// find a bug
+	public ArrayList<Bug> findBug(String name, String description, String state, int severity) {
+		System.out.println("findbug in BugDAO");
+		
+		String sql_find = "select * from Bugs where name like ?";
+		ArrayList<Bug> bugs = new ArrayList<Bug>();
+		
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql_find, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ps.setString(1, name);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {//check if we get any results
+				rs.beforeFirst(); // move the rs before the first
+				while(rs.next()) {
+					String nameresult = rs.getString("name");
+					String descr = rs.getString("description");
+					String stateresult = rs.getString("state");
+					int sev = rs.getInt("severity");
+					Bug bu = new Bug(nameresult, descr, stateresult , sev);
+					bugs.add(bu);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bugs;
 	}
 
 	@Override

@@ -197,10 +197,12 @@ public class ControllerServlet extends HttpServlet{
 
 	private void searchbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String firstname = request.getParameter("firstname");
-		String lasttname = request.getParameter("lasttname");
-		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		String severity = request.getParameter("severity");
+		String state = request.getParameter("state");
 		
+		db.searchBug(name, description, state, Integer.parseInt(severity));
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
@@ -216,9 +218,9 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>Search Bug info</h1>");
 		         // Echo client's submitted information
-		         out.println("<p>Group Name Search: " + firstname + "</p>");
-		         out.println("<p>User Name Search: " + lasttname + "</p>");
-		         out.println("<p>Email search: " + email + "</p>");		                
+		         out.println("<p>Name Search: " + name + "</p>");
+		         out.println("<p>Description Search: " + description + "</p>");
+		         out.println("<p>Severity: " + severity + "</p>");		                
 		         
 		         out.println("</body>");
 		         out.println("</html>");
@@ -232,7 +234,7 @@ public class ControllerServlet extends HttpServlet{
 
 
 	private void newbug(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// get client data 
 		String bugname = request.getParameter("bugname");
 		String description = request.getParameter("description");
 		String severity = request.getParameter("severity");
@@ -240,6 +242,7 @@ public class ControllerServlet extends HttpServlet{
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
+		 // this is working, so now need to add a JSP for the output
 	      try {
 	    	   out = response.getWriter(); 
 	    	 
@@ -266,7 +269,7 @@ public class ControllerServlet extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 	      }
-	      
+	      // hand client data to the DBModel to process
 	      db.anewBug(bugname, description, severity, state);
 	}
 

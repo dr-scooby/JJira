@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.*;
+
+//import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.dao.BugDAO;
 import com.dao.DAO;
@@ -121,6 +124,12 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return ok;
 	}
@@ -214,6 +223,44 @@ public class DBModel {
 		
 		return ok;
 	}
+	
+	
+	// find a bug based on info
+	public void searchBug(String name, String description,String state, int severity) {
+		System.out.println("searchBug called with:> " + name + " " + description + " " + severity);
+		
+		if(conn == null) {
+			try {
+				connect();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		try {
+			BugDAO bd = new BugDAO();
+			bd.connection(conn);
+			ArrayList<Bug> bugs   =  bd.findBug(name, description, state, severity);
+			if(bugs.isEmpty()) {
+				System.out.println("Array Empty");
+			}else {
+				Iterator<Bug> it = bugs.iterator();
+				while(it.hasNext()) {
+					Bug b = (Bug)it.next();
+					System.out.println(b);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 	// create a new Team Group
 	public boolean anewTeam(String name, String email) {
