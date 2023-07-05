@@ -87,13 +87,21 @@ public class BugDAO extends DAO{
 	public ArrayList<Bug> findBug(String name, String description, String state, int severity) {
 		System.out.println("findbug in BugDAO");
 		
-		String sql_find = "select * from Bugs where name like ?";
+		String sql_find = "select * from Bugs where name like ? or description like ? or state like ? or severity =?";
 		ArrayList<Bug> bugs = new ArrayList<Bug>();
 		
 		PreparedStatement ps;
 		try {
+			/* 
+			 * SQLException - if a database access error occurs; this method is called 
+     		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+     		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+			 */
 			ps = conn.prepareStatement(sql_find, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			ps.setString(1, name);
+			ps.setString(1, "%" + name + "%"); // want to use the wild character %
+			ps.setString(2, "%" + description + "%");
+			ps.setString(3, state);
+			ps.setInt(4, severity);
 			
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {//check if we get any results
