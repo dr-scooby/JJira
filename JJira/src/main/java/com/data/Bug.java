@@ -12,7 +12,8 @@ public class Bug {
 	private String id;
 	private String name;
 	private String description;
-	private String date;
+	private String date_created_at;
+	private String date_updated_at;
 	private String state;
 	private String log;
 	private int severity;
@@ -21,7 +22,8 @@ public class Bug {
 	public Bug() {
 		id = "";
 		name = "";
-		date = "";
+		date_created_at = "";
+		date_updated_at = "";
 		state = "";
 		log = "";
 		description = "";
@@ -56,7 +58,7 @@ public class Bug {
 		super();
 		this.id = id;
 		this.name = title;
-		this.date = date;
+		this.date_created_at = date;
 		this.state = state;
 		this.log = log;
 	}
@@ -69,6 +71,55 @@ public class Bug {
 		this.description = description2;
 		this.severity = severity2;
 		this.state = state2;
+	}
+
+	
+
+
+	public Bug(String id, String name, String description, String date_created_at, String state, int severity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.date_created_at = date_created_at;
+		this.state = state;
+		this.severity = severity;
+	}
+
+
+
+	/**
+	 * @return the date_created_at
+	 */
+	public String getDate_created_at() {
+		return date_created_at;
+	}
+
+
+
+	/**
+	 * @param date_created_at the date_created_at to set
+	 */
+	public void setDate_created_at(String date_created_at) {
+		this.date_created_at = date_created_at;
+	}
+
+
+
+	/**
+	 * @return the date_updated_at
+	 */
+	public String getDate_updated_at() {
+		return date_updated_at;
+	}
+
+
+
+	/**
+	 * @param date_updated_at the date_updated_at to set
+	 */
+	public void setDate_updated_at(String date_updated_at) {
+		this.date_updated_at = date_updated_at;
 	}
 
 
@@ -109,7 +160,7 @@ public class Bug {
 	 * @return the date
 	 */
 	public String getDate() {
-		return date;
+		return date_created_at;
 	}
 
 
@@ -117,7 +168,7 @@ public class Bug {
 	 * @param date the date to set
 	 */
 	public void setDate(String date) {
-		this.date = date;
+		this.date_created_at = date;
 	}
 
 
@@ -210,7 +261,7 @@ public class Bug {
 
 	@Override
 	public String toString() {
-		return "Bug [id=" + id + ", title=" + name + ", date=" + date + ", state=" + state + "]";
+		return "Bug [id=" + id + ", title=" + name + ", date=" + date_created_at + ", state=" + state + "]";
 	}
 
 	
