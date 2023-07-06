@@ -2,6 +2,8 @@ package com.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.DB.DBModel;
+import com.data.Bug;
 
 /**
  * JIRA Project
@@ -202,7 +205,14 @@ public class ControllerServlet extends HttpServlet{
 		String severity = request.getParameter("severity");
 		String state = request.getParameter("state");
 		
-		db.searchBug(name, description, state, Integer.parseInt(severity));
+		ArrayList<Bug> bugs = null;
+		
+		if(description.isEmpty() || severity.isEmpty() || state.isEmpty()) {
+		
+			bugs =    db.searchBug(name);
+		}else {
+			bugs = db.searchBug(name, description, state, 0);
+		}
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
@@ -221,6 +231,19 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<p>Name Search: " + name + "</p>");
 		         out.println("<p>Description Search: " + description + "</p>");
 		         out.println("<p>Severity: " + severity + "</p>");		                
+		         
+		         out.println("<br><h1><p>Search Results</p></h1>");
+		         out.println("<br>");
+		         
+		         Iterator<Bug> it = bugs.iterator();
+		         while(it.hasNext()) {
+		        	 Bug b = (Bug)it.next();
+		        	 out.println("Bug ID: " + b.getId());
+		        	 out.println("Bug Name: " + b.getName());
+		        	 out.println("Bug Description: " + b.getDescription());
+		        	 out.println("Bug Severity: " + b.getSeverity());
+		        	 out.println("<br>");
+		         }
 		         
 		         out.println("</body>");
 		         out.println("</html>");

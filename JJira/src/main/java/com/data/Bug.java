@@ -3,13 +3,15 @@
  */
 package com.data;
 
+import java.util.ArrayList;
+
 /**
  * @author nurali
  *
  */
 public class Bug {
 	
-	private String id;
+	private int id;
 	private String name;
 	private String description;
 	private String date_created_at;
@@ -17,10 +19,11 @@ public class Bug {
 	private String state;
 	private String log;
 	private int severity;
+	private ArrayList<BugLog> buglogs;
 	
 	
 	public Bug() {
-		id = "";
+		id = 0;
 		name = "";
 		date_created_at = "";
 		date_updated_at = "";
@@ -28,23 +31,44 @@ public class Bug {
 		log = "";
 		description = "";
 		severity = 1;
+		buglogs = new ArrayList<BugLog>();
 	}
 
 
 	
 	// get ID, name, description
-	public Bug(String id, String name, String description) {
+	public Bug(int id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 
-
+//  nameresult, descr, stateresult , sev
+	
 	
 
+	public Bug(String name, String description, int severity) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.severity = severity;
+	}
+
+
+
+	public Bug(String name, String description, String state, int severity) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.state = state;
+		this.severity = severity;
+	}
+
+
+
 	// get ID, name, description, severity
-	public Bug(String id, String name, String description, int severity) {
+	public Bug(int id, String name, String description, int severity) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,7 +78,7 @@ public class Bug {
 
 
 
-	public Bug(String id, String title, String date, String state, String log) {
+	public Bug(int id, String title, String date, String state, String log) {
 		super();
 		this.id = id;
 		this.name = title;
@@ -76,7 +100,7 @@ public class Bug {
 	
 
 
-	public Bug(String id, String name, String description, String date_created_at, String state, int severity) {
+	public Bug(int id, String name, String description, String date_created_at, String state, int severity) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,6 +110,64 @@ public class Bug {
 		this.severity = severity;
 	}
 
+
+	
+
+	/**
+	 * @return the buglogs
+	 */
+	public ArrayList<BugLog> getBuglogs() {
+		return buglogs;
+	}
+
+
+
+	/**
+	 * @param buglogs the buglogs to set
+	 */
+	public void setBuglogs(ArrayList<BugLog> buglogs) {
+		this.buglogs = buglogs;
+	}
+
+	
+	public boolean addLog(int bugid   ,String log) {
+		boolean ok = false;		
+		
+		BugLog bl = new BugLog();
+		bl.setBugid(bugid);
+		bl.setLog(log);
+		if(buglogs.add(bl))
+			ok = true;
+		
+		
+		return ok;
+	}
+	
+	
+	public boolean addLog(int logid, int bugid, String log) {
+		boolean ok = false;
+		BugLog bl = new BugLog();
+		bl.setBugid(bugid);
+		bl.setLogid(logid);
+		bl.setLog(log);
+		if(buglogs.add(bl))
+			ok = true;
+		
+		return ok;
+	}
+	
+	
+	public boolean addLog(String log) {
+		boolean ok = false;
+		
+		BugLog bl = new BugLog();
+		bl.setBugid(this.getId());
+		if(buglogs.add(bl))
+			ok = true;
+		
+		
+		return ok;
+	}
 
 
 	/**
@@ -127,7 +209,7 @@ public class Bug {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -135,7 +217,7 @@ public class Bug {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

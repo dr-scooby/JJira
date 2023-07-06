@@ -225,9 +225,47 @@ public class DBModel {
 	}
 	
 	
+	public ArrayList<Bug> searchBug(String name){
+		System.out.println("searchBug called with:> " + name );
+		ArrayList<Bug> bugs = null;
+		
+		if(conn == null) {
+			try {
+				connect();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			BugDAO bd = new BugDAO();
+			bd.connection(conn);
+			 bugs   =  bd.findBug(name);
+			if(bugs.isEmpty()) {
+				System.out.println("Array Empty");
+			}else {
+				Iterator<Bug> it = bugs.iterator();
+				while(it.hasNext()) {
+					Bug b = (Bug)it.next();
+					System.out.println(b);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return bugs;
+	}
+	
+	
 	// find a bug based on info
-	public void searchBug(String name, String description,String state, int severity) {
+	public ArrayList<Bug> searchBug(String name, String description,String state, int severity) {
 		System.out.println("searchBug called with:> " + name + " " + description + " " + severity);
+		ArrayList<Bug> bugs = null;
 		
 		if(conn == null) {
 			try {
@@ -243,7 +281,7 @@ public class DBModel {
 		try {
 			BugDAO bd = new BugDAO();
 			bd.connection(conn);
-			ArrayList<Bug> bugs   =  bd.findBug(name, description, state, severity);
+			 bugs   =  bd.findBug(name, description, state, severity);
 			if(bugs.isEmpty()) {
 				System.out.println("Array Empty");
 			}else {
@@ -258,6 +296,7 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
+		return bugs;
 		
 	}
 	
