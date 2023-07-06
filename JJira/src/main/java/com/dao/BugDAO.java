@@ -159,6 +159,38 @@ public class BugDAO extends DAO{
 		
 		return bugs;
 	}
+	
+	// get all bugs, list all
+	public ArrayList<Bug> getAllBugs() {
+		System.out.println("getting all bugs from BUGDAO");
+		
+		ArrayList<Bug> allb = new ArrayList<Bug>();
+		Bug b;
+		String sql_all = "select * from Bugs";
+		try {
+		PreparedStatement ps = conn.prepareStatement(sql_all);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			String name = rs.getString("name");
+			String description = rs.getString("description");
+			int severity = rs.getInt("severity");
+			String state = rs.getString("state");
+			int id = rs.getInt("id");
+			String date = rs.getString("created_at");
+			b = new Bug(id, name, description);
+			b.setSeverity(severity);
+			b.setState(state);
+			b.setDate_created_at(date);
+			allb.add(b);
+		}
+		}catch(SQLException s) {
+			System.err.println(s);
+		}
+		
+		
+		
+		return allb;
+	}
 
 	@Override
 	public void connection(Connection c) throws SQLException {
