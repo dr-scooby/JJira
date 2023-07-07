@@ -225,6 +225,33 @@ public class DBModel {
 	}
 	
 	
+	public ArrayList<Bug> listallBugs(){
+		System.out.println("list all bugs called with:> "  );
+		ArrayList<Bug> bugs = null;
+		
+		if(conn == null) {
+			try {
+				connect();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		BugDAO bd  = new BugDAO();
+		try {
+			bd.connection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		bd.getAllBugs();
+		
+		
+		return bugs;
+	}
+	
 	public ArrayList<Bug> searchBug(String name){
 		System.out.println("searchBug called with:> " + name );
 		ArrayList<Bug> bugs = null;
