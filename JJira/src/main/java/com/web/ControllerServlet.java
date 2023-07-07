@@ -137,7 +137,18 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<body>");
 		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
 		         out.println("<h1>List All Bugs info</h1>");
+		         out.println("<br>");
 		         
+		         ArrayList<Bug> bugs = db.listallBugs();
+		         System.out.println("Bugs size:: " + bugs.size());
+		         out.println("Bugs Size:: " + bugs.size());
+		         out.println("<br>");
+		         Iterator it = bugs.iterator();
+		         while(it.hasNext()) {
+		        	 Bug b = (Bug)it.next();
+		        	 out.println(b);
+		        	 out.println("<br>");
+		         }
 		         
 		         out.println("</body>");
 		         out.println("</html>");

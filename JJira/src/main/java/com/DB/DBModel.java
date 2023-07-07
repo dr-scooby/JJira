@@ -246,7 +246,7 @@ public class DBModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		bd.getAllBugs();
+		bugs = bd.getAllBugs();
 		
 		
 		return bugs;
