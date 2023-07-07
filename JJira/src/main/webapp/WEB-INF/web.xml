@@ -73,11 +73,16 @@
   	<url-pattern>/searchbug</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/listallbugs</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/newticket</url-pattern>
   </servlet-mapping>
+  
   
   
   

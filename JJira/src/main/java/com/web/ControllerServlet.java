@@ -102,6 +102,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/searchbug":
 					searchbug(request, response);
 				break;
+				case "/listallbugs":
+					listallbugs(request, response);
+				break;
 				case "/newticket":
 					newticket(request, response);
 				break;
@@ -119,6 +122,34 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	private void listallbugs(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		PrintWriter out;
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>List All Bugs info</h1>");
+		         
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
 	private void ticketsearch(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String title = request.getParameter("title");
