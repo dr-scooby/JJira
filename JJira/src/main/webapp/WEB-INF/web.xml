@@ -25,6 +25,16 @@
    		<param-value>java1973</param-value>
    	</init-param>
    	
+   	<!--  DB read only  -->
+   	<init-param>
+   		<param-name>dbreadonly</param-name>
+   		<param-value>dbguest</param-value>
+   	</init-param>
+   	
+   	<init-param>
+   		<param-name>dbreadonlypass</param-name>
+   		<param-value>123</param-value>
+   	</init-param>
   </servlet>
   
   <servlet-mapping>
