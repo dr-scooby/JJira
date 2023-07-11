@@ -269,17 +269,19 @@ public class ControllerServlet extends HttpServlet{
 		
 		ArrayList<Bug> bugs = null;
 		
-		if(description.isEmpty() || severity.isEmpty() || state.isEmpty()) {
+		if(!description.isEmpty()) {
+			bugs = db.searchBugDescription(description);
+		}
+		
+		if(description.isEmpty() ) {
 		
 			bugs =    db.searchBug(name);
-		}else {
-			bugs = db.searchBug(name, description, state, 0);
 		}
 		
 		
 		try {
 			request.setAttribute("listallbugs", bugs);
-			RequestDispatcher dispatch = request.getRequestDispatcher("listallBugs.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("bugsearchresults.jsp");
 			dispatch.forward(request, response);
 			return;
 		} catch (ServletException e1) {

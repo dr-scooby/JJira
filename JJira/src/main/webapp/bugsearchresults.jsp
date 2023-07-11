@@ -19,7 +19,7 @@
 
 <div class="header">
   <h1>Jira - Bug Tracking and Inventory DB</h1>
-  <h2>Listing all Bugs</h2>
+  <h2>Search Results - Bugs</h2>
 </div>
 
 <div class="topnav">
@@ -91,9 +91,9 @@
       <h2>Search result - Bugs</h2>
       
       <div class="dropdown">
-        <span>Showing Bugs</span>
+        <span>Showing Bugs results</span>
          <div class="dropdown-content">
-           <p>Listing all bugs from the DB..</p>
+           <p>Search results bugs from the DB..</p>
          </div>
       </div>
       
