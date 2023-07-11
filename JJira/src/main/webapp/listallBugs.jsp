@@ -116,42 +116,7 @@
             		<td><c:out value="${bugs.description}"/></td>
             	</tr>
             </c:forEach>
-            
-            <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>g@yahoo.com</td>
-            <td>999-999-9999</td>
-            </tr>
-            <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>g@yahoo.com</td>
-            <td>999-999-9999</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-                <td>g@yahoo.com</td>
-                <td>999-999-9999</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                    <td>g@yahoo.com</td>
-                    <td>999-999-9999</td>
-                    </tr>
-                    <tr>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td>Mexico</td>
-                        <td>g@yahoo.com</td>
-                        <td>999-999-9999</td>
-                        </tr>
+                        
         </table> 
     </div>
     </div> <!-- end empcard -->
