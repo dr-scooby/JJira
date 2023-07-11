@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 
@@ -64,17 +65,22 @@
  <div class="columna">
     <div class="carda">
         <h2>Bug</h2>
-          New Bug.  
-          <a href="listallbugs">List all bugs</a>
-             
+       <div class="buglinks">
+         <a class="buggya" href="#">New Bug.</a>  
+         <a class="buggya" href="listallbugs">List all bugs</a>
+         <a class="buggya" href="#">Search for Bug.</a> 
+       </div>
+        
+        
+         <!-- 
              <div class="dropdown">
               <span><a href="bugpage.html"><i class='bx bxs-bug bx-md'></i></a></span>
                <div class="dropdown-content">
                  <p><a href="listallbugs">List all bugs</a>, also search for bugs in DB.</p>
                </div>
             </div>
-        
-          
+        -->
+         
       </div> 
  </div>
 </div>
@@ -85,58 +91,70 @@
       <h2>Listing all Bugs</h2>
       
       <div class="dropdown">
-        <span>Fill out New Bug info</span>
+        <span>Showing Bugs</span>
          <div class="dropdown-content">
-           <p>Enter full info, name, email, etc..</p>
+           <p>Listing all bugs from the DB..</p>
          </div>
       </div>
-      <div class="form">
-      <form action="newbug" method="post">
-        <div class="formrow">
-            <div class="col-25">
-                <label for="bugname">Name</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="bugname" name="bugname" placeholder="Bug name..">
-              </div>
-        </div>
-        
-        <div class="formrow">
-            <div class="col-25">
-                <label for="description">Description</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="description" name="description" placeholder="description..">
-              </div>
-        </div>
-
-        <div class="formrow">
-            <div class="col-25">
-                <label for="severity">Severity</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="severity" name="severity" placeholder="severity..">
-              </div>
-        </div>
-
-        <div class="formrow">
-            <div class="col-25">
-                <label for="state">State</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="state" name="state" placeholder="state">
-              </div>
-        </div>
-
-        
-        <br>
-    <div class="formrow">
-        <input type="submit" value="Submit">
-    </div>
-      </form> 
-    </div>
       
+      <div class="tablediv">
+        <table class="bugtable">
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Severity</th>
+            <th>State</th>
+            <th>Description</th>
+            </tr>
+            
+            <c:forEach var="bugs" items="${listallbugs}">
+            	<tr>
+            		<td><c:out value="${bugs.id}"/></td>
+            		<td><c:out value="${bugs.name}"/></td>
+            		<td><c:out value="${bugs.severity}"/></td>
+            		<td><c:out value="${bugs.state}"/></td>
+            		<td><c:out value="${bugs.description}"/></td>
+            	</tr>
+            </c:forEach>
+            
+            <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>g@yahoo.com</td>
+            <td>999-999-9999</td>
+            </tr>
+            <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+            <td>g@yahoo.com</td>
+            <td>999-999-9999</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Francisco Chang</td>
+                <td>Mexico</td>
+                <td>g@yahoo.com</td>
+                <td>999-999-9999</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                    <td>g@yahoo.com</td>
+                    <td>999-999-9999</td>
+                    </tr>
+                    <tr>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                        <td>Mexico</td>
+                        <td>g@yahoo.com</td>
+                        <td>999-999-9999</td>
+                        </tr>
+        </table> 
     </div>
+    </div> <!-- end empcard -->
 
 
     <div class="empcard">
@@ -212,8 +230,7 @@
     <div class="card">
       <h3>Popular Post</h3>
       <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
+      
     </div>
     <div class="card">
       <h3>Follow Me</h3>

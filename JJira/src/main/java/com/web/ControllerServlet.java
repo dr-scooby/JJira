@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -125,6 +126,24 @@ public class ControllerServlet extends HttpServlet{
 	private void listallbugs(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		PrintWriter out;
+		System.out.println("listing all bugs. ControllerServlet");
+		
+		ArrayList<Bug> bugs = db.listallBugs();
+		
+		try {
+			request.setAttribute("listallbugs", bugs);
+			RequestDispatcher dispatch = request.getRequestDispatcher("listallBugs.jsp");
+			dispatch.forward(request, response);
+			return;
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
 		// this block is to test the Servlet & web.xml is working and configure properly.
 	      try {
 	    	   out = response.getWriter(); 
@@ -139,7 +158,7 @@ public class ControllerServlet extends HttpServlet{
 		         out.println("<h1>List All Bugs info</h1>");
 		         out.println("<br>");
 		         
-		         ArrayList<Bug> bugs = db.listallBugs();
+		         //ArrayList<Bug> bugs = db.listallBugs();
 		         System.out.println("Bugs size:: " + bugs.size());
 		         out.println("Bugs Size:: " + bugs.size());
 		         out.println("<br>");
@@ -158,6 +177,7 @@ public class ControllerServlet extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 	      }
+	      */
 	}
 
 

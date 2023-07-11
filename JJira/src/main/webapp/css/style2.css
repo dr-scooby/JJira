@@ -1,5 +1,3 @@
-@charset "ISO-8859-1";
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -106,7 +104,7 @@
   .fakeimg {
     background-color: #aaa;
     width: 15%;
-    height: 50%;
+    height: 15%;
     padding: 20px;
     font-size: 100%;
     color: #0f59d8;
@@ -232,6 +230,58 @@
     box-shadow: 1px 1px 1px 1px var(--shadow-over);
   }
   
+.buglinks{
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  /*  padding: 10px; */
+}
+
+.columna .carda .buglinks .buggya{
+  float:left;
+    display: block;
+    color: rgb(249, 0, 0);
+    text-align:center;
+    padding: 20px 10px 40px 10px;
+    text-decoration: none;
+    width: 20%;
+    height: 40%;
+}
+
+/* Table formating */
+  .tablediv{
+    box-shadow: 1px 1px 1px 1px var(--shadow-color);
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bugtable{
+    width: 100%;
+    border: 1px solid rgb(254, 0, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .bugtable th{
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .bugtable th, td{
+    /* border-collapse: collapse; */
+    border: 1px solid #dddddd;
+  }
+
+  .bugtable tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .bugtable tr:hover{
+    background-color: #0f59d8;
+    color: white;
+  }
+
   /* Clear floats after the columns */
   .formrow::after {
     content: "";
@@ -282,6 +332,10 @@
       padding: 0;
     }
   
+    .columna{
+      width: 100%;
+      padding: 0;
+    }
     
   }
   
