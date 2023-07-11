@@ -66,9 +66,9 @@
     <div class="carda">
         <h2>Bug</h2>
        <div class="buglinks">
-         <a class="buggya" href="#">New Bug.</a>  
+         <a class="buggya" href="bugpage.html">New Bug.</a>  
          <a class="buggya" href="listallbugs">List all bugs</a>
-         <a class="buggya" href="#">Search for Bug.</a> 
+         <a class="buggya" href="bugpage.html">Search for Bug.</a> 
        </div>
         
         
