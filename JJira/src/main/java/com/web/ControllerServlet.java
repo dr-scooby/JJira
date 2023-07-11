@@ -276,45 +276,59 @@ public class ControllerServlet extends HttpServlet{
 			bugs = db.searchBug(name, description, state, 0);
 		}
 		
+		
+		try {
+			request.setAttribute("listallbugs", bugs);
+			RequestDispatcher dispatch = request.getRequestDispatcher("listallBugs.jsp");
+			dispatch.forward(request, response);
+			return;
+		} catch (ServletException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
-	      try {
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>Search Bug info</h1>");
-		         // Echo client's submitted information
-		         out.println("<p>Name Search: " + name + "</p>");
-		         out.println("<p>Description Search: " + description + "</p>");
-		         out.println("<p>Severity: " + severity + "</p>");		                
-		         
-		         out.println("<br><h1><p>Search Results</p></h1>");
-		         out.println("<br>");
-		         
-		         Iterator<Bug> it = bugs.iterator();
-		         while(it.hasNext()) {
-		        	 Bug b = (Bug)it.next();
-		        	 out.println("Bug ID: " + b.getId());
-		        	 out.println("Bug Name: " + b.getName());
-		        	 out.println("Bug Description: " + b.getDescription());
-		        	 out.println("Bug Severity: " + b.getSeverity());
-		        	 out.println("<br>");
-		         }
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+//	      try {
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>Search Bug info</h1>");
+//		         // Echo client's submitted information
+//		         out.println("<p>Name Search: " + name + "</p>");
+//		         out.println("<p>Description Search: " + description + "</p>");
+//		         out.println("<p>Severity: " + severity + "</p>");		                
+//		         
+//		         out.println("<br><h1><p>Search Results</p></h1>");
+//		         out.println("<br>");
+//		         
+//		         Iterator<Bug> it = bugs.iterator();
+//		         while(it.hasNext()) {
+//		        	 Bug b = (Bug)it.next();
+//		        	 out.println("Bug ID: " + b.getId());
+//		        	 out.println("Bug Name: " + b.getName());
+//		        	 out.println("Bug Description: " + b.getDescription());
+//		        	 out.println("Bug Severity: " + b.getSeverity());
+//		        	 out.println("<br>");
+//		         }
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 	}
 
 
