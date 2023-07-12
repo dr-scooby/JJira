@@ -19,7 +19,7 @@
 
 <div class="header">
   <h1>Jira - Bug Tracking and Inventory DB</h1>
-  <h2>Listing all Bugs</h2>
+  <h2>Success adding Bug</h2>
 </div>
 
 <div class="topnav">
@@ -88,31 +88,26 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="empcard">
-      <h2>Added Bug</h2>
+      <h2><span>Added Bug to DB</span></h2>
       
       <div class="dropdown">
-        <span>Showing Bugs</span>
+        <span>Showing New Bug</span>
          <div class="dropdown-content">
-           <p>Listing all bugs from the DB..</p>
+           <p>Showing new Bug added to DB..Success</p>
          </div>
       </div>
       
       <div class="tablediv">
         <table class="bugtable">
-            <tr>
-            
-            <th>Name</th>
-            <th>Severity</th>
-            
-            <th>Description</th>
-            </tr>
-            
-           
-            	<tr>
-            		
+            <tr>            
+	            <th>Name</th>
+	            <th>Severity</th>            
+	            <th>Description</th>
+            </tr>            
+           		<!--  Bug Data -->
+            	<tr>            		
             		<td><c:out value="${bug.name}"/></td>
-            		<td><c:out value="${bug.severity}"/></td>
-            		
+            		<td><c:out value="${bug.severity}"/></td>            		
             		<td><c:out value="${bug.description}"/></td>
             	</tr>
          
