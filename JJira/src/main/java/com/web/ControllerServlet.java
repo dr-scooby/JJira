@@ -344,34 +344,51 @@ public class ControllerServlet extends HttpServlet{
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
 		 // this is working, so now need to add a JSP for the output
-	      try {
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>New Bug info</h1>");
-		         // Echo client's submitted information
-		         out.println("<p>Bug Name : " + bugname + "</p>");
-		         out.println("<p>Bug description: " + description + "</p>");
-		         out.println("<p>severity Level: " + severity + "</p>");
-		         out.println("<p>State: " + state + "</p>");
-		         
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+//	      try {
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>New Bug info</h1>");
+//		         // Echo client's submitted information
+//		         out.println("<p>Bug Name : " + bugname + "</p>");
+//		         out.println("<p>Bug description: " + description + "</p>");
+//		         out.println("<p>severity Level: " + severity + "</p>");
+//		         out.println("<p>State: " + state + "</p>");
+//		         
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 	      // hand client data to the DBModel to process
-	      db.anewBug(bugname, description, severity, state);
+	      if(db.anewBug(bugname, description, severity, state)) {
+	    	  // success
+	    	  try {
+	    		Bug bug = new Bug(bugname, description, Integer.parseInt(severity));  
+	  			request.setAttribute("bug", bug);
+	  			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/jsp/successnewbug.jsp");
+	  			dispatch.forward(request, response);
+	  			return;
+	  		} catch (ServletException e1) {
+	  			// TODO Auto-generated catch block
+	  			e1.printStackTrace();
+	  		} catch (IOException e1) {
+	  			// TODO Auto-generated catch block
+	  			e1.printStackTrace();
+	  		}
+	      }else {
+	    	  // failed to add
+	      }
 	}
 
 
