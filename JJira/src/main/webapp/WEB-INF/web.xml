@@ -84,6 +84,10 @@
   </servlet-mapping>
   
   
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/listalltickets</url-pattern>
+  </servlet-mapping>
   
   
   <servlet-mapping>
