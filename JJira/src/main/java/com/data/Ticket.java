@@ -9,7 +9,7 @@ package com.data;
  */
 public class Ticket {
 
-	private String id; // ism101 or a101
+	private int id; // ism101 or a101
 	private String title;
 	private String summary;
 	private String notes;
@@ -18,7 +18,7 @@ public class Ticket {
 	
 	
 	public Ticket() {
-		id = "";
+		id = 0;
 		title = "";
 		summary = "";
 		notes = "";
@@ -27,7 +27,7 @@ public class Ticket {
 	}
 
 
-	public Ticket(String id, String title, String summary, String notes, String state, String date) {
+	public Ticket(int id, String title, String summary, String notes, String state, String date) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -38,7 +38,7 @@ public class Ticket {
 	}
 
 
-	public Ticket(String id, String title, String summary, String state, String date) {
+	public Ticket(int id, String title, String summary, String state, String date) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -51,7 +51,7 @@ public class Ticket {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -59,7 +59,7 @@ public class Ticket {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

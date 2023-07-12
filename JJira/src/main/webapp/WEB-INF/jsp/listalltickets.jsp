@@ -104,7 +104,7 @@
             <th>Title</th>
             <th>Summary</th>
             <th>Notes</th>
-            <th>Description</th>
+            
             </tr>
             
             <c:forEach var="tik" items="${listalltik}">

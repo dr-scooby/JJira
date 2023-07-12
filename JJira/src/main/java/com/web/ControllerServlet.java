@@ -131,29 +131,40 @@ public class ControllerServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		
 		System.out.println("listing all tickets");
-		 try {
-			 PrintWriter out;
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully reached the all tickets Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>List All Tickets info</h1>");
-		         out.println("<br>");
-		         		         
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+		ArrayList<Ticket> tiks = db.listallTickets();
+		request.setAttribute("listalltik", tiks);
+		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/listalltickets.jsp");
+		try {
+			dis.forward(request, response);
+			return;
+		} catch (ServletException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+//		 try {
+//			 PrintWriter out;
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully reached the all tickets Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>List All Tickets info</h1>");
+//		         out.println("<br>");
+//		         		         
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 		
 	}
 

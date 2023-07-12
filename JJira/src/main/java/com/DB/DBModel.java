@@ -13,7 +13,9 @@ import java.util.*;
 
 import com.dao.BugDAO;
 import com.dao.DAO;
+import com.dao.TikDAO;
 import com.data.Bug;
+import com.data.Ticket;
 
 /**
  * JIRA PROJECT
@@ -250,6 +252,28 @@ public class DBModel {
 		
 		
 		return bugs;
+	}
+	
+	// get all Tickets
+	public ArrayList<Ticket> listallTickets(){
+		System.out.println("listing all tickets from DBModel...");
+		ArrayList<Ticket> tiks = null;
+		
+		if(conn == null) {
+			try {
+				connect();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		TikDAO tdao = new TikDAO(conn);
+		tiks = tdao.getAllTickets();
+		
+		return tiks;
+				
 	}
 	
 	// find description
