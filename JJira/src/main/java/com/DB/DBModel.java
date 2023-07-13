@@ -103,13 +103,19 @@ public class DBModel {
 		
 		String sql_insert = "insert into tickets(title, summary,notes, severity) value(?,?,?,?)";
 		
-		if(conn == null) {
-			try {
-				connect();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
@@ -145,13 +151,19 @@ public class DBModel {
 		
 		String sql_insert = "insert into employees(fname, lname,email, phone) value(?,?,?,?)";
 		
-		if(conn == null) {
-			try {
-				connect();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
@@ -178,14 +190,21 @@ public class DBModel {
 		System.out.println("\n a New Bug called in DBModel..");
 		int number = Integer.parseInt(severity);
 		try {
-			if(conn == null) {
-				try {
-					connect();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			try {
+				if(conn == null || conn.isClosed()) {
+					try {
+						connect();
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
 			Bug b = new Bug(name, description, number, state);
 			BugDAO bd = new BugDAO();
 			bd.connection(conn);
@@ -231,14 +250,19 @@ public class DBModel {
 		System.out.println("list all bugs called with:> "  );
 		ArrayList<Bug> bugs = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		BugDAO bd  = new BugDAO();
@@ -286,14 +310,19 @@ public class DBModel {
 		System.out.println("searchBug called with:> " +  descr);
 		ArrayList<Bug> bugs = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
@@ -324,14 +353,19 @@ public class DBModel {
 		System.out.println("searchBug called with:> " + name + " " + descr);
 		ArrayList<Bug> bugs = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
@@ -361,14 +395,19 @@ public class DBModel {
 		System.out.println("searchBug called with:> " + name );
 		ArrayList<Bug> bugs = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
@@ -399,14 +438,19 @@ public class DBModel {
 		System.out.println("searchBug called with:> " + name + " " + description + " " + severity);
 		ArrayList<Bug> bugs = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
@@ -442,13 +486,19 @@ public class DBModel {
 		
 		String sql_insert = "insert into TeamGroups(name, email) value(?,?)";
 		
-		if(conn == null) {
-			try {
-				connect();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {
