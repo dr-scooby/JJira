@@ -142,6 +142,35 @@ public class DBModel {
 		return ok;
 	}
 	
+	// search ticket by title
+	public ArrayList<Ticket> searchTicketTitle(String s) {
+		
+		System.out.println("Search Ticket Title: " + s);
+		
+		
+		
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		TikDAO tikd = new TikDAO(conn);
+		ArrayList<Ticket> tiks = tikd.findTitle(s);
+		
+		return tiks;
+		
+	}
+	
 	// create new employee
 	public boolean anewEmployee(String fname, String lname, String email, String phone) {
 		boolean ok = false;

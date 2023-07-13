@@ -40,16 +40,15 @@ public class Ticket {
 	}
 
 
-	public Ticket(int id, String title, String summary, String state, String date) {
+	
+	public Ticket(int id, String title, String summary, String notes, String date) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.summary = summary;
-		this.state = state;
+		this.notes = notes;
 		this.date_created = date;
 	}
-
-
 	
 	/**
 	 * @return the severity

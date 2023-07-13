@@ -227,6 +227,7 @@ public class ControllerServlet extends HttpServlet{
 	}
 
 
+	// search for tickets based on criteria
 	private void ticketsearch(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String title = request.getParameter("title");
@@ -236,32 +237,41 @@ public class ControllerServlet extends HttpServlet{
 		String severity = request.getParameter("severity");
 		
 		 PrintWriter out;
+		 
+		 if(!title.isEmpty()) {
+			 // get the DB results search
+			 ArrayList<Ticket> tiks = db.searchTicketTitle(title);
+			 // set Attribute
+			 request.setAttribute("tickets", tiks);
+			 // now send to ticket results page
+		 }
+		 
 		// this block is to test the Servlet & web.xml is working and configure properly.
-	      try {
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>Search Bug info</h1>");
-		         // Echo client's submitted information
-		         out.println("<p>Title: " + title + "</p>");
-		         out.println("<p>Summery: " + summary + "</p>");
-		         out.println("<p>Notes: " + notes + "</p>");	
-		         out.println("<p>Severity Level: " + severity + "</p>");
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+//	      try {
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>Search Bug info</h1>");
+//		         // Echo client's submitted information
+//		         out.println("<p>Title: " + title + "</p>");
+//		         out.println("<p>Summery: " + summary + "</p>");
+//		         out.println("<p>Notes: " + notes + "</p>");	
+//		         out.println("<p>Severity Level: " + severity + "</p>");
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 	}
 
 

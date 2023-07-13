@@ -49,6 +49,48 @@ public class TikDAO extends DAO{
 	}
 	
 	
+	// search Ticket by Title
+	public ArrayList<Ticket> findTitle(String s){
+		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
+		
+		System.out.println("finding all Tickets from BUGDAO using " + s);
+		
+		String sql_search = "select * from tickets where title like ?";
+		
+		PreparedStatement ps;
+		try {
+			/* 
+			 * SQLException - if a database access error occurs; this method is called 
+     		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+     		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+			 */
+			ps = conn.prepareStatement(sql_search, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ps.setString(1, "%" + s + "%"); // want to use the wild character %
+						
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {//check if we get any results
+				rs.beforeFirst(); // move the rs before the first
+				while(rs.next()) {
+					String title = rs.getString("title");
+					String summary = rs.getString("summary");
+					String notes = rs.getString("notes");
+					int id = rs.getInt("id");
+					String date = rs.getString("created_at");
+					int sev = rs.getInt("severity");
+					
+					Ticket tik = new Ticket(id, title, summary, notes, date);
+					tik.setSeverity(sev);
+					tiks.add(tik);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tiks;
+	}
+	
 	public ArrayList<Ticket> getAllTickets(){
 		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
 		
