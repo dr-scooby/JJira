@@ -259,14 +259,19 @@ public class DBModel {
 		System.out.println("listing all tickets from DBModel...");
 		ArrayList<Ticket> tiks = null;
 		
-		if(conn == null) {
-			try {
-				connect();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		TikDAO tdao = new TikDAO(conn);
