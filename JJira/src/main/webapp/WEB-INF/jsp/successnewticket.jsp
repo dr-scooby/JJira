@@ -118,44 +118,53 @@
 
 
     <div class="empcard">
-        <h2>Search Bug</h2>
+        <h2>Search Ticket</h2>
         
         <div class="dropdown">
-          <span>Fill out  info to search</span>
+          <span>Fill out info to search</span>
            <div class="dropdown-content">
              <p>Enter full info, name, email, etc..</p>
            </div>
         </div>
         <div class="form">
-        <form action="searchbug" method="post">
+        <form action="ticketsearch" method="post">
           <div class="formrow">
               <div class="col-25">
-                  <label for="name">Name</label>
+                  <label for="title">Title</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="name" name="name" placeholder="Bug name..">
+                  <input type="text" id="title" name="title" placeholder="Your Title name..">
                 </div>
           </div>
           
           <div class="formrow">
               <div class="col-25">
-                  <label for="description">Description</label>
+                  <label for="summary">Summary</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="description" name="description" placeholder="enter some words..">
+                  <input type="text" id="summary" name="summary" placeholder="summary..">
                 </div>
           </div>
   
           <div class="formrow">
               <div class="col-25">
-                  <label for="severity">Severity Level</label>
+                  <label for="notes">Notes</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="severity" name="severity" placeholder="severity level..">
+                  <input type="text" id="notes" name="notes" placeholder="notes..">
                 </div>
           </div>
   
-                  
+          <div class="formrow">
+              <div class="col-25">
+                  <label for="severity">Severity</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="severity" name="severity" placeholder="severity">
+                </div>
+          </div>
+  
+          
           <br>
       <div class="formrow">
           <input type="submit" value="Submit">
@@ -183,9 +192,10 @@
 
   <div class="rightcolumn">
     <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+     <h2>Ticket</h2>
+      <p><a href="listalltickets">List all tickets</a></p>
+      <p><a href="newticket.html">New ticket</a></p>
+      <p><a href="">Search ticket</a></p>
     </div>
     <div class="card">
       <h3>Popular Post</h3>
