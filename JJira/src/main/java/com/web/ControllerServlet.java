@@ -244,6 +244,27 @@ public class ControllerServlet extends HttpServlet{
 			 // set Attribute
 			 request.setAttribute("tickets", tiks);
 			 // now send to ticket results page
+			 RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/tickettitlesearch.jsp");
+			 try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				request.setAttribute("exception", e.getMessage());
+				RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+				try {
+					diserror.forward(request, response);
+					return;
+				} catch (ServletException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			 return;
 		 }
 		 
 		// this block is to test the Servlet & web.xml is working and configure properly.

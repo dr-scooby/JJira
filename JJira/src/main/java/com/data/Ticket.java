@@ -15,7 +15,8 @@ public class Ticket {
 	private String notes;
 	private String state; // open , closed, suspended
 	private int severity;
-	private String created_at;
+	private String date;
+	private String adate;
 	
 	
 	public Ticket() {
@@ -24,7 +25,7 @@ public class Ticket {
 		summary = "";
 		notes = "";
 		state = "";
-		created_at = "";
+		date = "";
 		severity = 0;
 	}
 
@@ -36,7 +37,7 @@ public class Ticket {
 		this.summary = summary;
 		this.notes = notes;
 		this.state = state;
-		this.created_at = date;
+		this.date = date;
 	}
 
 
@@ -47,7 +48,7 @@ public class Ticket {
 		this.title = title;
 		this.summary = summary;
 		this.notes = notes;
-		this.created_at = date;
+		this.date = date;
 	}
 	
 	/**
@@ -150,7 +151,7 @@ public class Ticket {
 	 * @return the date
 	 */
 	public String getDate() {
-		return created_at;
+		return date;
 	}
 
 
@@ -158,7 +159,7 @@ public class Ticket {
 	 * @param date the date to set
 	 */
 	public void setDate(String date) {
-		this.created_at = date;
+		this.date = date;
 	}
 
 
