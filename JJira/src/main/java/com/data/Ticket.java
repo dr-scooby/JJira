@@ -9,11 +9,12 @@ package com.data;
  */
 public class Ticket {
 
-	private int id; // ism101 or a101
+	private int id; 
 	private String title;
 	private String summary;
 	private String notes;
 	private String state; // open , closed, suspended
+	private int severity;
 	private String date;
 	
 	
@@ -24,6 +25,7 @@ public class Ticket {
 		notes = "";
 		state = "";
 		date = "";
+		severity = 0;
 	}
 
 
@@ -45,6 +47,23 @@ public class Ticket {
 		this.summary = summary;
 		this.state = state;
 		this.date = date;
+	}
+
+
+	
+	/**
+	 * @return the severity
+	 */
+	public int getSeverity() {
+		return severity;
+	}
+
+
+	/**
+	 * @param severity the severity to set
+	 */
+	public void setSeverity(int severity) {
+		this.severity = severity;
 	}
 
 

@@ -52,7 +52,7 @@ public class TikDAO extends DAO{
 	public ArrayList<Ticket> getAllTickets(){
 		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
 		
-		System.out.println("getting all bugs from BUGDAO");
+		System.out.println("getting all Tickets from BUGDAO");
 		
 		
 		String sql_all = "select * from tickets";
