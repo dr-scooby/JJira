@@ -302,8 +302,8 @@ public class ControllerServlet extends HttpServlet{
 //	      }
 	      
 	      // send data to the model to process
-	      if(db.anewTicket(title, summary, notes, 0)) {
-	    	  // success
+	      if(db.anewTicket(title, summary, notes, Integer.parseInt(severity))) {
+	    	  // success, send the bean to success page to display info
 	    	  Ticket tik = new Ticket();
 	    	  tik.setTitle(title);
 	    	  tik.setNotes(notes);
