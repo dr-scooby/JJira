@@ -195,7 +195,7 @@
      <h2>Ticket</h2>
       <p><a href="listalltickets">List all tickets</a></p>
       <p><a href="newticket.html">New ticket</a></p>
-      <p><a href="">Search ticket</a></p>
+      <p><a href="searchticket.html">Search ticket</a></p>
     </div>
     <div class="card">
       <h3>Popular Post</h3>
