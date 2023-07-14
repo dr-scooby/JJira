@@ -117,6 +117,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/listalltickets":
 					listalltickets(request, response);
 					break;
+					// need a single ticket edit or show
+				case "/editticket":
+					editTicket(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -128,6 +132,15 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	
+	// Edit the ticket
+	private void editTicket(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"))  ;
+		
+	}
+
+
 	private void listalltickets(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		

@@ -140,6 +140,21 @@ public class DBModel {
 		return ok;
 	}
 	
+	
+	// get a ticket from the id
+	public Ticket getTicket(int id) throws SQLException {
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		TikDAO tdao = new TikDAO(conn);
+		Ticket t = tdao.getTicket(id);
+		
+		return t;
+	}
+	
+	
 	// search ticket by title
 	public ArrayList<Ticket> searchTicketTitle(String s) {
 		
