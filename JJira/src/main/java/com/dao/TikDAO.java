@@ -124,6 +124,39 @@ public class TikDAO extends DAO{
 		
 		return tiks;
 	}
+	
+	// get ticket from the id
+	public Ticket getTicket(int id) throws SQLException {
+		Ticket tik = null;
+		
+		System.out.println("Ticket ID: " + id);
+		
+		String sql = "select * fromt tickets where id=?";
+		
+		PreparedStatement pstate = conn.prepareStatement(sql);
+		
+		ResultSet rs = pstate.executeQuery();
+		while(rs.next()) {
+			String title = rs.getString("title");
+			String summary = rs.getString("summary");
+			String notes = rs.getString("notes");
+			int xid = rs.getInt("id");
+			int sev = rs.getInt("severity");
+			String state = rs.getString("state");
+			String date = rs.getString("created_at");
+			tik = new Ticket();
+			tik.setId(xid);
+			tik.setTitle(title);
+			tik.setSummary(summary);
+			tik.setNotes(notes);
+			tik.setSeverity(sev);
+			tik.setState(state);
+			tik.setDate(date);
+			
+		}
+				
+		return tik;
+	}
 
 	@Override
 	public void connection(Connection c) throws SQLException {
