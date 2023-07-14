@@ -2,6 +2,7 @@ package com.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -235,6 +236,7 @@ public class ControllerServlet extends HttpServlet{
 		String notes = request.getParameter("notes");
 		//severity
 		String severity = request.getParameter("severity");
+		String state = request.getParameter("state");
 		
 		 PrintWriter out;
 		 
@@ -303,6 +305,7 @@ public class ControllerServlet extends HttpServlet{
 		String notes = request.getParameter("notes");
 		//severity
 		String severity = request.getParameter("severity");
+		String state = request.getParameter("state");
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
@@ -333,23 +336,58 @@ public class ControllerServlet extends HttpServlet{
 //	      }
 	      
 	      // send data to the model to process
-	      if(db.anewTicket(title, summary, notes, Integer.parseInt(severity))) {
-	    	  // success, send the bean to success page to display info
-	    	  Ticket tik = new Ticket();
-	    	  tik.setTitle(title);
-	    	  tik.setNotes(notes);
-	    	  tik.setSummary(summary);
-	    	  request.setAttribute("Tik", tik);
-	    	  RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/jsp/successnewticket.jsp");
-	  			try {
-					dispatch.forward(request, response);
-					return;
-				} catch (ServletException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	  			
-	      }
+	      try {
+			if(db.anewTicket(title, summary, notes, Integer.parseInt(severity), state)) {
+				  // success, send the bean to success page to display info
+				  Ticket tik = new Ticket();
+				  tik.setTitle(title);
+				  tik.setNotes(notes);
+				  tik.setSummary(summary);
+				  request.setAttribute("Tik", tik);
+				  RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/jsp/successnewticket.jsp");
+					try {
+						try {
+							dispatch.forward(request, response);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return;
+					} catch (ServletException  e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						request.setAttribute("exception", e.getMessage());
+						RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+						try {
+							diserror.forward(request, response);
+							return;
+						} catch (ServletException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+			  }
+		} catch (NumberFormatException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("stack", e);
+			request.setAttribute("exception", e.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 

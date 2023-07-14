@@ -86,9 +86,10 @@
         <h2>Error</h2>
         
         <p>
-			Message from server: <%= request.getAttribute("err") %> 
+			Message from server: <%= request.getAttribute("exception") %> 
 		</p>		
-        
+        <br>
+        <p> Stack Trace: <%= request.getAttribute("stack") %>
         
       </div>
     

@@ -97,11 +97,11 @@ public class DBModel {
 	}
 	
 	// create a new ticket
-	public boolean anewTicket(String title, String summary, String notes, int severity) {
+	public boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException {
 		System.out.println("\n a New ticket called in DBModel..");
 		boolean ok = false;
 		
-		String sql_insert = "insert into tickets(title, summary,notes, severity) value(?,?,?,?)";
+		String sql_insert = "insert into tickets(title, summary,notes, severity, state) value(?,?,?,?, ?)";
 		
 		try {
 			if(conn == null || conn.isClosed()) {
@@ -118,19 +118,17 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
-		try {
+		
 			PreparedStatement ps = conn.prepareStatement(sql_insert);
 			ps.setString(1, title);
 			ps.setString(2, summary);
 			ps.setString(3, notes);
 			ps.setInt(4, severity);
+			ps.setString(5, state);
 			
 			ok = ps.executeUpdate() > 0;
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		try {
 			conn.close();
@@ -166,6 +164,14 @@ public class DBModel {
 		
 		TikDAO tikd = new TikDAO(conn);
 		ArrayList<Ticket> tiks = tikd.findTitle(s);
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return tiks;
 		
@@ -208,6 +214,14 @@ public class DBModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return ok;
 	}
@@ -271,6 +285,14 @@ public class DBModel {
 //			e.printStackTrace();
 //		}
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return ok;
 	}
 	
@@ -303,6 +325,12 @@ public class DBModel {
 		}
 		bugs = bd.getAllBugs();
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return bugs;
 	}
@@ -329,6 +357,13 @@ public class DBModel {
 		
 		TikDAO tdao = new TikDAO(conn);
 		tiks = tdao.getAllTickets();
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return tiks;
 				
@@ -372,7 +407,12 @@ public class DBModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return bugs;
 	}
@@ -417,6 +457,14 @@ public class DBModel {
 		}
 		
 		
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return bugs;
 	}
 	
@@ -457,6 +505,12 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return bugs;
 	}
@@ -496,6 +550,13 @@ public class DBModel {
 					System.out.println(b);
 				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -542,6 +603,15 @@ public class DBModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return ok;
 	}

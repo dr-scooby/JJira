@@ -77,9 +77,11 @@ public class TikDAO extends DAO{
 					int id = rs.getInt("id");
 					String date = rs.getString("created_at");
 					int sev = rs.getInt("severity");
+					String state = rs.getString("state");
 					
 					Ticket tik = new Ticket(id, title, summary, notes, date);
 					tik.setSeverity(sev);
+					tik.setState(state);
 					tiks.add(tik);
 				}
 			}

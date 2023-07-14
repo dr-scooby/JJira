@@ -107,6 +107,7 @@
             <th>Summary</th>
             <th>Notes</th>
             <th>Severity</th>
+            <th>State</th>
             <th>Date</th>
             </tr>
             
@@ -117,6 +118,7 @@
             		<td><c:out value="${tik.summary}"/></td>
             		<td><c:out value="${tik.notes}"/></td>
             		<td><c:out value="${tik.severity}"/></td>
+            		<td><c:out value="${tik.state}"/></td>
             		<td><c:out value="${tik.date}"/></td>
             	</tr>
             </c:forEach>
