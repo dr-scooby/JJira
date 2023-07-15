@@ -98,26 +98,32 @@
       </div>
       
       <div class="tablediv">
+      
+      	<c:if test="${tik != null}">
+      		<form action="update" method="post">
+      		
+      		
+      	</c:if>
         <table class="bugtable">
-            <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Summary</th>
-            <th>Notes</th>
-            
-            </tr>
-            
-            <c:forEach var="tik" items="${listalltik}">
+                    
+           
             	<tr>
-            		<td><a href="editticket?id=<c:out value='${tik.id}'/>">Edit</a>     <c:out value="${tik.id}"/></td>
+            	 <th> ID: </th>
+            	 	<td> <input type="number" name="id"  value="<c:out value='${tik.id}' />"  /></td>
+            	</tr>	
+            	<tr>
+            	 <th> ID: </th>
+            	 	<td> <input type="Title" name="title"  value="<c:out value='${tik.title}' />"  /></td>
+            	</tr>	
+            	<!--   
             		<td><c:out value="${tik.title}"/></td>
             		<td><c:out value="${tik.summary}"/></td>
             		<td><c:out value="${tik.notes}"/></td>
             		
-            	</tr>
-            </c:forEach>
-                        
-        </table> 
+            	-->	
+                                   
+        </table>
+        </form> 
     </div>
     </div> <!-- end empcard -->
 

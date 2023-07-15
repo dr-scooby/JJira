@@ -137,7 +137,26 @@ public class ControllerServlet extends HttpServlet{
 	private void editTicket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"))  ;
-		
+		try {
+			Ticket tik = db.getTicket(id);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("exception", e.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 
