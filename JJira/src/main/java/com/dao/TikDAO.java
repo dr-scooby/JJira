@@ -131,10 +131,16 @@ public class TikDAO extends DAO{
 		
 		System.out.println("Ticket ID: " + id);
 		
-		String sql = "select * fromt tickets where id=?";
+		String sql_search = "select * from tickets where id=?";
 		
-		PreparedStatement pstate = conn.prepareStatement(sql);
-		
+		PreparedStatement pstate = conn.prepareStatement(sql_search);
+		/* 
+		 * SQLException - if a database access error occurs; this method is called 
+ 		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+ 		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+		 */
+		pstate = conn.prepareStatement(sql_search, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pstate.setInt(1, id); // want to use the wild character %
 		ResultSet rs = pstate.executeQuery();
 		while(rs.next()) {
 			String title = rs.getString("title");

@@ -139,7 +139,14 @@ public class ControllerServlet extends HttpServlet{
 		int id = Integer.parseInt(request.getParameter("id"))  ;
 		try {
 			Ticket tik = db.getTicket(id);
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/");
+			request.setAttribute("tik", tik);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditTicket.jsp");
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
