@@ -6,12 +6,10 @@
 
 <html>
 <head>
-<style>
 
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
-<link rel="stylesheet" href="css/style2.css">
+<link type="text/css"  rel="stylesheet" href="css/style2a.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -19,7 +17,7 @@
 
 <div class="header">
   <h1>Jira - Bug Tracking and Inventory DB</h1>
-  <h2>Listing all Tickets</h2>
+  <h2>Displaying Ticket</h2>
 </div>
 
 <div class="topnav">
@@ -88,23 +86,43 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="empcard">
-      <h2>Listing all Tickets</h2>
-      
+      <h2>Ticket</h2>
+      <!-- 
       <div class="dropdown">
-        <span>Showing Bugs</span>
+        <span>Showing Ticket#   <c:if test="${tik != null}"> <c:out value='${tik.id}' />	</c:if></span>
          <div class="dropdown-content">
-           <p>Listing all bugs from the DB..</p>
+           <p>Listing ticket from the DB..</p>
          </div>
       </div>
+       -->
       
-      <div class="tablediv">
+      <div class="tablediv">         
+      	<table class="tiktable" id="tikTable">
+      		<tr>
+            	 <th> ID: </th>
+            	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${tik.id}' />"  /> </td>
+            </tr>	
+            <tr>
+            	 <th> Title: </th>
+            	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  /></td>
+            	</tr>
+            	<tr>
+            	 <th> Summary: </th>
+            	 	<td> <input type="text" name="summary"  value="<c:out value='${tik.summary}' />"  /></td>
+            	</tr>
+            	<tr>
+            	 <th> State: </th>
+            	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  /></td>
+            	</tr>
+      	</table>
       
+      <!--   
       	<c:if test="${tik != null}">
       		<form action="update" method="post">
       		
       		
       	</c:if>
-        <table class="bugtable">
+        <table class="edittable">
                     
            
             	<tr>
@@ -112,95 +130,52 @@
             	 	<td> <input type="number" name="id"  value="<c:out value='${tik.id}' />"  /></td>
             	</tr>	
             	<tr>
-            	 <th> ID: </th>
-            	 	<td> <input type="Title" name="title"  value="<c:out value='${tik.title}' />"  /></td>
-            	</tr>	
+            	 <th> Title: </th>
+            	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  /></td>
+            	</tr>
+            	<tr>	
+            	 <th> Summary: </th>
+            	 	<td> <input type="text" name="summary"  value="<c:out value='${tik.summary}' />"  /></td>
+            	</tr>
+            	<tr>	
+            	<th> State: </th>
+            	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  /></td>
+            	</tr>
             	<!--   
             		<td><c:out value="${tik.title}"/></td>
             		<td><c:out value="${tik.summary}"/></td>
             		<td><c:out value="${tik.notes}"/></td>
             		
             	-->	
-                                   
-        </table>
+                               
+       
+       <!--  </table>
         </form> 
+        -->
     </div>
     </div> <!-- end empcard -->
 
 
-    <div class="empcard">
-        <h2>Search Ticket</h2>
-        
-        <div class="dropdown">
-          <span>Fill out  info to search</span>
-           <div class="dropdown-content">
-             <p>Enter full info, name, email, etc..</p>
-           </div>
-        </div>
-        <div class="form">
-        <form action="ticketsearch" method="post">
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="title">Title</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="title" name="title" placeholder="Your Title name..">
-                </div>
-          </div>
-          
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="summary">Summary</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="summary" name="summary" placeholder="summary..">
-                </div>
-          </div>
-  
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="notes">Notes</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="notes" name="notes" placeholder="notes..">
-                </div>
-          </div>
-  
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="severity">Severity</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="severity" name="severity" placeholder="severity">
-                </div>
-          </div>
-  
-          
-          <br>
-      <div class="formrow">
-          <input type="submit" value="Submit">
-      </div>
-        </form> 
-      </div>
-        
-    </div>
+   
 
-    <div class="card">
-      <h2>Ticket# 102</h2>
-      <h5>Created, Sep 2, 2017</h5>
-      <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div>
-      <p>Server 2008 virus</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <div class="tikcard">
+      <h2>Ticket# <c:out value='${tik.id}' /></h2>
+      <h5>Date Created: <c:out value='${tik.date}' /></h5>
+      <!--  <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div> -->
+      <p> <c:out value='${tik.title}' /> </p>
+      <p> <c:out value='${tik.summary}' /> </p>
     </div>
-    <div class="card">
-      <h2>Ticket# 102</h2>
-      <h5>Created, Sep 2, 2017</h5>
-      <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div>
-      <p>Jira Bug</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    
+    <div class="tikcard">
+    	<h2>Notes</h2>
+    	<p> <c:out value='${tik.notes}' /> </p>
     </div>
+    
   </div>
 
+ 
+ 
+ <!-- Right Column -->
   <div class="rightcolumn">
     <div class="card">
       <h2>Ticket</h2>

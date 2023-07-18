@@ -1,3 +1,5 @@
+@charset "ISO-8859-1";
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -151,12 +153,11 @@
       box-shadow: 4px 4px 4px var(--shadow-over);
   }
   
-  .card {
-      
+  .card {      
     background-color: white;
     padding: 20px;
     margin-top: 20px;
-    margin-left: 5px;
+    margin-left: 25%;
     margin-right: 5px;
     border: 2px solid rgb(26, 0, 0);
     border-radius: 10px;
@@ -166,6 +167,16 @@
   .card:hover{
     /* background-color: red; */
     box-shadow: 4px 4px 4px var(--shadow-over);
+  }
+  
+  .tikcard{
+    margin-top: 40px;
+  	background-color: #103f61;
+  	margin-left: 5%;
+  	margin-right: 5px;
+  	border: 4px solid red;
+  	padding: 20px;
+  	color: white;
   }
   
   /* Form formatting */
@@ -248,45 +259,7 @@
     height: 40%;
 }
 
-
-
-/* edit ticket table*/
- table.tiktable{
-    width: 100%;
-    border: 1px solid rgb(254, 0, 0);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
-  }
- table.tiktable th{
-    text-align: center;
-    background-color: #04AA6D;
-    color: white;
-    width: 15%;
-  }
-
-  .tablediv  .tiktable td{
-    width: 100%;
-    padding: 10px;
-    border-color: black;
-  }
-
-  .tiktable  input[type=text]{
-    border: 2px solid red;
-    border-radius: 4px;
-    width: 100%;
-    outline: none;
-  }
-
-  .tiktable  input[type=text]:focus{
-    background-color: lightblue;
-    border: 3px solid red;
-  }
-
-  .tiktable  input[type=number]{
-    width: 100px;
-  }
-  
-  /* Table formating */
+/* Table formating */
   .tablediv{
     box-shadow: 1px 1px 1px 1px var(--shadow-color);
     padding: 10px;
@@ -294,34 +267,68 @@
     text-align: center;
   }
 
-  .bugtable{
-    width: 100%;
+ 
+
+
+/* edit ticket table*/
+ table.tiktable{
+    width: 60%;
     border: 1px solid rgb(254, 0, 0);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  	margin-left: 25%;
   }
-
-  .bugtable th{
+  
+ 
+  
+ table.tiktable th{
     text-align: center;
     background-color: #04AA6D;
     color: white;
+    width: 10%;
   }
 
-  .bugtable th, td{
-    /* border-collapse: collapse; */
-    border: 1px solid #dddddd;
+/* doesn't work */
+.tikid{
+	width: 20%;
+	border-color: green;
+}
+
+ table.tiktable td{
+    width: 100%;
+    padding: 5px;
+    border-color: green;
   }
 
-  .bugtable tr:nth-child(even) {
-    background-color: #dddddd;
+/* 
+  .tiktable  input[type=text]{
+    border: 2px solid red;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+  }
+  */
+  
+  /* this works */ 
+  .tiktable .tikid input[type=text] {
+    border: 2px solid red;
+    border-radius: 4px;
+    width: 20%;
+    outline: none;
+    background-color: blue;
+    color: red;
+    text-align: center;
+    margin-right: 75%;
   }
 
-  .bugtable tr:hover{
-    background-color: #0f59d8;
-    color: white;
+  .tiktable  input[type=text]:focus{
+    background-color: lightblue;
+    border:  solid red;
   }
-/* ------------------------------------------ */
 
-
+  .tiktable  input[type=number]{
+    width: 100px;
+  }
+  
   /* Clear floats after the columns */
   .formrow::after {
     content: "";
