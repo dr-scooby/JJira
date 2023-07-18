@@ -166,6 +166,7 @@
       <p> <c:out value='${tik.summary}' /> </p>
     </div>
     
+    <!--  use a for loop to get all the notes for this ticket -->
     <div class="tikcard">
     	<h2>Notes</h2>
     	<p> <c:out value='${tik.notes}' /> </p>
