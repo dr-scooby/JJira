@@ -109,8 +109,8 @@
             
             <c:forEach var="tik" items="${listalltik}">
             	<tr>
-            		<td><a href="editticket?id=<c:out value='${tik.id}'/>">Edit</a>     <c:out value="${tik.id}"/></td>
-            		<td><c:out value="${tik.title}"/></td>
+            		<td><a href="editticket?id=<c:out value='${tik.id}'/>">Edit</a>     <c:out value="${tik.id}"/> </td>
+            		<td><a href="editticket?id=<c:out value='${tik.id}'/>"><c:out value="${tik.title}"/> </a>      </td>
             		<td><c:out value="${tik.summary}"/></td>
             		<td><c:out value="${tik.notes}"/></td>
             		
