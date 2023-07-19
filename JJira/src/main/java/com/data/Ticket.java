@@ -3,6 +3,9 @@
  */
 package com.data;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * @author nurali
  *
@@ -18,6 +21,7 @@ public class Ticket {
 	private String date;
 	private String adate;
 	
+	private ArrayList<TicketNotes> tiknotes;
 	
 	public Ticket() {
 		id = 0;
@@ -27,11 +31,12 @@ public class Ticket {
 		state = "";
 		date = "";
 		severity = 0;
+		tiknotes = new ArrayList<TicketNotes>();
 	}
 
 
 	public Ticket(int id, String title, String summary, String notes, String state, String date) {
-		super();
+		this();
 		this.id = id;
 		this.title = title;
 		this.summary = summary;
@@ -51,6 +56,50 @@ public class Ticket {
 		this.date = date;
 	}
 	
+	
+	
+	/**
+	 * @return the tiknotes
+	 */
+	public ArrayList<TicketNotes> getTiknotes() {
+		return tiknotes;
+	}
+
+
+	/**
+	 * @param tiknotes the tiknotes to set
+	 */
+	public void setTiknotes(ArrayList<TicketNotes> tiknotes) {
+		this.tiknotes = tiknotes;
+	}
+
+	// add a note to the Ticket - String
+	public boolean addNote(String n) {
+		
+		
+		TicketNotes notes = new TicketNotes();
+		notes.setTicketid(this.id);
+		notes.setNotes(n);		
+		
+		
+		return tiknotes.add(notes);
+	}
+	
+	// add a TicketNotes object
+	public void addTicketNote(TicketNotes tn) {
+		tiknotes.add(tn);
+	}
+	
+	// get the Iterator
+	public Iterator getTicketNotesIt() {
+		return tiknotes.iterator();
+	}
+	
+	// is it Empty?
+	public boolean isTicketNotesEmpty() {
+		return tiknotes.isEmpty();
+	}
+
 	/**
 	 * @return the severity
 	 */
