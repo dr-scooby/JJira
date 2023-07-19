@@ -101,7 +101,11 @@
       		<tr>
             	 <th> ID: </th>
             	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${tik.id}' />"  /> </td>
-            </tr>	
+            </tr>
+            <tr>
+            	 <th> Severity: </th>
+            	 	<td> <input type="text" name="Severity"  value="<c:out value='${tik.severity}' />"  /></td>
+            	</tr>	
             <tr>
             	 <th> Title: </th>
             	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  /></td>
