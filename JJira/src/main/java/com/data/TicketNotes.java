@@ -38,7 +38,7 @@ public class TicketNotes {
 	
 
 	public TicketNotes(int logid, int ticketid, String notes, String datecreated, String dateupdated) {
-		super();
+		this();
 		this.logid = logid;
 		this.ticketid = ticketid;
 		this.notes = notes;

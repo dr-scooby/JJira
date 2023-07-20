@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.data.Bug;
 import com.data.Ticket;
+import com.data.TicketNotes;
 
 /**
  * @author nurali
@@ -133,15 +134,15 @@ public class TikDAO extends DAO{
 		
 		String sql_search = "select * from tickets where id=?";
 		
-		PreparedStatement pstate = conn.prepareStatement(sql_search);
+		//PreparedStatement pstate = conn.prepareStatement(sql_search);
 		/* 
 		 * SQLException - if a database access error occurs; this method is called 
  		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
  		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
 		 */
-		pstate = conn.prepareStatement(sql_search, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		pstate.setInt(1, id); // want to use the wild character %
-		ResultSet rs = pstate.executeQuery();
+		PreparedStatement pstate = conn.prepareStatement(sql_search, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pstate.setInt(1, id); // exact match
+		ResultSet rs = pstate.executeQuery(); // execute query
 		while(rs.next()) {
 			String title = rs.getString("title");
 			String summary = rs.getString("summary");
@@ -160,6 +161,31 @@ public class TikDAO extends DAO{
 			tik.setDate(date);
 			
 		}
+		
+		// SQL query to get the ticket logs
+		String sql_tiklog = "select tickets.title, ticketlog.log, ticketlog.datecreated, ticketlog.logid from tickets\r\n"
+				+ "inner join ticketlog on tickets.id = ticketlog.ticketid\r\n"
+				+ "where tickets.id = ?;";
+		
+		
+		pstate = conn.prepareStatement(sql_tiklog, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pstate.setInt(1, id); // exact match
+		rs = pstate.executeQuery(); // execute query
+		while(rs.next()) {
+			TicketNotes tiknotes = new TicketNotes();
+			String lognotes = rs.getString("log");
+			System.out.println(lognotes);
+			String datecreated = rs.getString("datecreated");
+			int logid = rs.getInt("logid");
+			tiknotes.setNotes(lognotes);
+			tiknotes.setDatecreated(datecreated);
+			tiknotes.setTicketid(id);
+			tiknotes.setLogid(logid);
+			tik.addTicketNote(tiknotes);
+		}
+		
+		
+		
 				
 		return tik;
 	}
