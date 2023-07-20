@@ -121,6 +121,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/editticket":
 					editTicket(request, response);
 					break;
+				// add Notes to the Ticket	
+				case "/addnotesticket":
+					addnotesticket(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -133,6 +137,41 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	private void addnotesticket(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		 try {
+			 String tikid = request.getParameter("tikid");
+			 String tiknotes = request.getParameter("tiknotes");
+			 
+			 
+			 PrintWriter out;
+			 out = response.getWriter(); 
+   	 
+			
+			 out.println("<!DOCTYPE html>");
+	         out.println("<html><head>");
+	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+	         out.println("<title>Hello, World</title></head>");
+	         out.println("<body>");
+	         out.println("<h1>Hello, world! You have successfully reached the Add Ticket Log Servlet..It's working</h1>");  // says Hello
+	         out.println("<h1>Ticket Log info:</h1>");
+	         out.println("<br>");
+	         
+	         out.println(tikid);
+	         out.println("<br>");
+	         out.println(tiknotes);
+	         
+	         out.println("</body>");
+	         out.println("</html>");
+		
+	         out.close();
+     }catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+     }
+	}
+
+
 	// Edit the ticket
 	private void editTicket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub

@@ -101,6 +101,12 @@
   	<url-pattern>/editticket</url-pattern>
   </servlet-mapping>
   
+  <!--  update/add notes for the Ticket -->
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/addnotesticket</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
    <exception-type>java.lang.Throwable</exception-type>
    <location>/Error.jsp</location>

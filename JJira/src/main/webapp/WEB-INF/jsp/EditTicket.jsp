@@ -159,8 +159,18 @@
     </div>
     </div> <!-- end empcard -->
 
-
+  <!-- Form to add notes -->
+   <div class="tikcard">
    
+   	<h1>Add Notes:</h1>
+   	 <form action="addnotesticket" method="post">
+   	 	
+   	 	<input type="hidden" name="tikid" value="<c:out value='${tik.id}' />">
+   	 	<textarea name="tiknotes" id="tiknotes"> </textarea>
+   	 	
+   	 	<input type="submit" value="Submit" name="addLog">
+   	 </form>
+   </div>
 
     <div class="tikcard">
       <h2>Ticket# <c:out value='${tik.id}' /></h2>
@@ -186,7 +196,7 @@
     </c:forEach>
     
     
-  </div>
+  </div> <!-- END leftcolumn card -->
 
  
  
