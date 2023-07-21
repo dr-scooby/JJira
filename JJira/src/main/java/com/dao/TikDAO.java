@@ -189,6 +189,36 @@ public class TikDAO extends DAO{
 				
 		return tik;
 	}
+	
+	// add Notes, need ID - String
+	public boolean addTicketNotes(String id, String notes)  throws SQLException {
+		boolean ok = false;
+		
+		String sql = "insert into ticketlog(ticketid, log) values(?,?)";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setInt(1, Integer.parseInt(id)); // convert the String to Int
+		pst.setString(2, notes);
+		ok = pst.executeUpdate() > 0;
+		
+		
+		return ok;
+	}
+	
+	// add Notes, need ID - int. Method overload
+	public boolean addTicketNotes(int id, String notes)  throws SQLException {
+		boolean ok = false;
+		
+		String sql = "insert into ticketlog(ticketid, log) values(?,?)";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setInt(1, id); // convert the String to Int
+		pst.setString(2, notes);
+		ok = pst.executeUpdate() > 0;
+		
+		
+		return ok;
+	}
 
 	@Override
 	public void connection(Connection c) throws SQLException {

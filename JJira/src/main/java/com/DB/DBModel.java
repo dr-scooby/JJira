@@ -101,16 +101,28 @@ public class DBModel {
 	public boolean addTicketNotes(String id, String notes)throws SQLException{
 		boolean ok = false;
 		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
 		
-		return ok;
+		TikDAO tik = new TikDAO(conn);
+		
+		
+		return ok = tik.addTicketNotes(id, notes);
 	}
 	
 	// add notes to the TicketLog
 	public boolean addTicketNotes(int id, String notes)throws SQLException{
 		boolean ok = false;
 		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
 		
-		return ok;
+		TikDAO tik = new TikDAO(conn);
+		
+		
+		return ok = tik.addTicketNotes(id, notes);
 	}
 	
 	// create a new ticket
