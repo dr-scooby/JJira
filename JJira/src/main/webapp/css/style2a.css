@@ -174,8 +174,9 @@
   
     
   .tikcard{
-    height: 400px;
+    height: 200px;
     margin-top: 40px;
+    margin-bottom: 20px;
   	background-color: #103f61;
   	margin-left: 5%;
   	margin-right: 5%;
@@ -294,11 +295,7 @@
     width: 10%;
   }
 
-/* doesn't work */
-.tikid{
-	width: 20%;
-	border-color: green;
-}
+
 
  table.tiktable td{
     width: 100%;
@@ -363,14 +360,18 @@
   }
   
   
-   /* for some strange reason, this is not found from the HTML file */
-  #tiktoknotes{
-  	height: 400px;
+   /* the notes box for the ticket */
+  .tiktoknotes{
+  	height: 300px;
+  	width: 75%;
   	border: 4px solid red;
   	background-color: #FFAFA4;
+  	margin-left: 5%;
+  	margin-top: 60px;
+  	padding: 30px;
   } 
   
-  #tiktoknotes:hover{
+  .tiktoknotes:hover{
   	box-shadow: 4px 4px 4px var(--shadow-over);
   }
   /* ---------------------------------------------------------------*/

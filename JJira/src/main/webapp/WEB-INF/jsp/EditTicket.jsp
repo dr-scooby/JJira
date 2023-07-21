@@ -125,7 +125,7 @@
     </div> <!-- end empcard -->
 
   <!-- Form to add notes -->
-   <div class="square">
+   <div class="tiktoknotes">
    
    	<h1>Add Notes:</h1>
    	 <form action="addnotesticket" method="post">
