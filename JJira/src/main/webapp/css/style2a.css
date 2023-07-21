@@ -112,6 +112,9 @@
     color: #0f59d8;
   }
   
+ 
+  
+  
   /* Add a card effect for the 3 columns*/
   .carda{
       text-align: center;
@@ -169,7 +172,9 @@
     box-shadow: 4px 4px 4px var(--shadow-over);
   }
   
+    
   .tikcard{
+    height: 400px;
     margin-top: 40px;
   	background-color: #103f61;
   	margin-left: 5%;
@@ -178,6 +183,8 @@
   	padding: 20px;
   	color: white;
   }
+  
+  
   
   /* Form formatting */
   .form{
@@ -342,12 +349,32 @@
 	resize: none;
   }
   
+  .square {
+  	background-color: #2ecc71;
+  	width: 200px;
+  	height: 200px;
+  }
+  
   /* Clear floats after the columns */
   .formrow::after {
     content: "";
     display: table;
     clear: both;
   }
+  
+  
+   /* for some strange reason, this is not found from the HTML file */
+  #tiktoknotes{
+  	height: 400px;
+  	border: 4px solid red;
+  	background-color: #FFAFA4;
+  } 
+  
+  #tiktoknotes:hover{
+  	box-shadow: 4px 4px 4px var(--shadow-over);
+  }
+  /* ---------------------------------------------------------------*/
+  
   
   /* Drop downs  */
   .dropdown{

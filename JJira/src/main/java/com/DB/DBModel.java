@@ -96,6 +96,23 @@ public class DBModel {
 		}
 	}
 	
+	
+	// add notes to the TicketLog
+	public boolean addTicketNotes(String id, String notes)throws SQLException{
+		boolean ok = false;
+		
+		
+		return ok;
+	}
+	
+	// add notes to the TicketLog
+	public boolean addTicketNotes(int id, String notes)throws SQLException{
+		boolean ok = false;
+		
+		
+		return ok;
+	}
+	
 	// create a new ticket
 	public boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException {
 		System.out.println("\n a New ticket called in DBModel..");

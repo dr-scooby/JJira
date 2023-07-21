@@ -136,14 +136,15 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
-	
+	// add notes to the Ticket Log
 	private void addnotesticket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		 try {
+			 // get the ID and notes data
 			 String tikid = request.getParameter("tikid");
 			 String tiknotes = request.getParameter("tiknotes");
 			 
-			 
+			 // testing only
 			 PrintWriter out;
 			 out = response.getWriter(); 
    	 
@@ -174,12 +175,12 @@ public class ControllerServlet extends HttpServlet{
 
 	// Edit the ticket
 	private void editTicket(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// get the Ticket ID from the client
 		int id = Integer.parseInt(request.getParameter("id"))  ;
 		try {
-			Ticket tik = db.getTicket(id);
+			Ticket tik = db.getTicket(id); // get data from DB
 			request.setAttribute("tik", tik);
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditTicket.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditTicket.jsp"); // send to the JSP page for editing
 			try {
 				dis.forward(request, response);
 			} catch (ServletException | IOException e) {

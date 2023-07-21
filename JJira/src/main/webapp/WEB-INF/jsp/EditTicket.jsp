@@ -9,7 +9,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
-<link type="text/css"  rel="stylesheet" href="css/style2a.css">
+<link   rel="stylesheet" href="css/style2a.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -120,47 +120,12 @@
             	</tr>
       	</table>
       
-      <!--   
-      	<c:if test="${tik != null}">
-      		<form action="update" method="post">
-      		
-      		
-      	</c:if>
-        <table class="edittable">
-                    
-           
-            	<tr>
-            	 <th> ID: </th>
-            	 	<td> <input type="number" name="id"  value="<c:out value='${tik.id}' />"  /></td>
-            	</tr>	
-            	<tr>
-            	 <th> Title: </th>
-            	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  /></td>
-            	</tr>
-            	<tr>	
-            	 <th> Summary: </th>
-            	 	<td> <input type="text" name="summary"  value="<c:out value='${tik.summary}' />"  /></td>
-            	</tr>
-            	<tr>	
-            	<th> State: </th>
-            	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  /></td>
-            	</tr>
-            	<!--   
-            		<td><c:out value="${tik.title}"/></td>
-            		<td><c:out value="${tik.summary}"/></td>
-            		<td><c:out value="${tik.notes}"/></td>
-            		
-            	-->	
-                               
-       
-       <!--  </table>
-        </form> 
-        -->
+      
     </div>
     </div> <!-- end empcard -->
 
   <!-- Form to add notes -->
-   <div class="tikcard">
+   <div class="square">
    
    	<h1>Add Notes:</h1>
    	 <form action="addnotesticket" method="post">
@@ -195,6 +160,18 @@
     	</div>
     </c:forEach>
     
+    <!-- Form to add notes -->
+   <div class="tiktoknotes">
+   
+   	<h1>Add Notes:</h1>
+   	 <form action="addnotesticket" method="post">
+   	 	
+   	 	<input type="hidden" name="tikid" value="<c:out value='${tik.id}' />">
+   	 	<textarea name="tiknotes" id="tiknotes"> </textarea>
+   	 	
+   	 	<input type="submit" value="Submit" name="addLog">
+   	 </form>
+   </div>
     
   </div> <!-- END leftcolumn card -->
 
