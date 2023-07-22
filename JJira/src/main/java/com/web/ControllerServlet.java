@@ -139,20 +139,39 @@ public class ControllerServlet extends HttpServlet{
 	// add notes to the Ticket Log
 	private void addnotesticket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		System.out.println("addnotesticket Controller reached...");
+		
 		 try {
 			 // get the ID and notes data
 			 String tikid = request.getParameter("tikid");
-			 String tiknotes = request.getParameter("tiknotes");
+			 String tiknotes = request.getParameter("tiknotesta");
 			 
-			 try {
-				boolean ok = db.addTicketNotes(tikid, tiknotes);
-				response.sendRedirect("editticket?id="+tikid);
-				//request.setAttribute("id", tikid);
-				//editTicket(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			 if(tiknotes.isBlank() || tiknotes.isEmpty() || tiknotes == null) {
+				 System.out.println("tiknotes empty, blan, null");
+				 String errormessage = "Notes is Empty, not allowed Empty";
+				 request.setAttribute("errormessage", errormessage);
+				 //response.sendRedirect("editticket?id="+tikid);
+				 RequestDispatcher dis = request.getRequestDispatcher("editticket?id="+tikid); // send to the JSP page for editing
+					try {
+						dis.forward(request, response);
+					} catch (ServletException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			 }else {
+				 System.out.println("not null");
+				 try {
+						boolean ok = db.addTicketNotes(tikid, tiknotes);
+						response.sendRedirect("editticket?id="+tikid);
+						//request.setAttribute("id", tikid);
+						//editTicket(request, response);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			 }
+			 
+			
 			 
 			 // testing only
 //			 PrintWriter out;

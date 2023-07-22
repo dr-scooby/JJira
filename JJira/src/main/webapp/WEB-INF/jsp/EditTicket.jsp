@@ -12,6 +12,17 @@
 <link   rel="stylesheet" href="css/style2a.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<script>
+function validateForm() {
+  var x = document.forms["formName"]["tiknotesta"].value;
+  if (x == "" || x == null) {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -87,6 +98,12 @@
   <div class="leftcolumn">
     <div class="empcard">
       <h2>Ticket</h2>
+      
+      <c:if test="{errormessage != null}"> <p> <c:out value='${errormessage}'></c:out> </p> </c:if>
+      <c:if test="{errormessage == null}"> <p> No Error Message, or null </p> </c:if>
+      <p>
+			Message from server: <%= request.getAttribute("errormessage") %> 
+	  </p>
       <!-- 
       <div class="dropdown">
         <span>Showing Ticket#   <c:if test="${tik != null}"> <c:out value='${tik.id}' />	</c:if></span>
@@ -128,10 +145,10 @@
    <div class="tiktoknotes">
    
    	<h1>Add Notes:</h1>
-   	 <form action="addnotesticket" method="post">
+   	 <form name="formName"  action="addnotesticket" method="post" >
    	 	
    	 	<input type="hidden" name="tikid" value="<c:out value='${tik.id}' />">
-   	 	<textarea name="tiknotes" id="tiknotes"> </textarea>
+   	 	<textarea name="tiknotesta" id="tiknotes" required> </textarea>
    	 	
    	 	<input type="submit" value="Submit" name="addLog">
    	 </form>
@@ -164,13 +181,7 @@
    <div class="tiktoknotes">
    
    	<h1>Add Notes:</h1>
-   	 <form action="addnotesticket" method="post">
-   	 	
-   	 	<input type="hidden" name="tikid" value="<c:out value='${tik.id}' />">
-   	 	<textarea name="tiknotes" id="tiknotes"> </textarea>
-   	 	
-   	 	<input type="submit" value="Submit" name="addLog">
-   	 </form>
+   	
    </div>
     
   </div> <!-- END leftcolumn card -->
@@ -201,6 +212,8 @@
   <h2>Footer</h2>
 </div>
 -->
+
+
 </body>
 </html>
 
