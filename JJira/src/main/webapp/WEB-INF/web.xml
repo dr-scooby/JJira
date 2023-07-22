@@ -101,10 +101,16 @@
   	<url-pattern>/editticket</url-pattern>
   </servlet-mapping>
   
-  <!--  update/add notes for the Ticket -->
+  <!--  add notes for the Ticket -->
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/addnotesticket</url-pattern>
+  </servlet-mapping>
+  
+  <!--  update the Ticket details -->
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/updateticket</url-pattern>
   </servlet-mapping>
   
   <error-page>

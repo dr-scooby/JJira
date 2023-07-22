@@ -113,7 +113,8 @@ function validateForm() {
       </div>
        -->
       
-      <div class="tablediv">         
+      <div class="tablediv">   
+       <form name="updateticket" action="updateticket" method="post">      
       	<table class="tiktable" id="tikTable">
       		<tr>
             	 <th> ID: </th>
@@ -121,22 +122,28 @@ function validateForm() {
             </tr>
             <tr>
             	 <th> Severity: </th>
-            	 	<td> <input type="text" name="Severity"  value="<c:out value='${tik.severity}' />"  /></td>
+            	 	<td> <input type="text" name="Severity"  value="<c:out value='${tik.severity}' />"  required/></td>
             	</tr>	
             <tr>
             	 <th> Title: </th>
-            	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  /></td>
+            	 	<td> <input type="text" name="title"  value="<c:out value='${tik.title}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> Summary: </th>
-            	 	<td> <input type="text" name="summary"  value="<c:out value='${tik.summary}' />"  /></td>
+            	 	<td> <input type="text" name="summary"  value="<c:out value='${tik.summary}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> State: </th>
-            	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  /></td>
+            	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  required/></td>
+            	</tr>
+            	<tr>
+            	    <th> Update: </th>
+            		<td> <input type="submit" value="Submit" > </td>
             	</tr>
       	</table>
-      
+      	
+      	 
+       </form>
       
     </div>
     </div> <!-- end empcard -->

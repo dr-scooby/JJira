@@ -125,6 +125,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/addnotesticket":
 					addnotesticket(request, response);
 					break;
+				case "/updateticket":
+					updateticket(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -136,6 +139,55 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
+	
+	// update ticket details
+	private void updateticket(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String sev = request.getParameter("Severity");
+		String title = request.getParameter("title");
+		String summary = request.getParameter("summary");
+		String state = request.getParameter("state");
+		String tikid = request.getParameter("id");
+		
+		
+		 // testing only
+		 PrintWriter out;
+		 try {
+			out = response.getWriter();
+			 out.println("<!DOCTYPE html>");
+		        out.println("<html><head>");
+		        out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		        out.println("<title>Hello, World</title></head>");
+		        out.println("<body>");
+		        out.println("<h1>Hello, world! You have successfully reached the Update Ticket Servlet..It's working</h1>");  // says Hello
+		        out.println("<h1>Ticket Log info:</h1>");
+		        out.println("<br>");
+		        
+		        out.println(tikid);
+		        out.println("<br>");
+		        out.println(sev);
+		        out.println("<br>");
+		        out.println("<br>");
+		        out.println(title);
+		        out.println("<br>");
+		        out.println(summary);
+		        out.println("<br>");
+		        out.println(state);
+		        out.println("</body>");
+		        out.println("</html>");
+			
+		        out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	 
+		
+		
+				
+	}
+
+
 	// add notes to the Ticket Log
 	private void addnotesticket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
