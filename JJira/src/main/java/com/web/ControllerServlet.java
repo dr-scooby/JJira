@@ -121,6 +121,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/editticket":
 					editTicket(request, response);
 					break;
+				case "/editbug":
+					editbug(request, response);
+					break;
 				// add Notes to the Ticket	
 				case "/addnotesticket":
 					addnotesticket(request, response);
@@ -140,6 +143,16 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	private void editbug(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		// get ID from the client
+		String bugid = request.getParameter("id");
+		
+		System.out.println("Edit:: Bug ID " + bugid);
+		
+	}
+
+
 	// update ticket details
 	private void updateticket(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub

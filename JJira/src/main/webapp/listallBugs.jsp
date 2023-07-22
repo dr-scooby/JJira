@@ -109,8 +109,8 @@
             
             <c:forEach var="bugs" items="${listallbugs}">
             	<tr>
-            		<td><c:out value="${bugs.id}"/></td>
-            		<td><c:out value="${bugs.name}"/></td>
+            		<td><a href="editbug?id=<c:out value='${bugs.id}'/>">Edit</a>                                          <c:out value="${bugs.id}"/></td>
+            		<td><a href="editbug?id=<c:out value='${bugs.id}'/>"><c:out value="${bugs.name}"/></a>                 <c:out value="${bugs.name}"/></td>
             		<td><c:out value="${bugs.severity}"/></td>
             		<td><c:out value="${bugs.state}"/></td>
             		<td><c:out value="${bugs.description}"/></td>
