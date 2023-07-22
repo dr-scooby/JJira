@@ -125,6 +125,18 @@ public class DBModel {
 		return ok = tik.addTicketNotes(id, notes);
 	}
 	
+	
+	// update a ticket with new info
+	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
+		boolean ok = false;
+		
+				
+		TikDAO tik = new TikDAO(conn);
+		
+		
+		return ok = tik.updateTicket(id, title, summary, sev, state);
+	}
+	
 	// create a new ticket
 	public boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException {
 		System.out.println("\n a New ticket called in DBModel..");

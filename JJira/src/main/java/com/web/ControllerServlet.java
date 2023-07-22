@@ -149,6 +149,38 @@ public class ControllerServlet extends HttpServlet{
 		String state = request.getParameter("state");
 		String tikid = request.getParameter("id");
 		
+		if(sev.isEmpty() || title.isEmpty() || summary.isEmpty() || state.isEmpty()) {
+			System.out.println("tiknotes empty, blan, null");
+			 String errormessage = "Empty fields, not allowed Empty";
+			 request.setAttribute("errormessage", errormessage);
+			 //response.sendRedirect("editticket?id="+tikid);
+			 RequestDispatcher dis = request.getRequestDispatcher("editticket?id="+tikid); // send to the JSP page for editing
+				try {
+					dis.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}else {
+			try {
+				boolean ok = db.updateTicket(tikid, title, summary, sev, state);
+				if(ok) {
+					String errormessage = "Success updating Ticket";
+					request.setAttribute("errormessage", errormessage);
+					RequestDispatcher dis = request.getRequestDispatcher("editticket?id="+tikid); // send to the JSP page for editing
+					try {
+						dis.forward(request, response);
+					} catch (ServletException | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
 		 // testing only
 		 PrintWriter out;

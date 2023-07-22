@@ -212,10 +212,28 @@ public class TikDAO extends DAO{
 		String sql = "insert into ticketlog(ticketid, log) values(?,?)";
 		
 		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		pst.setInt(1, id); // convert the String to Int
+		pst.setInt(1, id); 
 		pst.setString(2, notes);
 		ok = pst.executeUpdate() > 0;
 		
+		
+		return ok;
+	}
+	
+	// update ticket with the info
+	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
+		boolean ok = false;
+		
+		String sql = "update tickets set title=?, summary=?, severity=?, state=? where id=?";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setString(1, title); // set title
+		pst.setString(2, summary); // summary
+		pst.setString(3, sev);
+		pst.setString(4, state);
+		pst.setInt(5, Integer.parseInt(id));
+		
+		ok = pst.executeUpdate() > 0;
 		
 		return ok;
 	}
