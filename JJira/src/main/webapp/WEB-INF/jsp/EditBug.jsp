@@ -161,11 +161,21 @@ function validateForm() {
    
     
     <!-- Form to add notes -->
+   <!-- Form to add Bug notes -->
    <div class="tiktoknotes">
    
    	<h1>Add Notes:</h1>
-   	
-   </div>
+   	 <form name="formName"  action="addnotesbug" method="post" onsubmit="return validateForm()" required>
+   	 	
+   	 	<input type="hidden" name="bugid" value="<c:out value='${bug.id}' />">
+   	 	Notes: <input type="text" name="bugnotes" required>
+   	  <!-- 	<textarea name="tiknotesta" id="tiknotes" required> </textarea>  -->
+   	 	
+   	 	<input type="submit" value="Submit" name="addLog">
+   	 </form>
+   </div><!-- End Form to add Bug notes -->
+   
+   <br>
     
   </div> <!-- END leftcolumn card -->
 

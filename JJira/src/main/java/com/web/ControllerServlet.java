@@ -121,6 +121,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/editticket":
 					editTicket(request, response);
 					break;
+				case "/addnotesbug":
+					addnotesbug(request, response);
+					break;
 				case "/editbug":
 					editbug(request, response);
 					break;
@@ -143,6 +146,45 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	// add notes to the Bug
+	private void addnotesbug(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		System.out.println("add notes to Bug");
+		
+		// get the ID and notes data
+		String bugnotes = request.getParameter("bugnotes");
+		String bugid = request.getParameter("bugid");
+		
+		try {
+			// testing only
+			PrintWriter out;
+			out = response.getWriter(); 
+		 
+			
+			out.println("<!DOCTYPE html>");
+			out.println("<html><head>");
+			out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+			out.println("<title>Hello, World</title></head>");
+			out.println("<body>");
+			out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
+			out.println("<h1>Ticket Log info:</h1>");
+			out.println("<br>");
+			
+			out.println("Bug notes: " + bugnotes);
+			out.println("<br>");
+			out.println("BugID: " + bugid);
+			
+			out.println("</body>");
+			out.println("</html>");
+			
+			out.close();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
 	// edit bug, 
 	private void editbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
