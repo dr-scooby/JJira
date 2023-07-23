@@ -311,6 +311,20 @@ public class BugDAO extends DAO{
 		
 		return bu;
 	}
+	
+	// add notes to the Bug
+	public boolean addButNotes(String id, String notes) throws SQLException {
+		boolean ok = false;
+		
+		String sql = "insert into BugLog(bugid, notes) values(?,?)";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setInt(1, Integer.parseInt(id)); // convert the String to Int
+		pst.setString(2, notes);
+		ok = pst.executeUpdate() > 0;
+		
+		return ok;
+	}
 
 	@Override
 	public void connection(Connection c) throws SQLException {

@@ -391,6 +391,20 @@ public class DBModel {
 		return bugs;
 	}
 	
+	// add notes to the Bug
+	public boolean addBugNotes(String id, String notes) throws SQLException {
+		boolean ok = false;
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		BugDAO bd = new BugDAO(conn);
+		
+		
+		return ok = bd.addButNotes(id, notes);
+	}
+	
 	// get a Bug from the ID
 	public Bug getBug(String id) {
 		try {

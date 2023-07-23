@@ -155,33 +155,61 @@ public class ControllerServlet extends HttpServlet{
 		String bugnotes = request.getParameter("bugnotes");
 		String bugid = request.getParameter("bugid");
 		
-		try {
-			// testing only
-			PrintWriter out;
-			out = response.getWriter(); 
-		 
-			
-			out.println("<!DOCTYPE html>");
-			out.println("<html><head>");
-			out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-			out.println("<title>Hello, World</title></head>");
-			out.println("<body>");
-			out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
-			out.println("<h1>Ticket Log info:</h1>");
-			out.println("<br>");
-			
-			out.println("Bug notes: " + bugnotes);
-			out.println("<br>");
-			out.println("BugID: " + bugid);
-			
-			out.println("</body>");
-			out.println("</html>");
-			
-			out.close();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(bugnotes.isBlank() || bugnotes.isEmpty() || bugnotes == null) {
+			System.out.println("bug notes empty");
+			String errormessage = "notes empty";
+			request.setAttribute("errormessage", errormessage);
+			RequestDispatcher dis = request.getRequestDispatcher("editbug?id="+bugid);//send to JSP
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			// not null, add the notes
+			try {
+				boolean ok = db.addBugNotes(bugid, bugnotes);
+				if(ok) {
+					try {
+						response.sendRedirect("editbug?id="+bugid);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
+//		try {
+//			// testing only
+//			PrintWriter out;
+//			out = response.getWriter(); 
+//		 
+//			
+//			out.println("<!DOCTYPE html>");
+//			out.println("<html><head>");
+//			out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//			out.println("<title>Hello, World</title></head>");
+//			out.println("<body>");
+//			out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
+//			out.println("<h1>Ticket Log info:</h1>");
+//			out.println("<br>");
+//			
+//			out.println("Bug notes: " + bugnotes);
+//			out.println("<br>");
+//			out.println("BugID: " + bugid);
+//			
+//			out.println("</body>");
+//			out.println("</html>");
+//			
+//			out.close();
+//		}catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 
