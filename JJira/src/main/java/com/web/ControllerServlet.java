@@ -143,12 +143,35 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	// edit bug, 
 	private void editbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		// get ID from the client
-		String bugid = request.getParameter("id");
+		String bugid = request.getParameter("id"); // get the Bug ID
 		
 		System.out.println("Edit:: Bug ID " + bugid);
+		
+		Bug b = db.getBug(bugid); // get BUg from DB
+		request.setAttribute("bug", b);
+		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditBug.jsp"); // send to JSP
+		try {
+			dis.forward(request, response);
+			return;
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("exception", e.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+		
 		
 	}
 

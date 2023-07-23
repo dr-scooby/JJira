@@ -29,6 +29,10 @@ public class BugDAO extends DAO{
 	}
 	
 	
+	public BugDAO(Connection c) {
+		super();
+		conn = c;
+	}
 	
 
 	@Override
@@ -268,6 +272,44 @@ public class BugDAO extends DAO{
 		
 		
 		return allb;
+	}
+	
+	
+	// get a Bug from the ID
+	public Bug getBug(String id) {
+		String sql = "select * from Bugs where id=?";
+		Bug bu = null;
+		PreparedStatement ps;
+		try {
+			/* 
+			 * SQLException - if a database access error occurs; this method is called 
+     		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+     		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+			 */
+			ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ps.setInt(1, Integer.parseInt(id)); // want to use the wild character %
+			
+			
+			ResultSet rs = ps.executeQuery();
+			
+				while(rs.next()) {
+					String nameresult = rs.getString("name");
+					String descr = rs.getString("description");
+					String stateresult = rs.getString("state");
+					int sev = rs.getInt("severity");
+					String date = rs.getString("created_at");
+					int bid = rs.getInt("id");
+					bu = new Bug(nameresult, descr, stateresult , sev);
+					bu.setDate_created_at(date);
+					bu.setId(bid);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bu;
 	}
 
 	@Override

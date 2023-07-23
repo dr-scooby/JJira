@@ -391,6 +391,27 @@ public class DBModel {
 		return bugs;
 	}
 	
+	// get a Bug from the ID
+	public Bug getBug(String id) {
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		BugDAO bugd = new BugDAO(conn);
+		return bugd.getBug(id);
+	}
+	
 	// get all Tickets
 	public ArrayList<Ticket> listallTickets(){
 		System.out.println("listing all tickets from DBModel...");
