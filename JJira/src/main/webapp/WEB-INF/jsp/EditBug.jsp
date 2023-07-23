@@ -177,6 +177,22 @@ function validateForm() {
    
    <br>
     
+    <!--  use a for loop to get all the notes for this ticket -->
+    <c:forEach var="tiklog" items="${bug.tiknotes}">
+    	<div class="tikcard">
+    		<h2>Notes</h2>
+    		<p> <c:out value='${tiklog.notes}' /> </p>
+    		
+    		<h2>Date Created</h2>
+    		<p> <c:out value='${tiklog.datecreated}' /> </p>
+    		
+    		<h2>Log ID</h2>
+    		<p> <c:out value='${tiklog.logid}' /> </p>
+    		
+    	</div>
+    </c:forEach> 
+    
+    
   </div> <!-- END leftcolumn card -->
 
  

@@ -4,6 +4,7 @@
 package com.data;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author nurali
@@ -17,9 +18,9 @@ public class Bug {
 	private String date_created_at;
 	private String date_updated_at;
 	private String state;
-	private String log;
+	private String notes;
 	private int severity;
-	private ArrayList<BugLog> buglogs;
+	private ArrayList<BugNotes> bugnotes;
 	
 	
 	public Bug() {
@@ -28,10 +29,10 @@ public class Bug {
 		date_created_at = "";
 		date_updated_at = "";
 		state = "";
-		log = "";
+		notes = "";
 		description = "";
 		severity = 1;
-		buglogs = new ArrayList<BugLog>();
+		bugnotes = new ArrayList<BugNotes>();
 	}
 
 
@@ -84,7 +85,7 @@ public class Bug {
 		this.name = title;
 		this.date_created_at = date;
 		this.state = state;
-		this.log = log;
+		this.notes = log;
 	}
 
 
@@ -116,8 +117,8 @@ public class Bug {
 	/**
 	 * @return the buglogs
 	 */
-	public ArrayList<BugLog> getBuglogs() {
-		return buglogs;
+	public ArrayList<BugNotes> getBuglogs() {
+		return bugnotes;
 	}
 
 
@@ -125,50 +126,30 @@ public class Bug {
 	/**
 	 * @param buglogs the buglogs to set
 	 */
-	public void setBuglogs(ArrayList<BugLog> buglogs) {
-		this.buglogs = buglogs;
+	public void setBuglogs(ArrayList<BugNotes> buglogs) {
+		this.bugnotes = buglogs;
+	}
+	
+	
+	// add Note for the Bug
+	public boolean addNote(String s) {
+		boolean ok = false;
+		
+		BugNotes bn = new BugNotes();
+		bn.setBugid(this.id);
+		bn.setNotes(s);
+		
+		ok = bugnotes.add(bn);
+		
+		return ok;
+	}
+	
+	// get the Iterator
+	public Iterator getNoteit() {
+		return bugnotes.iterator();
 	}
 
 	
-	public boolean addLog(int bugid   ,String log) {
-		boolean ok = false;		
-		
-		BugLog bl = new BugLog();
-		bl.setBugid(bugid);
-		bl.setLog(log);
-		if(buglogs.add(bl))
-			ok = true;
-		
-		
-		return ok;
-	}
-	
-	
-	public boolean addLog(int logid, int bugid, String log) {
-		boolean ok = false;
-		BugLog bl = new BugLog();
-		bl.setBugid(bugid);
-		bl.setLogid(logid);
-		bl.setLog(log);
-		if(buglogs.add(bl))
-			ok = true;
-		
-		return ok;
-	}
-	
-	
-	public boolean addLog(String log) {
-		boolean ok = false;
-		
-		BugLog bl = new BugLog();
-		bl.setBugid(this.getId());
-		if(buglogs.add(bl))
-			ok = true;
-		
-		
-		return ok;
-	}
-
 
 	/**
 	 * @return the date_created_at
@@ -274,7 +255,7 @@ public class Bug {
 	 * @return the log
 	 */
 	public String getLog() {
-		return log;
+		return notes;
 	}
 
 
@@ -282,7 +263,7 @@ public class Bug {
 	 * @param log the log to set
 	 */
 	public void setLog(String log) {
-		this.log = log;
+		this.notes = log;
 	}
 
 	
@@ -337,6 +318,24 @@ public class Bug {
 	 */
 	public void setSeverity(int severity) {
 		this.severity = severity;
+	}
+
+
+
+	/**
+	 * @return the notes
+	 */
+	public String getNotes() {
+		return notes;
+	}
+
+
+
+	/**
+	 * @param notes the notes to set
+	 */
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 

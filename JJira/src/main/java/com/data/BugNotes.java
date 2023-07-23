@@ -7,40 +7,40 @@ package com.data;
  * @author nurali
  *
  */
-public class BugLog {
+public class BugNotes {
 	
 	private int logid;
 	private int bugid;
-	private String date_created;
+	private String datecreated;
 	private String date_updated;
-	private String log;
+	private String notes;
 	
 	
-	public BugLog() {
+	public BugNotes() {
 		logid = 0;
 		bugid = 0;
-		date_created = "";
+		datecreated = "";
 		date_updated = "";
-		log = "";
+		notes = "";
 	}
 
 
-	public BugLog(int logid, int bugid, String date_created, String log) {
+	public BugNotes(int logid, int bugid, String date_created, String log) {
 		this();
 		this.logid = logid;
 		this.bugid = bugid;
-		this.date_created = date_created;
-		this.log = log;
+		this.datecreated = date_created;
+		this.notes = log;
 	}
 
 
-	public BugLog(int logid, int bugid, String date_created, String date_updated, String log) {
-		super();
+	public BugNotes(int logid, int bugid, String date_created, String date_updated, String log) {
+		this();
 		this.logid = logid;
 		this.bugid = bugid;
-		this.date_created = date_created;
+		this.datecreated = date_created;
 		this.date_updated = date_updated;
-		this.log = log;
+		this.notes = log;
 	}
 
 
@@ -79,8 +79,8 @@ public class BugLog {
 	/**
 	 * @return the date_created
 	 */
-	public String getDate_created() {
-		return date_created;
+	public String getDatecreated() {
+		return datecreated;
 	}
 
 
@@ -88,7 +88,7 @@ public class BugLog {
 	 * @param date_created the date_created to set
 	 */
 	public void setDate_created(String date_created) {
-		this.date_created = date_created;
+		this.datecreated = date_created;
 	}
 
 
@@ -112,7 +112,7 @@ public class BugLog {
 	 * @return the log
 	 */
 	public String getLog() {
-		return log;
+		return notes;
 	}
 
 
@@ -120,13 +120,39 @@ public class BugLog {
 	 * @param log the log to set
 	 */
 	public void setLog(String log) {
-		this.log = log;
+		this.notes = log;
+	}
+
+
+	
+	
+	/**
+	 * @return the notes
+	 */
+	public String getNotes() {
+		return notes;
+	}
+
+
+	/**
+	 * @param notes the notes to set
+	 */
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+
+	/**
+	 * @param datecreated the datecreated to set
+	 */
+	public void setDatecreated(String datecreated) {
+		this.datecreated = datecreated;
 	}
 
 
 	@Override
 	public String toString() {
-		return "BugLog [logid=" + logid + ", bugid=" + bugid + ", log=" + log + "]";
+		return "BugLog [logid=" + logid + ", bugid=" + bugid + ", log=" + notes + "]";
 	}
 	
 	

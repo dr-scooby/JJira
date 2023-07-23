@@ -48,7 +48,7 @@ public class Ticket {
 
 	
 	public Ticket(int id, String title, String summary, String notes, String date) {
-		super();
+		this();
 		this.id = id;
 		this.title = title;
 		this.summary = summary;
