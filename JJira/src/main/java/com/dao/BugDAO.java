@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.data.Bug;
+import com.data.BugNotes;
 
 /**
  * @author nurali
@@ -278,7 +279,7 @@ public class BugDAO extends DAO{
 	// get a Bug from the ID
 	public Bug getBug(String id) {
 		String sql = "select * from Bugs where id=?";
-		Bug bu = null;
+		Bug bug = null;
 		PreparedStatement ps;
 		try {
 			/* 
@@ -287,7 +288,7 @@ public class BugDAO extends DAO{
      		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
 			 */
 			ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			ps.setInt(1, Integer.parseInt(id)); // want to use the wild character %
+			ps.setInt(1, Integer.parseInt(id)); 
 			
 			
 			ResultSet rs = ps.executeQuery();
@@ -299,21 +300,64 @@ public class BugDAO extends DAO{
 					int sev = rs.getInt("severity");
 					String date = rs.getString("created_at");
 					int bid = rs.getInt("id");
-					bu = new Bug(nameresult, descr, stateresult , sev);
-					bu.setDate_created_at(date);
-					bu.setId(bid);
+					bug = new Bug();
+					bug.setDescription(descr);
+					bug.setState(stateresult);
+					bug.setSeverity(sev);
+					bug.setId(bid);
+					bug.setDate_created_at(date);
+					bug.setId(bid);
 				}
+				
+				// SQL query to get the Bug logs
+				String sql_buglog = "select Bugs.id, BugLog.bugid, Bugs.name, BugLog.notes, BugLog.created_at, BugLog.logid from Bugs\r\n"
+						+ "inner join BugLog on Bugs.id = BugLog.bugid \r\n"
+						+ "where Bugs.id = ?;";
+				
+				PreparedStatement ps2 = conn.prepareStatement(sql_buglog, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ps2.setInt(1, Integer.parseInt(id)); // exact match
+				if(ps2.isClosed()) {
+					System.out.println("PS is closed");
+				}else {
+					System.out.println("PS NOT closed, Open");
+				}
+				ResultSet rs2 = ps2.executeQuery(); // execute query
+				if(rs2.first()) {
+					System.out.println("first");
+				}
+				if(rs2.isClosed()) {
+					System.out.println("closed");
+				}
+				rs2.beforeFirst();
+				while(rs2.next()) {
+					System.out.println("inside RS...");
+					BugNotes bun = new BugNotes(); // make a BugNotes object
+					// get data from the DB, and set to BugNotes
+					String notes = rs2.getString("notes");
+					System.out.println("Notes: " + notes);
+					bun.setLog(notes);
+					String datecreated = rs2.getString("created_at");
+					bun.setDate_created(datecreated);
+					bun.setBugid(rs2.getInt("id"));
+					bun.setLogid(rs2.getInt("logid"));
+					System.out.println("BugNotes:: " + bun);
+					bug.addBugNote(bun); // add it to the Bug
+					System.out.println("Bug DB: "+ bug);
+				}
+				System.out.println("done");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return bu;
+		
+		
+		return bug;
 	}
 	
 	// add notes to the Bug
-	public boolean addButNotes(String id, String notes) throws SQLException {
+	public boolean addBugNotes(String id, String notes) throws SQLException {
 		boolean ok = false;
 		
 		String sql = "insert into BugLog(bugid, notes) values(?,?)";

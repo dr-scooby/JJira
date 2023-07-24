@@ -402,11 +402,13 @@ public class DBModel {
 		BugDAO bd = new BugDAO(conn);
 		
 		
-		return ok = bd.addButNotes(id, notes);
+		return ok = bd.addBugNotes(id, notes);
 	}
 	
 	// get a Bug from the ID
 	public Bug getBug(String id) {
+		System.out.println("DBModel getBug()..");
+		
 		try {
 			if(conn == null || conn.isClosed()) {
 				try {

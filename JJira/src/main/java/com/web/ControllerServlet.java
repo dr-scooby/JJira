@@ -221,12 +221,14 @@ public class ControllerServlet extends HttpServlet{
 		
 		System.out.println("Edit:: Bug ID " + bugid);
 		
-		Bug b = db.getBug(bugid); // get BUg from DB
-		request.setAttribute("bug", b);
+		Bug bug = db.getBug(bugid); // get BUg from DB
+		System.out.println("Edit Bug:: " + bug);
+		request.setAttribute("bug", bug);
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditBug.jsp"); // send to JSP
 		try {
+			System.out.println("Sending to EditBug.jsp...");
 			dis.forward(request, response);
-			return;
+			//return;
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

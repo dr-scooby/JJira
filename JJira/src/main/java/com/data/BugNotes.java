@@ -152,7 +152,7 @@ public class BugNotes {
 
 	@Override
 	public String toString() {
-		return "BugLog [logid=" + logid + ", bugid=" + bugid + ", log=" + notes + "]";
+		return "BugLog [logid=" + logid + ", bugid=" + bugid +"]";
 	}
 	
 	

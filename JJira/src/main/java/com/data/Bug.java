@@ -18,7 +18,7 @@ public class Bug {
 	private String date_created_at;
 	private String date_updated_at;
 	private String state;
-	private String notes;
+	
 	private int severity;
 	private ArrayList<BugNotes> bugnotes;
 	
@@ -29,7 +29,7 @@ public class Bug {
 		date_created_at = "";
 		date_updated_at = "";
 		state = "";
-		notes = "";
+		
 		description = "";
 		severity = 1;
 		bugnotes = new ArrayList<BugNotes>();
@@ -39,7 +39,7 @@ public class Bug {
 	
 	// get ID, name, description
 	public Bug(int id, String name, String description) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -50,7 +50,7 @@ public class Bug {
 	
 
 	public Bug(String name, String description, int severity) {
-		super();
+		this();
 		this.name = name;
 		this.description = description;
 		this.severity = severity;
@@ -59,7 +59,7 @@ public class Bug {
 
 
 	public Bug(String name, String description, String state, int severity) {
-		super();
+		this();
 		this.name = name;
 		this.description = description;
 		this.state = state;
@@ -70,7 +70,7 @@ public class Bug {
 
 	// get ID, name, description, severity
 	public Bug(int id, String name, String description, int severity) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -79,13 +79,13 @@ public class Bug {
 
 
 
-	public Bug(int id, String title, String date, String state, String log) {
-		super();
+	public Bug(int id, String title, String date, String state) {
+		this();
 		this.id = id;
 		this.name = title;
 		this.date_created_at = date;
 		this.state = state;
-		this.notes = log;
+		
 	}
 
 
@@ -102,7 +102,7 @@ public class Bug {
 
 
 	public Bug(int id, String name, String description, String date_created_at, String state, int severity) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -114,13 +114,7 @@ public class Bug {
 
 	
 
-	/**
-	 * @return the buglogs
-	 */
-	public ArrayList<BugNotes> getBuglogs() {
-		return bugnotes;
-	}
-
+	
 
 
 	/**
@@ -144,9 +138,19 @@ public class Bug {
 		return ok;
 	}
 	
-	// get the Iterator
-	public Iterator getNoteit() {
-		return bugnotes.iterator();
+	// add a BugNote object
+	public void addBugNote(BugNotes b) {
+		if( bugnotes.add(b)) {
+			System.out.println("success adding bugnotes");
+		}else {
+			System.out.println("failed to add bugnotes");
+		}
+		
+	}
+	
+	// get the BugNotes
+	public ArrayList<BugNotes> getBugnotes() {
+		return bugnotes;
 	}
 
 	
@@ -251,22 +255,7 @@ public class Bug {
 	}
 
 
-	/**
-	 * @return the log
-	 */
-	public String getLog() {
-		return notes;
-	}
-
-
-	/**
-	 * @param log the log to set
-	 */
-	public void setLog(String log) {
-		this.notes = log;
-	}
-
-	
+		
 
 	/**
 	 * @return the name
@@ -318,24 +307,6 @@ public class Bug {
 	 */
 	public void setSeverity(int severity) {
 		this.severity = severity;
-	}
-
-
-
-	/**
-	 * @return the notes
-	 */
-	public String getNotes() {
-		return notes;
-	}
-
-
-
-	/**
-	 * @param notes the notes to set
-	 */
-	public void setNotes(String notes) {
-		this.notes = notes;
 	}
 
 
