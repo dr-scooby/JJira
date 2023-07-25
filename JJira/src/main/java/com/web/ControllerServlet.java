@@ -155,11 +155,6 @@ public class ControllerServlet extends HttpServlet{
 	private void updatebug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
-		try {
-		// testing only
-		PrintWriter out;
-		out = response.getWriter(); 
-	 
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
@@ -167,43 +162,72 @@ public class ControllerServlet extends HttpServlet{
 		String date = request.getParameter("date");
 		String sev = request.getParameter("sev");
 		
-		out.println("<!DOCTYPE html>");
-		out.println("<html><head>");
-		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		out.println("<title>Hello, World</title></head>");
-		out.println("<body>");
-		out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
-		out.println("<h1>Ticket Log info:</h1>");
-		out.println("<br>");
 		
-		out.println("Bug ID: " + id);
-		out.println("<br>");
+		try {
+			boolean ok = db.updateBug(id, name, description, state, sev);
+			if(ok) {
+				String errormessage = "Success updating Bug";
+				request.setAttribute("errormessage", errormessage);
+				RequestDispatcher dis = request.getRequestDispatcher("editbug?id="+id); // send to JSP
+				try {
+					dis.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		out.println("Bug Name: " + name);
 		
-		out.println("<br>");
-		out.println("Bug description: " + description);
+		//try {
+		// testing only
+//		PrintWriter out;
+//		out = response.getWriter(); 
+	 
 		
-		out.println("<br>");
-		out.println("Bug state: " + state);
 		
-		out.println("<br>");
-		out.println("Bug date: " + date);
 		
-		out.println("<br>");
-		out.println("Bug sev: " + sev);
 		
-		out.println("<br>");
-		
-		out.println("</body>");
-		out.println("</html>");
-		
-		out.close();
-	}catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		
+//		out.println("<!DOCTYPE html>");
+//		out.println("<html><head>");
+//		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		out.println("<title>Hello, World</title></head>");
+//		out.println("<body>");
+//		out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
+//		out.println("<h1>Ticket Log info:</h1>");
+//		out.println("<br>");
+//		
+//		out.println("Bug ID: " + id);
+//		out.println("<br>");
+//		
+//		out.println("Bug Name: " + name);
+//		
+//		out.println("<br>");
+//		out.println("Bug description: " + description);
+//		
+//		out.println("<br>");
+//		out.println("Bug state: " + state);
+//		
+//		out.println("<br>");
+//		out.println("Bug date: " + date);
+//		
+//		out.println("<br>");
+//		out.println("Bug sev: " + sev);
+//		
+//		out.println("<br>");
+//		
+//		out.println("</body>");
+//		out.println("</html>");
+//		
+//		out.close();
+//	}catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//		
 	}
 
 
@@ -352,37 +376,37 @@ public class ControllerServlet extends HttpServlet{
 		}
 		
 		 // testing only
-		 PrintWriter out;
-		 try {
-			out = response.getWriter();
-			 out.println("<!DOCTYPE html>");
-		        out.println("<html><head>");
-		        out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		        out.println("<title>Hello, World</title></head>");
-		        out.println("<body>");
-		        out.println("<h1>Hello, world! You have successfully reached the Update Ticket Servlet..It's working</h1>");  // says Hello
-		        out.println("<h1>Ticket Log info:</h1>");
-		        out.println("<br>");
-		        
-		        out.println(tikid);
-		        out.println("<br>");
-		        out.println(sev);
-		        out.println("<br>");
-		        out.println("<br>");
-		        out.println(title);
-		        out.println("<br>");
-		        out.println(summary);
-		        out.println("<br>");
-		        out.println(state);
-		        out.println("</body>");
-		        out.println("</html>");
-			
-		        out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	 
+//		 PrintWriter out;
+//		 try {
+//			out = response.getWriter();
+//			 out.println("<!DOCTYPE html>");
+//		        out.println("<html><head>");
+//		        out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		        out.println("<title>Hello, World</title></head>");
+//		        out.println("<body>");
+//		        out.println("<h1>Hello, world! You have successfully reached the Update Ticket Servlet..It's working</h1>");  // says Hello
+//		        out.println("<h1>Ticket Log info:</h1>");
+//		        out.println("<br>");
+//		        
+//		        out.println(tikid);
+//		        out.println("<br>");
+//		        out.println(sev);
+//		        out.println("<br>");
+//		        out.println("<br>");
+//		        out.println(title);
+//		        out.println("<br>");
+//		        out.println(summary);
+//		        out.println("<br>");
+//		        out.println(state);
+//		        out.println("</body>");
+//		        out.println("</html>");
+//			
+//		        out.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} 
+//	 
 		
 		
 				

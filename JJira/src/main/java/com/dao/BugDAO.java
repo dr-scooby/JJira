@@ -370,6 +370,25 @@ public class BugDAO extends DAO{
 		
 		return ok;
 	}
+	
+	// update Bug info
+	public boolean updateBug(String id, String name, String description, String state, String sev) throws SQLException  {
+		
+		boolean ok = false;
+		
+		String sql = "update Bugs set name=?, description=?, severity=?, state=? where id=?";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setString(1, name); // set title
+		pst.setString(2, description); // description
+		pst.setString(3, sev);
+		pst.setString(4, state);
+		pst.setInt(5, Integer.parseInt(id));
+		
+		ok = pst.executeUpdate() > 0;
+		
+		return ok;
+	}
 
 	@Override
 	public void connection(Connection c) throws SQLException {

@@ -428,6 +428,29 @@ public class DBModel {
 		return bugd.getBug(id);
 	}
 	
+	//update Bug details
+	public boolean updateBug(String id, String name, String description, String state, String sev) throws SQLException {
+		boolean ok = false;
+
+		try {
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BugDAO bd = new BugDAO(conn);
+		ok = bd.updateBug(id, name, description, state, sev);
+		return ok;
+	}
+	
 	// get all Tickets
 	public ArrayList<Ticket> listallTickets(){
 		System.out.println("listing all tickets from DBModel...");
