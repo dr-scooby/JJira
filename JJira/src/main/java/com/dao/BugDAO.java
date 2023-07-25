@@ -301,6 +301,7 @@ public class BugDAO extends DAO{
 					String date = rs.getString("created_at");
 					int bid = rs.getInt("id");
 					bug = new Bug();
+					bug.setName(nameresult);
 					bug.setDescription(descr);
 					bug.setState(stateresult);
 					bug.setSeverity(sev);
