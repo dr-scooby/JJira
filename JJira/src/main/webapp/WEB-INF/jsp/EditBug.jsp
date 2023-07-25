@@ -122,23 +122,23 @@ function validateForm() {
             </tr>
             <tr>
             	 <th> Name: </th>
-            	 	<td> <input type="text" name="Severity"  value="<c:out value='${bug.name}' />"  required/></td>
+            	 	<td> <input type="text" name="name"  value="<c:out value='${bug.name}' />"  required/></td>
             	</tr>	
             <tr>
             	 <th> Description: </th>
-            	 	<td> <input type="text" name="title"  value="<c:out value='${bug.description}' />"  required/></td>
+            	 	<td> <input type="text" name="description"  value="<c:out value='${bug.description}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> State: </th>
-            	 	<td> <input type="text" name="summary"  value="<c:out value='${bug.state}' />"  required/></td>
+            	 	<td> <input type="text" name="state"  value="<c:out value='${bug.state}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> Date Created: </th>
-            	 	<td> <input type="text" name="state"  value="<c:out value='${bug.date_created_at}' />"  required/></td>
+            	 	<td> <input type="text" name="date"  value="<c:out value='${bug.date_created_at}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> Severity: </th>
-            	 	<td> <input type="text" name="state"  value="<c:out value='${bug.severity}' />"  required/></td>
+            	 	<td> <input type="text" name="sev"  value="<c:out value='${bug.severity}' />"  required/></td>
             	</tr>
             	<tr>
             	    <th> Update: </th>

@@ -134,6 +134,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/updateticket":
 					updateticket(request, response);
 					break;
+				case "/updatebug":
+					updatebug(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -146,6 +149,64 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	
+	
+	// update bug with data
+	private void updatebug(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		try {
+		// testing only
+		PrintWriter out;
+		out = response.getWriter(); 
+	 
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		String state = request.getParameter("state");
+		String date = request.getParameter("date");
+		String sev = request.getParameter("sev");
+		
+		out.println("<!DOCTYPE html>");
+		out.println("<html><head>");
+		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		out.println("<title>Hello, World</title></head>");
+		out.println("<body>");
+		out.println("<h1>Hello, world! You have successfully reached the Add Bug Log Servlet..It's working</h1>");  // says Hello
+		out.println("<h1>Ticket Log info:</h1>");
+		out.println("<br>");
+		
+		out.println("Bug ID: " + id);
+		out.println("<br>");
+		
+		out.println("Bug Name: " + name);
+		
+		out.println("<br>");
+		out.println("Bug description: " + description);
+		
+		out.println("<br>");
+		out.println("Bug state: " + state);
+		
+		out.println("<br>");
+		out.println("Bug date: " + date);
+		
+		out.println("<br>");
+		out.println("Bug sev: " + sev);
+		
+		out.println("<br>");
+		
+		out.println("</body>");
+		out.println("</html>");
+		
+		out.close();
+	}catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+	}
+
+
 	// add notes to the Bug
 	private void addnotesbug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
