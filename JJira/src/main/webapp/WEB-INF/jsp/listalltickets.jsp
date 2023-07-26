@@ -203,8 +203,10 @@
       <p><a href="searchticket.html">Search ticket</a></p>
     </div>
     <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
+      <h2>Groups/Teams</h2>
+      <p><a href="listallgroups">List all teams</a></p>
+      <p><a href="grouppage.html">New team</a></p>
+      <p><a href="grouppage.html">Search teams</a></p>
       
     </div>
     <div class="card">

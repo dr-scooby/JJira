@@ -387,6 +387,12 @@ public class BugDAO extends DAO{
 		
 		ok = pst.executeUpdate() > 0;
 		
+		if(ok) {
+			System.out.println("updated bug BugDAO.");
+		}else {
+			System.out.println("FAILED update bug BugDAO.");
+		}
+		
 		return ok;
 	}
 
