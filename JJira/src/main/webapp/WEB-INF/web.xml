@@ -91,6 +91,12 @@
   
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/listallgroups</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
   	<url-pattern>/ticketsearch</url-pattern>
   </servlet-mapping>
   

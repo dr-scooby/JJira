@@ -14,19 +14,30 @@ public class Group {
 	
 	private int id;
 	private String name;
-	private ArrayList members;
+	private String email;
+	
 	
 	
 	
 	public Group() {
 		id = 0;
 		name = "";
-		members = new ArrayList();
+		
 	}
 	
+	public Group(String name) {
+		this();
+		this.name = name;
+	}
+	
+	public Group(String name, String email) {
+		this();
+		this.name = name;
+		this.email = email;
+	}
 	
 	public Group(int id, String name) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 	}
@@ -64,28 +75,21 @@ public class Group {
 	}
 
 
-	/**
-	 * @return the members
-	 */
-	public ArrayList getMembers() {
-		return members;
-	}
-
-
-	/**
-	 * @param members the members to set
-	 */
-	public void setMembers(ArrayList members) {
-		this.members = members;
-	}
-
-	public Iterator getIt() {
-		return members.iterator();
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Group [id=" + id + ", name=" + name + "]";
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

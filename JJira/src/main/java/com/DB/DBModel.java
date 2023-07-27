@@ -12,9 +12,10 @@ import java.util.*;
 //import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.dao.BugDAO;
-import com.dao.DAO;
+import com.dao.GroupDAO;
 import com.dao.TikDAO;
 import com.data.Bug;
+import com.data.Group;
 import com.data.Ticket;
 
 /**
@@ -684,13 +685,14 @@ public class DBModel {
 	
 	
 	// create a new Team Group
-	public boolean anewTeam(String name, String email) {
+	public boolean anewTeam(String name, String email) throws SQLException {
 		boolean ok = false;
 		
 		System.out.println("\n a New Team creation called in DBModel..");
 		
+		Group g = new Group(name, email);
 		
-		String sql_insert = "insert into TeamGroups(name, email) value(?,?)";
+		//String sql_insert = "insert into TeamGroups(name, email) value(?,?)";
 		
 		try {
 			if(conn == null || conn.isClosed()) {
@@ -707,18 +709,25 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql_insert);
-			ps.setString(1, name);
-			ps.setString(2, email);
-						
-			
-			ok = ps.executeUpdate() > 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// pass Group info the to the DAO
+		GroupDAO gdo = new GroupDAO();
+		gdo.connection(conn);
+		gdo.addGroup(g);
+		
+		
+		
+//		try {
+//			PreparedStatement ps = conn.prepareStatement(sql_insert);
+//			ps.setString(1, name);
+//			ps.setString(2, email);
+//						
+//			
+//			ok = ps.executeUpdate() > 0;
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 		try {
@@ -730,6 +739,29 @@ public class DBModel {
 		
 		
 		return ok;
+	}
+	
+	
+	// list all groups
+	public ArrayList<Group> getallGroups() throws SQLException{
+		ArrayList<Group> groups ;
+		
+		
+			if(conn == null || conn.isClosed()) {
+				try {
+					connect();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		GroupDAO dao = new GroupDAO();
+		dao.connection(conn);
+		groups = dao.getAllGroups();
+		System.out.println("Size of Groups:>> " + groups.size());
+		return groups;
 	}
 	
 	// get a Connection

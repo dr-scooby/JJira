@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.DB.DBModel;
 import com.data.Bug;
+import com.data.Group;
 import com.data.Ticket;
 
 /**
@@ -137,6 +138,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/updatebug":
 					updatebug(request, response);
 					break;
+					//listallgroups
+				case "/listallgroups":
+					listallgroups(request, response);
+					break;	
 				default:
 					gohome(request, response);
 				break;
@@ -151,6 +156,30 @@ public class ControllerServlet extends HttpServlet{
 	
 	
 	
+	private void listallgroups(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		// list all groups
+		System.out.println("listing all Groups/TEAMs");
+		try {
+			ArrayList<Group> groups = db.getallGroups();
+			request.setAttribute("groups", groups);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/listallgroups.jsp");
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				System.out.println("error listallgroups, line 168:ControllerServlet");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			System.out.println("error listallgroups, line 174:ControllerServlet");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	// update bug with data
 	private void updatebug(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
@@ -1085,7 +1114,12 @@ public class ControllerServlet extends HttpServlet{
 					e.printStackTrace();
 	      }
 	      
-	      db.anewTeam(gname, email);
+	      try {
+			db.anewTeam(gname, email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
