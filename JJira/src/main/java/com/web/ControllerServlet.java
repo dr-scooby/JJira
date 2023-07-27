@@ -145,6 +145,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/listallgroups":
 					listallgroups(request, response);
 					break;	
+				// updategroup
+				case "/updategroup":
+					updategroup(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -158,36 +162,90 @@ public class ControllerServlet extends HttpServlet{
 	
 	
 	
-	
-	private void editgroup(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	// update group with new info
+	private void updategroup(HttpServletRequest request, HttpServletResponse response) {
+		// Get the data from the client
 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		System.out.println("Client info: " + id + " " + name + " " + email);
+		boolean ok;
+		try {
+			ok = db.editGroup(id, name, email); // send data to DB
+			if(ok) {
+				String message ="Success updating Team";
+				request.setAttribute("message", message);
+				RequestDispatcher dis = request.getRequestDispatcher("editgroup?id="+id);
+				try {
+					dis.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				String message ="FAILED TO update Team";
+				request.setAttribute("message", message);
+				RequestDispatcher dis = request.getRequestDispatcher("editgroup?id="+id);
+				try {
+					dis.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		 try {
-		 PrintWriter out;
-   	   out = response.getWriter(); 
-   	 
-			
-			 out.println("<!DOCTYPE html>");
-	         out.println("<html><head>");
-	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-	         out.println("<title>Hello, World</title></head>");
-	         out.println("<body>");
-	         out.println("<h1>Hello, world! You have successfully reached the Edit Group Servlet..It's working</h1>");  // says Hello
-	         out.println("<h1>Edit Group info, ID:</h1>");
-	         out.println(id);
-	         out.println("<br>");
-	         		         
-	         
-	         out.println("</body>");
-	         out.println("</html>");
 		
-	         out.close();
-     }catch (IOException e) {
+	}
+
+
+	private void editgroup(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub			
+		String id = request.getParameter("id");
+		try {
+			Group grp = db.getGroup(id);
+			request.setAttribute("group", grp);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditGroup.jsp"); // send to jsp
+			try {
+				dis.forward(request, response);
+				return;
+			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-     }
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+//		 try {
+//			 PrintWriter out;
+//   	   		out = response.getWriter(); 
+//   	 
+//			
+//			 out.println("<!DOCTYPE html>");
+//	         out.println("<html><head>");
+//	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//	         out.println("<title>Hello, World</title></head>");
+//	         out.println("<body>");
+//	         out.println("<h1>Hello, world! You have successfully reached the Edit Group Servlet..It's working</h1>");  // says Hello
+//	         out.println("<h1>Edit Group info, ID:</h1>");
+//	         out.println(id);
+//	         out.println("<br>");
+//	         		         
+//	         
+//	         out.println("</body>");
+//	         out.println("</html>");
+//		
+//	         out.close();
+//     }catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//     }
 		
 		
 		
@@ -236,6 +294,7 @@ public class ControllerServlet extends HttpServlet{
 			if(ok) {
 				String errormessage = "Success updating Bug";
 				request.setAttribute("errormessage", errormessage);
+				// editbug actually calls the web.xml 'editbug' map to the Controller
 				RequestDispatcher dis = request.getRequestDispatcher("editbug?id="+id); // send to JSP
 				try {
 					dis.forward(request, response);
@@ -1126,35 +1185,46 @@ public class ControllerServlet extends HttpServlet{
 		String email = request.getParameter("email");
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
-	      try {
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>New Group Page</h1>");
-		         // Echo client's submitted information
-		         out.println("<p>Group Name: " + gname + "</p>");
-		         out.println("<p>Group Type: " + gtype + "</p>");
-		         out.println("<p>Email: " + email + "</p>");
-		         
-		         
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+//	      try {
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>New Group Page</h1>");
+//		         // Echo client's submitted information
+//		         out.println("<p>Group Name: " + gname + "</p>");
+//		         out.println("<p>Group Type: " + gtype + "</p>");
+//		         out.println("<p>Email: " + email + "</p>");
+//		         
+//		         
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 	      
 	      try {
-			db.anewTeam(gname, email);
+			db.anewTeam(gname, email); // send to DB to add new group
+			// go to the list all groups
+			ArrayList<Group> groups = db.getallGroups();
+			request.setAttribute("groups", groups);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/listallgroups.jsp");
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				System.out.println("error listallgroups, line 168:ControllerServlet");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

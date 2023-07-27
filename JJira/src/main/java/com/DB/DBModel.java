@@ -764,6 +764,32 @@ public class DBModel {
 		return groups;
 	}
 	
+	// get a Group from ID - String
+	public Group getGroup(String id)throws SQLException {
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		GroupDAO dao = new GroupDAO();
+		dao.connection(conn);
+		return dao.getGroup(id);
+		
+	}
+	
+	
+	// edit Group with new info
+	public boolean editGroup(String id, String name, String email) throws SQLException {
+		boolean ok = false;
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		GroupDAO dao = new GroupDAO();
+		dao.connection(conn);
+		ok = dao.updateGroup(id, name, email);
+		
+		return ok;
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;

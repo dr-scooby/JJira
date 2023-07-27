@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.data.Bug;
 import com.data.Group;
 
 /**
@@ -74,6 +75,64 @@ public class GroupDAO extends DAO{
 		}
 		
 		return grps;
+	}
+	
+	// get by ID
+	public Group getGroup(String id)throws SQLException {
+		System.out.println("DAO getting group id:" + id);
+		
+		String sql = "select * from TeamGroups where id=?";
+		Group grp = null;
+		PreparedStatement ps;
+		
+		/* 
+		 * SQLException - if a database access error occurs; this method is called 
+ 		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+ 		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+		 */
+		ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		ps.setInt(1, Integer.parseInt(id)); 
+		
+		
+		ResultSet rs = ps.executeQuery();
+		
+			while(rs.next()) {
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				
+				
+				int bid = rs.getInt("id");
+				grp = new Group();
+				grp.setId(bid);
+				grp.setName(name);
+				grp.setEmail(email);
+//				bug = new Bug();
+//				bug.setName(nameresult);
+//				bug.setDescription(descr);
+//				bug.setState(stateresult);
+//				bug.setSeverity(sev);
+//				bug.setId(bid);
+//				bug.setDate_created_at(date);
+//				bug.setId(bid);
+			}
+		
+		return grp;
+	}
+	
+	// update the group with new info
+	public boolean updateGroup(String id, String name, String email)throws SQLException {
+		boolean ok = false;
+		
+		String sql = "update TeamGroups set name=?, email=? where id=?";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setString(1, name); // set title
+		pst.setString(2, email); // summary
+		pst.setInt(3, Integer.parseInt(id));
+		
+		ok = pst.executeUpdate() > 0;
+		
+		return ok;
 	}
 	
 	/* --- Abstract methods --- */
