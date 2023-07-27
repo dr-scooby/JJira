@@ -117,6 +117,12 @@
   	<url-pattern>/editticket</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/editgroup</url-pattern>
+  </servlet-mapping>
+  
   <!--  add notes for the Ticket -->
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>

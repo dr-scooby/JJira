@@ -122,6 +122,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/editticket":
 					editTicket(request, response);
 					break;
+				case "/editgroup":
+					editgroup(request, response);
+					break;
 				case "/addnotesbug":
 					addnotesbug(request, response);
 					break;
@@ -156,6 +159,42 @@ public class ControllerServlet extends HttpServlet{
 	
 	
 	
+	private void editgroup(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String id = request.getParameter("id");
+		
+		 try {
+		 PrintWriter out;
+   	   out = response.getWriter(); 
+   	 
+			
+			 out.println("<!DOCTYPE html>");
+	         out.println("<html><head>");
+	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+	         out.println("<title>Hello, World</title></head>");
+	         out.println("<body>");
+	         out.println("<h1>Hello, world! You have successfully reached the Edit Group Servlet..It's working</h1>");  // says Hello
+	         out.println("<h1>Edit Group info, ID:</h1>");
+	         out.println(id);
+	         out.println("<br>");
+	         		         
+	         
+	         out.println("</body>");
+	         out.println("</html>");
+		
+	         out.close();
+     }catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+     }
+		
+		
+		
+		
+	}
+
+
 	private void listallgroups(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		// list all groups

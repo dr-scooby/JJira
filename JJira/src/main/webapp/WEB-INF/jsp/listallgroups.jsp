@@ -109,8 +109,8 @@
             
             <c:forEach var="grp" items="${groups}">
             	<tr>
-            		<td><a href="editticket?id=<c:out value='${grp.id}'/>">Edit</a>     <c:out value="${grp.id}"/> </td>
-            		<td><a href="editticket?id=<c:out value='${grp.id}'/>"><c:out value="${grp.name}"/> </a>      </td>
+            		<td><a href="editgroup?id=<c:out value='${grp.id}'/>">Edit</a>     <c:out value="${grp.id}"/> </td>
+            		<td><a href="editgroup?id=<c:out value='${grp.id}'/>"><c:out value="${grp.name}"/> </a>      </td>
             		<td><c:out value="${grp.email}"/></td>
             		
             		
