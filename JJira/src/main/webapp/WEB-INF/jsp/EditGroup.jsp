@@ -118,7 +118,7 @@ function validateForm() {
       	<table class="tiktable" id="tikTable">
       		<tr>
             	 <th> ID: </th>
-            	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${group.id}' />"  /> </td>
+            	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${group.id}' />" readonly required/> </td>
             </tr>
             <tr>
             	 <th> Name: </th>
