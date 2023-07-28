@@ -138,6 +138,7 @@ public class GroupDAO extends DAO{
 				Employee emp = new Employee();
 				emp.setId(i);
 				emp.setFname(fname);
+				emp.setLname(lname);
 				emp.setEmail(email);
 				grp.addEmployee(emp); // add employee to the Group
 			}
