@@ -302,6 +302,24 @@ public class DBModel {
 		return dao.getAllEmployees();
 	}
 	
+	// get a listing of employees not assigned to a Group/TEam
+	public ArrayList<Employee> getUnassignedEmployees()throws SQLException{
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		
+		ArrayList<Employee> emps = dao.getUnassignedEmployees();
+		
+		
+		return emps;
+		
+		
+	}
+	
 	// create a new bug
 	public boolean anewBug(String name, String description, String severity, String state) {
 		boolean ok = false;
