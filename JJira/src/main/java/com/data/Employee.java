@@ -18,11 +18,12 @@ public class Employee {
 	private String phone;
 	private String dob; // what is dob??????????? date of birth??
 	private String group;
-	
+	private int teamid; // the group id
 	
 	
 	public Employee() {
 		id = 0;
+		teamid = 0;
 		empid = "";
 		fname = "";
 		lname = "";
@@ -35,7 +36,7 @@ public class Employee {
 
 
 	public Employee(String fname, String lname, String email, String phone, String dob) {
-		super();
+		this();
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
@@ -46,7 +47,7 @@ public class Employee {
 
 
 	public Employee(int id, String empid, String fname, String lname, String email, String phone, String dob) {
-		super();
+		this();
 		this.id = id;
 		this.empid = empid;
 		this.fname = fname;
@@ -57,6 +58,21 @@ public class Employee {
 	}
 
 
+	
+	/**
+	 * @return the teamid
+	 */
+	public int getTeamid() {
+		return teamid;
+	}
+
+
+	/**
+	 * @param teamid the teamid to set
+	 */
+	public void setTeamid(int teamid) {
+		this.teamid = teamid;
+	}
 
 	/**
 	 * @return the id
