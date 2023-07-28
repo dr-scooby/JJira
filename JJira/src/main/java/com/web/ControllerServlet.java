@@ -175,31 +175,52 @@ public class ControllerServlet extends HttpServlet{
 		
 		String groupid = request.getParameter("id");
 		
-		// this block is to test the Servlet & web.xml is working and configure properly.
-	      try {
-	    	  PrintWriter out;
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>Add Employee to the Group</h1>");
-		         out.println("<br>");
-		         out.println("Group ID: " + groupid );
-		         
-		         
-		         out.println("</body>");
-		         out.println("</html>");
+		try {
+			ArrayList<Employee> emps = db.getUnassignedEmployees(); // get only un-assigned employees
+			request.setAttribute("emps", emps); // set ArrayList
 			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+			// get Group data object
+			Group grp = db.getGroup(groupid);
+			request.setAttribute("group", grp);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/selectemployee.jsp"); // send to jsp
+			try {
+				dis.forward(request, response);
+				return;
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// this block is to test the Servlet & web.xml is working and configure properly.
+//	      try {
+//	    	  PrintWriter out;
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>Add Employee to the Group</h1>");
+//		         out.println("<br>");
+//		         out.println("Group ID: " + groupid );
+//		         
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 	}
 
 
