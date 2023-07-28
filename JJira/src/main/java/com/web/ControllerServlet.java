@@ -182,7 +182,7 @@ public class ControllerServlet extends HttpServlet{
 			// get Group data object
 			Group grp = db.getGroup(groupid);
 			request.setAttribute("group", grp);
-			
+			// set to the request
 			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/selectemployee.jsp"); // send to jsp
 			try {
 				dis.forward(request, response);
