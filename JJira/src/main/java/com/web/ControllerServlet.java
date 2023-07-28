@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.DB.DBModel;
 import com.data.Bug;
+import com.data.Employee;
 import com.data.Group;
 import com.data.Ticket;
 
@@ -118,6 +119,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/listalltickets":
 					listalltickets(request, response);
 					break;
+					//listallemployees
+				case "/listallemployees":
+					listallemployees(request, response);
+					break;
 					// need a single ticket edit or show
 				case "/editticket":
 					editTicket(request, response);
@@ -149,6 +154,9 @@ public class ControllerServlet extends HttpServlet{
 				case "/updategroup":
 					updategroup(request, response);
 					break;
+				case "/selectemployee":
+					selectemployee(request, response);
+					break;
 				default:
 					gohome(request, response);
 				break;
@@ -162,6 +170,54 @@ public class ControllerServlet extends HttpServlet{
 	
 	
 	
+	private void selectemployee(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String groupid = request.getParameter("id");
+		
+		// this block is to test the Servlet & web.xml is working and configure properly.
+	      try {
+	    	  PrintWriter out;
+	    	   out = response.getWriter(); 
+	    	 
+				
+				 out.println("<!DOCTYPE html>");
+		         out.println("<html><head>");
+		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		         out.println("<title>Hello, World</title></head>");
+		         out.println("<body>");
+		         out.println("<h1>Hello, world! You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+		         out.println("<h1>Add Employee to the Group</h1>");
+		         out.println("<br>");
+		         out.println("Group ID: " + groupid );
+		         
+		         
+		         out.println("</body>");
+		         out.println("</html>");
+			
+		         out.close();
+	      }catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+	      }
+	}
+
+
+	private void listallemployees(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		System.out.println("list all employees called");
+		
+		try {
+			ArrayList<Employee> emps = db.getAllEmployees();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	// update group with new info
 	private void updategroup(HttpServletRequest request, HttpServletResponse response) {
 		// Get the data from the client
@@ -1109,7 +1165,12 @@ public class ControllerServlet extends HttpServlet{
 					e.printStackTrace();
 	      }
 		
-	      db.anewEmployee(firstname, lasttname, email, phone);
+	      try {
+			db.anewEmployee(firstname, lasttname, email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

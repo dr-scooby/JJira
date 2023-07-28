@@ -12,9 +12,11 @@ import java.util.*;
 //import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.dao.BugDAO;
+import com.dao.EmployeeDAO;
 import com.dao.GroupDAO;
 import com.dao.TikDAO;
 import com.data.Bug;
+import com.data.Employee;
 import com.data.Group;
 import com.data.Ticket;
 
@@ -235,13 +237,13 @@ public class DBModel {
 	}
 	
 	// create new employee
-	public boolean anewEmployee(String fname, String lname, String email, String phone) {
+	public boolean anewEmployee(String fname, String lname, String email) throws SQLException{
 		boolean ok = false;
 		
 		System.out.println("\n a New Employee called in DBModel..");
 		
 		
-		String sql_insert = "insert into employees(fname, lname,email, phone) value(?,?,?,?)";
+		//String sql_insert = "insert into employees(fname, lname,email, phone) value(?,?,?,?)";
 		
 		try {
 			if(conn == null || conn.isClosed()) {
@@ -258,19 +260,23 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql_insert);
-			ps.setString(1, fname);
-			ps.setString(2, lname);
-			ps.setString(3, email);
-			ps.setString(4, phone);
-			
-			ok = ps.executeUpdate() > 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		ok = dao.addNewEmployee(fname, lname, email);
+		
+//		try {
+//			PreparedStatement ps = conn.prepareStatement(sql_insert);
+//			ps.setString(1, fname);
+//			ps.setString(2, lname);
+//			ps.setString(3, email);
+//			ps.setString(4, phone);
+//			
+//			ok = ps.executeUpdate() > 0;
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		try {
 			conn.close();
@@ -281,6 +287,19 @@ public class DBModel {
 		
 		
 		return ok;
+	}
+	
+	
+	// get listing of employees
+	public ArrayList<Employee> getAllEmployees() throws SQLException{
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		
+		return dao.getAllEmployees();
 	}
 	
 	// create a new bug

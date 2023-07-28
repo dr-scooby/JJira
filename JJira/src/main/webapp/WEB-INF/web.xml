@@ -36,6 +36,7 @@
    	</init-param>
   </servlet>
   
+  <!-- Start URL mappings for web app -->
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/main</url-pattern>
@@ -97,6 +98,11 @@
   
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/listallemployees</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
   	<url-pattern>/ticketsearch</url-pattern>
   </servlet-mapping>
   
@@ -146,6 +152,12 @@
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/updategroup</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/selectemployee</url-pattern>
   </servlet-mapping>
   
   <error-page>

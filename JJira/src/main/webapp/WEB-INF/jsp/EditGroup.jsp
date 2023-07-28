@@ -133,10 +133,14 @@ function validateForm() {
             	    <th> Update: </th>
             		<td> <input type="submit" value="Submit" > </td>
             	</tr>
+            	
       	</table>
       	
       	 
        </form>
+       <br>
+       <br>
+       
       
     </div>
     </div> <!-- end empcard -->
@@ -147,21 +151,17 @@ function validateForm() {
    
     
    
-   <!-- Form to add Bug notes -->
-<!--    <div class="tiktoknotes"> -->
+   <!-- Form to add Employee to Group -->
+     
+   <div class="tiktoknotes"> 
    
-<!--    	<h1>Add Notes:</h1> -->
-<!--    	 <form name="formName"  action="addnotesbug" method="post" onsubmit="return validateForm()" required> -->
-   	 	
-<%--    	 	<input type="hidden" name="bugid" value="<c:out value='${bug.id}' />"> --%>
-<!--    	 	Notes: <input type="text" name="bugnotes" required> -->
-<!--    	  	<textarea name="tiknotesta" id="tiknotes" required> </textarea>  -->
-   	 	
-<!--    	 	<input type="submit" value="Submit" name="addLog"> -->
-<!--    	 </form> -->
-<!--    </div>End Form to add Bug notes -->
+    	<h1>Select Employee:</h1> 
+   	 <form action="selectemployee" method="post"> 
+   	 <input class="tikid" type="hidden" name="id"  value="<c:out value='${group.id}' />" readonly required/>
+   	 <input type="submit" value="Add Employee" > </form>
+    </div> 
    
-<!--    <br> -->
+    <br> 
     
 <!--      use a for loop to get all the notes for this ticket -->
      <c:forEach var="emp" items="${group.emps}">
@@ -177,7 +177,10 @@ function validateForm() {
     		
     		<h2>ID:</h2> 
     		<p> <c:out value='${emp.id}' /> </p>
-   	</div> 
+    		
+    		<h2>ID:</h2> 
+    		<p> <c:out value='${emp.id}' /> </p>
+   		</div> 
     </c:forEach> 
      
      
