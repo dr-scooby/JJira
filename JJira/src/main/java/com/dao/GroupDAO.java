@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.data.Bug;
+import com.data.Employee;
 import com.data.Group;
 
 /**
@@ -115,7 +116,32 @@ public class GroupDAO extends DAO{
 //				bug.setDate_created_at(date);
 //				bug.setId(bid);
 			}
-		
+			
+			// get Employees for this group
+			String sql_emps = "select TeamGroups.name, employees.fname, employees.lname, employees.email, employees.id from TeamGroups\r\n"
+					+ "inner join EmpType on TeamGroups.id = EmpType.groupid \r\n"
+					+ "inner join employees on EmpType.empid = employees.id\r\n"
+					+ "where TeamGroups.id = ?";
+			
+			ps = conn.prepareStatement(sql_emps, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ps.setInt(1, Integer.parseInt(id)); 
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				// get DB data
+				String fname = rs.getString("fname");
+				String lname = rs.getString("lname");
+				String email = rs.getString("email");
+				int i = rs.getInt("id");
+				// make the employee object
+				Employee emp = new Employee();
+				emp.setId(i);
+				emp.setFname(fname);
+				emp.setEmail(email);
+				grp.addEmployee(emp); // add employee to the Group
+			}
+			
 		return grp;
 	}
 	

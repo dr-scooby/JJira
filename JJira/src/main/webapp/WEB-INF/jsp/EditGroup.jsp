@@ -164,19 +164,21 @@ function validateForm() {
 <!--    <br> -->
     
 <!--      use a for loop to get all the notes for this ticket -->
-<%--      <c:forEach var="buglog" items="${bug.bugnotes}"> --%>
-<!--     	<div class="tikcard"> -->
-<!--     		<h2>Notes</h2> -->
-<%--     		<p> <c:out value='${buglog.notes}' /> </p> --%>
+     <c:forEach var="emp" items="${group.emps}">
+    	<div class="tikcard"> 
+     		<h2>First Name:</h2> 
+    		<p> <c:out value='${emp.fname}' /> </p>
     		
-<!--     		<h2>Date Created</h2> -->
-<%--     		<p> <c:out value='${buglog.datecreated}' /> </p> --%>
+     		<h2>Last Name:</h2> 
+    		<p> <c:out value='${emp.lname}' /> </p>
     		
-<!--     		<h2>Log ID</h2> -->
-<%--     		<p> <c:out value='${buglog.logid}' /> </p> --%>
+     		<h2>Email:</h2> 
+    		<p> <c:out value='${emp.email}' /> </p>
     		
-<!--     	</div> -->
-<%--     </c:forEach>  --%>
+    		<h2>ID:</h2> 
+    		<p> <c:out value='${emp.id}' /> </p>
+   	</div> 
+    </c:forEach> 
      
      
      

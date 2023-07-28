@@ -48,8 +48,8 @@ public class Group {
 		emps.add(e);
 	}
 	
-	// get a Iterator
-	public Iterator getEmployees() {
+	// get a Iterator, has to be same name as the variable for it to work with jstl
+	public Iterator getemps() {
 		return emps.iterator();
 	}
 

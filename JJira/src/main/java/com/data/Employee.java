@@ -16,7 +16,7 @@ public class Employee {
 	private String lname;
 	private String email;
 	private String phone;
-	private String dob;
+	private String dob; // what is dob??????????? date of birth??
 	private String group;
 	
 	
