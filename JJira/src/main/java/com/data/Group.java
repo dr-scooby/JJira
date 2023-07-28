@@ -16,13 +16,13 @@ public class Group {
 	private String name;
 	private String email;
 	
-	
+	private ArrayList<Employee> emps; // hold the listing of employees for this Group
 	
 	
 	public Group() {
 		id = 0;
 		name = "";
-		
+		emps = new ArrayList<Employee>();
 	}
 	
 	public Group(String name) {
@@ -42,6 +42,16 @@ public class Group {
 		this.name = name;
 	}
 
+	
+	// add Employee
+	public void addEmployee(Employee e) {
+		emps.add(e);
+	}
+	
+	// get a Iterator
+	public Iterator getEmployees() {
+		return emps.iterator();
+	}
 
 	/**
 	 * @return the id
