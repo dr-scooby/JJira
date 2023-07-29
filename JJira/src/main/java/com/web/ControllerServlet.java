@@ -296,6 +296,15 @@ public class ControllerServlet extends HttpServlet{
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			request.setAttribute("exception", e1.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException | IOException e1a) {
+				// TODO Auto-generated catch block
+				e1a.printStackTrace();
+			}
 		}
 		
 		
