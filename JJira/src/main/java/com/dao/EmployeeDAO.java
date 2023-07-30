@@ -77,7 +77,10 @@ public class EmployeeDAO extends DAO{
 	public ArrayList<Employee> getUnassignedEmployees()throws SQLException{
 		ArrayList<Employee> emps = new ArrayList<Employee>();
 		
-		String sql = "select * from employees where teamid is null";
+		// get a listing of employees who are not assigned to a team
+		String sql = "select  employees.id,employees.fname, employees.lname,employees.email, employees.phone from employees\r\n"
+				+ "where employees.id not in (\r\n"
+				+ "select EmpType.empid from EmpType)";
 		
 		PreparedStatement pst = conn.prepareStatement(sql);
 		ResultSet rs = pst.executeQuery();
@@ -86,7 +89,7 @@ public class EmployeeDAO extends DAO{
 			String lname = rs.getString("lname");
 			String email = rs.getString("email");
 			String phone = rs.getString("phone");
-			int teamid = rs.getInt("teamid");
+			//int teamid = rs.getInt("teamid");
 			int id = rs.getInt("id");
 			Employee em = new Employee();
 			em.setFname(fname);
@@ -94,7 +97,7 @@ public class EmployeeDAO extends DAO{
 			em.setEmail(email);
 			em.setPhone(phone);
 			em.setId(id);
-			em.setTeamid(teamid);
+			//em.setTeamid(teamid);
 			emps.add(em);
 		}
 		
