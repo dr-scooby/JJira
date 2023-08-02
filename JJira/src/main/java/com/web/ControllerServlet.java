@@ -230,6 +230,15 @@ public class ControllerServlet extends HttpServlet{
 		
 		try {
 			ArrayList<Employee> emps = db.getAllEmployees();
+			request.setAttribute("emps", emps);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/ListAllEmployees.jsp");
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -1168,35 +1177,48 @@ public class ControllerServlet extends HttpServlet{
 		
 		 PrintWriter out;
 		// this block is to test the Servlet & web.xml is working and configure properly.
-	      try {
-	    	   out = response.getWriter(); 
-	    	 
-				
-				 out.println("<!DOCTYPE html>");
-		         out.println("<html><head>");
-		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		         out.println("<title>Hello, World</title></head>");
-		         out.println("<body>");
-		         out.println("<h1>You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
-		         out.println("<h1>New Employee Page</h1>");  // says Hello
-		         // Echo client's submitted information
-		         out.println("<p>Group Name Search: " + firstname + "</p>");
-		         out.println("<p>User Name Search: " + lasttname + "</p>");
-		         out.println("<p>Email search: " + email + "</p>");
-		         out.println("<p>Phone search: " + phone + "</p>");
-		         
-		         
-		         out.println("</body>");
-		         out.println("</html>");
-			
-		         out.close();
-	      }catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-	      }
+//	      try {
+//	    	   out = response.getWriter(); 
+//	    	 
+//				
+//				 out.println("<!DOCTYPE html>");
+//		         out.println("<html><head>");
+//		         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		         out.println("<title>Hello, World</title></head>");
+//		         out.println("<body>");
+//		         out.println("<h1>You have successfully submitted to this Servlet..It's working</h1>");  // says Hello
+//		         out.println("<h1>New Employee Page</h1>");  // says Hello
+//		         // Echo client's submitted information
+//		         out.println("<p>Group Name Search: " + firstname + "</p>");
+//		         out.println("<p>User Name Search: " + lasttname + "</p>");
+//		         out.println("<p>Email search: " + email + "</p>");
+//		         out.println("<p>Phone search: " + phone + "</p>");
+//		         
+//		         
+//		         out.println("</body>");
+//		         out.println("</html>");
+//			
+//		         out.close();
+//	      }catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//	      }
 		
 	      try {
-			db.anewEmployee(firstname, lasttname, email);
+			if(db.anewEmployee(firstname, lasttname, email)) {
+				RequestDispatcher dispatch =	request.getRequestDispatcher("listallemployees");
+				try {
+					dispatch.forward(request, response);
+					return;
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
