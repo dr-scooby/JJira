@@ -203,8 +203,8 @@
     <div class="card">
      <h2>Employee</h2>
       <p><a href="listallemployees">List all Employees</a></p>
-      <p><a href="#">New Employee</a></p>
-      <p><a href="#">Search Employee</a></p>
+      <p><a href="employeepage.html">New Employee</a></p>
+      <p><a href="employeepage.html">Search Employee</a></p>
     </div>
   </div>
 </div>

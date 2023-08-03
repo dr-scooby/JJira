@@ -139,7 +139,9 @@ th{
     
     <div class="form">
         
-        <form  action="addemployeetoteam" method="post">      
+        <form  action="addemployeetoteam" method="post">  
+         <!-- groupid is hidden -->
+         <input  type="hidden" name="teamid"  value="<c:out value='${group.id}' />" />    
       	<table >
       		<tr>
       		  <th> ID: </th> <th> First Name: </th> <th> Last Name: </th>  <th> Email: </th> <th> Select: </th>
@@ -151,15 +153,15 @@ th{
             	 <td> <input type="text" name="fname"  value="<c:out value='${emp.fname}' />"  readonly/></td>
             	 <td> <input type="text" name="lname"  value="<c:out value='${emp.lname}' />"  readonly/></td>
             	 <td> <input type="text" name="lname"  value="<c:out value='${emp.email}' />"  readonly/></td>
-            	 <td> <input type="checkbox" value="<c:out value='${emp.id}' />" > </td>
+            	 <td> <input type="checkbox"  name="chk_emp"   value="<c:out value='${emp.id}' />" > </td>
             </tr>
       
             	 </c:forEach>
       	</table>
       	
-      	 
+      	 <input type="submit" value="Submit" >
        </form>
-        <input type="submit" value="Submit" >
+        
     </div>
     
     
@@ -258,8 +260,8 @@ th{
     <div class="card">
       <h2>Employee</h2>
       <p><a href="listallemployees">List all Employees</a></p>
-      <p><a href="#">New Employee</a></p>
-      <p><a href="#">Search Employee</a></p>
+      <p><a href="employeepage.html">New Employee</a></p>
+      <p><a href="employeepage.html">Search Employee</a></p>
     </div>
   </div>
 </div>
