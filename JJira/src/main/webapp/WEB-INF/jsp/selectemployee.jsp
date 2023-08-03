@@ -27,7 +27,7 @@ th{
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
-<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="css/style2a.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -137,7 +137,7 @@ th{
     <h2>Select an Employee, multiple selection allowed</h2>
     <br>
     
-    <div class="form">
+    <div class="formB">
         
         <form  action="addemployeetoteam" method="post">  
          <!-- groupid is hidden -->
@@ -158,7 +158,7 @@ th{
       
             	 </c:forEach>
       	</table>
-      	
+      	<br>
       	 <input type="submit" value="Submit" >
        </form>
         

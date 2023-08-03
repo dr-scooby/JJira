@@ -198,17 +198,27 @@ function validateForm() {
  
  <!-- Right Column -->
   <div class="rightcolumn">
-    <div class="card">
+     <div class="card">
       <h2>Ticket</h2>
       <p><a href="listalltickets">List all tickets</a></p>
       <p><a href="newticket.html">New ticket</a></p>
       <p><a href="searchticket.html">Search ticket</a></p>
     </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
+     <div class="card">
+     <h2>Groups/Teams</h2>
+      <p><a href="listallgroups">List all teams</a></p>
+      <p><a href="grouppage.html">New team</a></p>
+      <p><a href="grouppage.html">Search teams</a></p>
       
     </div>
+    <div class="card">
+     <h2>Employee</h2>
+      <p><a href="listallemployees">List all Employees</a></p>
+      <p><a href="employeepage.html">New Employee</a></p>
+      <p><a href="employeepage.html">Search Employee</a></p>
+      
+    </div>
+    
     <div class="card">
       <h3>Follow Me</h3>
       <p>Some text..</p>

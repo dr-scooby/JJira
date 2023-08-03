@@ -195,9 +195,19 @@
       padding: 10px;
       padding-left: 20px;
       padding-right: 20px;
-      padding-bottom: 10px;
+      padding-bottom: 60px;
       margin-bottom: 20px;
       /* text-align: left; */
+  }
+  
+  .formB{
+  	  border: 2px solid red;
+      border-radius: 5px;
+      padding: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 60px;
+      margin-bottom: 20px;
   }
   
   label {
