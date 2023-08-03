@@ -22,7 +22,7 @@ public class EmployeeDAO extends DAO{
 	
 	
 	public EmployeeDAO() {
-		
+		super();
 	}
 	
 	
@@ -103,6 +103,39 @@ public class EmployeeDAO extends DAO{
 		
 		
 		return emps;
+	}
+	
+	// get the Employee 
+	public Employee getEmployee(String id)throws SQLException{
+		
+		String sql = "select * from employees where id=?";
+		Employee emp = null;
+		/* 
+		 * SQLException - if a database access error occurs; this method is called 
+ 		 *	on a closed result set or the result set type is TYPE_FORWARD_ONLY.
+ 		 * So, set the ResultSet.TYPE_SCROLL_INSENSITIVE so that rs.beforeFirst() can be called.
+		 */
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setInt(1, Integer.parseInt(id));
+		
+		ResultSet rs = pst.executeQuery();
+		while(rs.next()) {
+			String fname = rs.getString("fname");
+			String lname = rs.getString("lname");
+			String email = rs.getString("email");
+			String phone = rs.getString("phone");
+			int empid = rs.getInt("id");
+			
+			emp = new Employee();
+			emp.setFname(fname);
+			emp.setLname(lname);
+			emp.setEmail(email);
+			emp.setPhone(phone);
+			emp.setId(empid);
+		}
+		
+		
+		return emp;
 	}
 	
 	@Override
