@@ -827,6 +827,18 @@ public class DBModel {
 		return ok;
 	}
 	
+	// get Employee by String id
+	public Employee getEmployee(String id)throws SQLException{
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		
+		return dao.getEmployee(id);
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;

@@ -112,6 +112,11 @@
   	<url-pattern>/editbug</url-pattern>
   </servlet-mapping>
   
+  <!-- Edit Employee -->
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/editemployee</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
@@ -122,6 +127,7 @@
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/editticket</url-pattern>
   </servlet-mapping>
+  
   
   
   <servlet-mapping>

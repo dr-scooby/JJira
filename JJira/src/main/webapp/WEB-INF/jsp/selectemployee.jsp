@@ -8,6 +8,22 @@
 <head>
 <style>
 
+table{
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 15px;
+}
+
+th{
+	background-color: red;
+}
+
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
@@ -121,37 +137,29 @@
     <h2>Select an Employee, multiple selection allowed</h2>
     <br>
     
-    <div class="tablediv">
+    <div class="form">
         
-        <form name="updatebug" action="addemployeetoteam" method="post">      
-      	<table class="tiktable" id="tikTable">
+        <form  action="addemployeetoteam" method="post">      
+      	<table >
+      		<tr>
+      		  <th> ID: </th> <th> First Name: </th> <th> Last Name: </th>  <th> Email: </th> <th> Select: </th>
+      		</tr>
+      		
       		  <c:forEach var="emp" items="${emps}">
       		<tr>
-            	 <th> ID: </th>
-            	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${emp.id}' />" readonly required/> </td>
+            	 <td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${emp.id}' />" readonly /> </td>
+            	 <td> <input type="text" name="fname"  value="<c:out value='${emp.fname}' />"  readonly/></td>
+            	 <td> <input type="text" name="lname"  value="<c:out value='${emp.lname}' />"  readonly/></td>
+            	 <td> <input type="text" name="lname"  value="<c:out value='${emp.email}' />"  readonly/></td>
+            	 <td> <input type="checkbox" value="<c:out value='${emp.id}' />" > </td>
             </tr>
-            <tr>
-            	 <th> First Name: </th>
-            	 	<td> <input type="text" name="fname"  value="<c:out value='${emp.fname}' />"  required/></td>
-            	</tr>	
-            <tr>
-            	 <th> Last Name: </th>
-            	 	<td> <input type="text" name="lname"  value="<c:out value='${emp.lname}' />"  required/></td>
-            </tr>
-            	<tr>
-            	 <th> Email: </th>
-            	 	<td> <input type="text" name="lname"  value="<c:out value='${emp.email}' />"  required/></td>
-            	</tr>
-            	<tr>
-            	    <th> Add: </th>
-            		<td> <input type="checkbox" value="<c:out value='${emp.id}' />" > </td>
-            	</tr>
+      
             	 </c:forEach>
       	</table>
-      	<input type="submit" value="Submit" >
+      	
       	 
        </form>
-        
+        <input type="submit" value="Submit" >
     </div>
     
     
@@ -248,8 +256,10 @@
       
     </div>
     <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
+      <h2>Employee</h2>
+      <p><a href="listallemployees">List all Employees</a></p>
+      <p><a href="#">New Employee</a></p>
+      <p><a href="#">Search Employee</a></p>
     </div>
   </div>
 </div>

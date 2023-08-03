@@ -136,6 +136,10 @@ public class ControllerServlet extends HttpServlet{
 				case "/editbug":
 					editbug(request, response);
 					break;
+					//editemployee
+				case "/editemployee":
+					editemployee(request, response);
+					break;	
 				// add Notes to the Ticket	
 				case "/addnotesticket":
 					addnotesticket(request, response);
@@ -170,6 +174,32 @@ public class ControllerServlet extends HttpServlet{
 	
 	
 	
+	private void editemployee(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String empid = request.getParameter("id");
+		
+		System.out.println("Edit Employee:: " + empid);
+		
+		try {
+			Employee emp = db.getEmployee(empid);
+			request.setAttribute("employee", emp);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditEmployee.jsp");
+			try {
+				dis.forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	private void selectemployee(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		

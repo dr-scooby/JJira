@@ -201,8 +201,10 @@
       
     </div>
     <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
+     <h2>Employee</h2>
+      <p><a href="listallemployees">List all Employees</a></p>
+      <p><a href="#">New Employee</a></p>
+      <p><a href="#">Search Employee</a></p>
     </div>
   </div>
 </div>
