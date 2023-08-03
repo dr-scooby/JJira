@@ -181,8 +181,16 @@ public class ControllerServlet extends HttpServlet{
 	private void addemployeetoteam(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String teamid = request.getParameter("teamid");
-		String[] emps = request.getParameterValues("chk_emp");
-		String[] fnam = request.getParameterValues("fname");
+		String[] emps = request.getParameterValues("chk_emp"); // only selected check boxes will be sent
+		String[] fnam = request.getParameterValues("fname"); // all data will be sent!
+		
+		try {
+			db.addEmployeestoTeam(teamid, emps);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		try {
 		// testing only

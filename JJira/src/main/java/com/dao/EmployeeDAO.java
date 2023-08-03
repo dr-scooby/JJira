@@ -138,6 +138,45 @@ public class EmployeeDAO extends DAO{
 		return emp;
 	}
 	
+	// add employees to team
+	// need Team ID and employee id's
+	public void addEmployeestoTeam(String teamid, String[] empids) {
+		int teamidint = Integer.parseInt(teamid);
+		
+		String sql = "insert into EmpType(groupid, empid) values(?,?)";
+		
+		PreparedStatement pst;
+		try {
+			conn.setAutoCommit(false);
+			pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			// add rows to the a batch in a loop. each iteration adds a new row
+			for(int i=0; i < empids.length; i++) {
+				pst.setInt(1, teamidint);
+				pst.setInt(2, Integer.parseInt(empids[i]));
+				// add row to the batch
+				pst.addBatch();
+			}
+			
+			// batch ready, execute it to insert data
+			pst.executeBatch();
+			
+			// commit transaction
+			conn.commit();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void create() throws SQLException {
 		// TODO Auto-generated method stub

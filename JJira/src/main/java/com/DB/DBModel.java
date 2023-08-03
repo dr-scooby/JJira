@@ -839,6 +839,22 @@ public class DBModel {
 		return dao.getEmployee(id);
 	}
 	
+	
+	// add employees to team
+	// need Team ID and employee id's
+	public void addEmployeestoTeam(String teamid, String[] empids) throws SQLException{
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		
+		dao.addEmployeestoTeam(teamid, empids);
+		
+		
+	}
+	
 	// get a Connection
 	public Connection getConnection() {
 		return conn;
