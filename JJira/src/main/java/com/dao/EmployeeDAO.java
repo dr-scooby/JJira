@@ -52,6 +52,14 @@ public class EmployeeDAO extends DAO{
 		ArrayList<Employee> emps = new ArrayList<Employee>();
 		
 		String sql = "select * from employees";
+		String sql_getTeam = "select TeamGroups.name, employees.fname from TeamGroups\r\n"
+				+ "inner join EmpType on TeamGroups.id = EmpType.groupid\r\n"
+				+ "inner join employees on EmpType.empid = employees.id\r\n"
+				+ "where employees.id = ?; ";
+		PreparedStatement pst2 ;
+		Connection conn2 = conn;
+		
+		
 		
 		PreparedStatement pst = conn.prepareStatement(sql);
 		ResultSet rs = pst.executeQuery();
@@ -67,6 +75,15 @@ public class EmployeeDAO extends DAO{
 			em.setEmail(email);
 			em.setPhone(phone);
 			em.setId(id);
+			
+			pst2 = conn2.prepareStatement(sql_getTeam, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			pst2.setInt(1, id);
+			ResultSet rs2 = pst2.executeQuery();
+			while(rs2.next()) {
+				String groupname = rs2.getString(1);
+				em.setGroup(groupname);
+			}
+			
 			emps.add(em);
 		}
 		
