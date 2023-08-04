@@ -136,7 +136,10 @@ function validateForm() {
             	 <th> Phone: </th>
             	 	<td> <input type="text" name="state"  value="<c:out value='${employee.phone}' />"  required/></td>
             	</tr>
-            	
+            	<tr>
+            	 <th> Group: </th>
+            	 	<td> <input type="text" name="Group"  value="<c:out value='${employee.group}' />"  required/></td>
+            	</tr>
             	<tr>
             	    <th> Update: </th>
             		<td> <input type="submit" value="Submit" > </td>

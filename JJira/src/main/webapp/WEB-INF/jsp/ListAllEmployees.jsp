@@ -88,12 +88,12 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="empcard">
-      <h2>Listing all Bugs</h2>
+      <h2>Listing all Employees</h2>
       
       <div class="dropdown">
-        <span>Showing Bugs</span>
+        <span>Showing Employees</span>
          <div class="dropdown-content">
-           <p>Listing all bugs from the DB..</p>
+           <p>Listing all Employees from the DB..</p>
          </div>
       </div>
       
@@ -104,7 +104,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>email</th>
-            
+            <th>Group</th>
             </tr>
             
             <c:forEach var="emp" items="${emps}">
@@ -113,7 +113,7 @@
             		<td><a href="editemployee?id=<c:out value='${emp.id}'/>"><c:out value="${emp.fname}"/></a>                 <c:out value="${emp.fname}"/></td>
             		<td><c:out value="${emp.lname}"/></td>
             		<td><c:out value="${emp.email}"/></td>
-            		
+            		<td><c:out value="${emp.group}"/></td>
             	</tr>
             </c:forEach>
                         

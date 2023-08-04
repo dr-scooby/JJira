@@ -169,7 +169,9 @@ th{
     
     </div> <!-- end empcard -->
 
-
+ <!-- show the employees in this group -->
+ 
+ 
     <div class="empcard">
         <h2>Search Group</h2>
         
