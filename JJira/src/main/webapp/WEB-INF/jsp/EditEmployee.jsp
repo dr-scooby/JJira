@@ -122,19 +122,19 @@ function validateForm() {
             </tr>
             <tr>
             	 <th> First Name: </th>
-            	 	<td> <input type="text" name="name"  value="<c:out value='${employee.fname}' />"  required/></td>
+            	 	<td> <input type="text" name="fname"  value="<c:out value='${employee.fname}' />"  required/></td>
             	</tr>
             <tr>
             	 <th> Last Name: </th>
-            	 	<td> <input type="text" name="name"  value="<c:out value='${employee.lname}' />"  required/></td>
+            	 	<td> <input type="text" name="lname"  value="<c:out value='${employee.lname}' />"  required/></td>
             	</tr>		
             <tr>
             	 <th> Email: </th>
-            	 	<td> <input type="text" name="description"  value="<c:out value='${employee.email}' />"  required/></td>
+            	 	<td> <input type="text" name="email"  value="<c:out value='${employee.email}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> Phone: </th>
-            	 	<td> <input type="text" name="state"  value="<c:out value='${employee.phone}' />"  required/></td>
+            	 	<td> <input type="text" name="phone"  value="<c:out value='${employee.phone}' />"  required/></td>
             	</tr>
             	<tr>
             	 <th> Group: </th>

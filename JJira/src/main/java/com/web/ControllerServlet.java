@@ -164,6 +164,10 @@ public class ControllerServlet extends HttpServlet{
 				//addemployeetoteam
 				case "/addemployeetoteam":
 					addemployeetoteam(request, response);
+					break;
+				//updateemployee
+				case "/updateemployee":
+					updateemployee(request, response);
 					break;	
 				default:
 					gohome(request, response);
@@ -177,6 +181,50 @@ public class ControllerServlet extends HttpServlet{
 	}
 	
 	
+	private void updateemployee(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("email");
+		String group = request.getParameter("Group");
+		
+		try {
+		// testing only
+		PrintWriter out;
+		out = response.getWriter(); 
+	 
+		
+		out.println("<!DOCTYPE html>");
+		out.println("<html><head>");
+		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+		out.println("<title>Hello, World</title></head>");
+		out.println("<body>");
+		out.println("<h1>Hello, world! You have successfully reached the Edit Employee to Team Servlet..It's working</h1>");  // says Hello
+		out.println("<h1>Employee info:</h1>");
+		out.println("<br>");
+		
+		out.println("First Name: " + fname);
+		out.println("<br>");
+		out.println("First Name: " + lname);
+		out.println("<br>");
+		out.println("email: " + email);
+		out.println("<br>");
+		out.println("phone: " + phone);
+		out.println("<br>");
+		out.println("group: " + group);
+		out.println("</body>");
+		out.println("</html>");
+		
+		out.close();
+	}catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+	}
+
+
 	// add the selected employee to the team
 	private void addemployeetoteam(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub

@@ -161,6 +161,12 @@
   </servlet-mapping>
   
   
+  <!-- update the Employee details updateemployee -->
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/updateemployee</url-pattern>
+  </servlet-mapping>
+  
    <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/selectemployee</url-pattern>
