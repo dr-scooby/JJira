@@ -173,59 +173,25 @@ th{
  
  
     <div class="empcard">
-        <h2>Search Group</h2>
+        <h2>Listing Employees in this Group</h2>
         
-        <div class="dropdown">
-          <span>Fill out  info to search</span>
-           <div class="dropdown-content">
-             <p>Enter full info, name, email, etc..</p>
-           </div>
-        </div>
-        <div class="form">
-        <form action="ticketsearch" method="post">
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="title">Title</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="title" name="title" placeholder="Your Title name..">
-                </div>
-          </div>
-          
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="summary">Summary</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="summary" name="summary" placeholder="summary..">
-                </div>
-          </div>
-  
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="notes">Notes</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="notes" name="notes" placeholder="notes..">
-                </div>
-          </div>
-  
-          <div class="formrow">
-              <div class="col-25">
-                  <label for="severity">Severity</label>
-                </div>
-                <div class="col-75">
-                  <input type="text" id="severity" name="severity" placeholder="severity">
-                </div>
-          </div>
-  
-          
-          <br>
-      <div class="formrow">
-          <input type="submit" value="Submit">
-      </div>
-        </form> 
-      </div>
+        <table >
+      		<tr>
+      		  <th> ID: </th> <th> First Name: </th> <th> Last Name: </th>  <th> Email: </th> 
+      		</tr>
+      		
+      		  <c:forEach var="em" items="${group.allemps}">
+      		<tr>
+            	 <td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${em.id}' />" readonly /> </td>
+            	 <td> <input type="text" name="fname"  value="<c:out value='${em.fname}' />"  readonly/></td>
+            	 <td> <input type="text" name="lname"  value="<c:out value='${em.lname}' />"  readonly/></td>
+            	 <td> <input type="text" name="lname"  value="<c:out value='${em.email}' />"  readonly/></td>
+            	 
+            </tr>
+      
+            	 </c:forEach>
+      	</table>
+        
         
     </div>
 

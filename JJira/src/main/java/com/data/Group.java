@@ -16,13 +16,13 @@ public class Group {
 	private String name;
 	private String email;
 	
-	private ArrayList<Employee> emps; // hold the listing of employees for this Group
+	private ArrayList<Employee> allemps; // hold the listing of employees for this Group
 	
 	
 	public Group() {
 		id = 0;
 		name = "";
-		emps = new ArrayList<Employee>();
+		allemps = new ArrayList<Employee>();
 	}
 	
 	public Group(String name) {
@@ -45,12 +45,12 @@ public class Group {
 	
 	// add Employee
 	public void addEmployee(Employee e) {
-		emps.add(e);
+		allemps.add(e);
 	}
 	
 	// get a Iterator, has to be same name as the variable for it to work with jstl
-	public Iterator getemps() {
-		return emps.iterator();
+	public ArrayList<Employee> getallemps() {
+		return allemps;
 	}
 
 	/**

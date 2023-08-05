@@ -164,7 +164,7 @@ function validateForm() {
     <br> 
     
 <!--      use a for loop to get all the notes for this ticket -->
-     <c:forEach var="emp" items="${group.emps}">
+     <c:forEach var="emp" items="${group.allemps}">
     	<div class="tikcard"> 
      		<h2>First Name:</h2> 
     		<p> <c:out value='${emp.fname}' /> </p>

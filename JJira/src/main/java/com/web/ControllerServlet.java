@@ -256,7 +256,7 @@ public class ControllerServlet extends HttpServlet{
 		
 	}
 
-
+	// select an employee to add to the group
 	private void selectemployee(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
