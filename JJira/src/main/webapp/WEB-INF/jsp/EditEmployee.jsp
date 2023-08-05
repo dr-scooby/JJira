@@ -102,7 +102,7 @@ function validateForm() {
       <c:if test="{errormessage != null}"> <p> <c:out value='${errormessage}'></c:out> </p> </c:if>
       <c:if test="{errormessage == null}"> <p> No Error Message, or null </p> </c:if>
       <p>
-			Message from server: <%= request.getAttribute("errormessage") %> 
+			Message from server: <%= request.getAttribute("message") %> 
 	  </p>
       <!-- 
       <div class="dropdown">

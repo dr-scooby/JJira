@@ -180,47 +180,69 @@ public class ControllerServlet extends HttpServlet{
 		}
 	}
 	
-	
+	// new data from client, upate the employee with new data
 	private void updateemployee(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		String id = request.getParameter("id");
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("email");
+		String phone = request.getParameter("phone");
 		String group = request.getParameter("Group");
 		
+		
 		try {
-		// testing only
-		PrintWriter out;
-		out = response.getWriter(); 
-	 
+			boolean ok = db.updateEmployee(id, fname, lname, phone, email);
+			if(ok) {
+				String message ="Success updating Team";
+				request.setAttribute("message", message);
+				RequestDispatcher dis = request.getRequestDispatcher("editemployee?id="+id);
+				try {
+					dis.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		out.println("<!DOCTYPE html>");
-		out.println("<html><head>");
-		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-		out.println("<title>Hello, World</title></head>");
-		out.println("<body>");
-		out.println("<h1>Hello, world! You have successfully reached the Edit Employee to Team Servlet..It's working</h1>");  // says Hello
-		out.println("<h1>Employee info:</h1>");
-		out.println("<br>");
 		
-		out.println("First Name: " + fname);
-		out.println("<br>");
-		out.println("First Name: " + lname);
-		out.println("<br>");
-		out.println("email: " + email);
-		out.println("<br>");
-		out.println("phone: " + phone);
-		out.println("<br>");
-		out.println("group: " + group);
-		out.println("</body>");
-		out.println("</html>");
-		
-		out.close();
-	}catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//		try {
+//		// testing only
+//		PrintWriter out;
+//		out = response.getWriter(); 
+//	 
+//		
+//		out.println("<!DOCTYPE html>");
+//		out.println("<html><head>");
+//		out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//		out.println("<title>Hello, World</title></head>");
+//		out.println("<body>");
+//		out.println("<h1>Hello, world! You have successfully reached the Edit Employee to Team Servlet..It's working</h1>");  // says Hello
+//		out.println("<h1>Employee info:</h1>");
+//		out.println("<br>");
+//		out.println("ID: " + id);
+//		out.println("<br>");
+//		out.println("First Name: " + fname);
+//		out.println("<br>");
+//		out.println("First Name: " + lname);
+//		out.println("<br>");
+//		out.println("email: " + email);
+//		out.println("<br>");
+//		out.println("phone: " + phone);
+//		out.println("<br>");
+//		out.println("group: " + group);
+//		out.println("</body>");
+//		out.println("</html>");
+//		
+//		out.close();
+//	}catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 		
 	}
 

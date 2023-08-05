@@ -466,6 +466,21 @@ public class DBModel {
 		return bugd.getBug(id);
 	}
 	
+	// update the employee details
+	public boolean updateEmployee(String id, String fname, String lname, String phone, String email) throws SQLException {
+		boolean ok = false;
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.connection(conn);
+		ok = dao.updateEmployee(id, fname, lname, phone, email);
+		
+		return ok;
+	}
+	
 	//update Bug details
 	public boolean updateBug(String id, String name, String description, String state, String sev) throws SQLException {
 		boolean ok = false;

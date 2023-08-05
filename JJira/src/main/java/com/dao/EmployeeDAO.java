@@ -35,16 +35,36 @@ public class EmployeeDAO extends DAO{
 			PreparedStatement ps = conn.prepareStatement(sql_insert);
 			ps.setString(1, fname);
 			ps.setString(2, lname);
-			ps.setString(3, email);
+			ps.setString(3, email);			
 			
-			
-			ok = ps.executeUpdate() > 0;
-			
-		
+			ok = ps.executeUpdate() > 0;		
 		
 		return ok;
 	}
 	
+	
+	// update the employee with new info
+	public boolean updateEmployee(String id, String fname, String lname, String phone, String email) throws SQLException {
+		
+		boolean ok = false;
+		
+		String sql = "update employees set fname=?, lname=?, phone=?, email=? where id=?";
+		
+		PreparedStatement pst = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setString(1, fname); // set title
+		pst.setString(2, lname); // description
+		pst.setString(3, phone);
+		pst.setString(4, email);
+		pst.setInt(5, Integer.parseInt(id));
+		ok = pst.executeUpdate() > 0;
+		
+		if(ok) {
+			System.out.println("updated Employee.");
+		}else {
+			System.out.println("FAILED update Employee .");
+		}
+		return ok;
+	}
 	
 	// get all Employees in the DB
 	public ArrayList<Employee> getAllEmployees()throws SQLException{
