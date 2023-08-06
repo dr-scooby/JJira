@@ -52,6 +52,8 @@ public class TikDAO extends DAO{
 	
 	// search Ticket by Title
 	public ArrayList<Ticket> findTitle(String s){
+		checkTable();
+		
 		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
 		
 		System.out.println("finding all Tickets from BUGDAO using " + s);
@@ -95,6 +97,8 @@ public class TikDAO extends DAO{
 	}
 	
 	public ArrayList<Ticket> getAllTickets(){
+		checkTable();
+		
 		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
 		
 		System.out.println("getting all Tickets from BUGDAO");
@@ -128,6 +132,8 @@ public class TikDAO extends DAO{
 	
 	// get ticket from the id
 	public Ticket getTicket(int id) throws SQLException {
+		checkTable();
+		
 		Ticket tik = null;
 		
 		System.out.println("Ticket ID: " + id);
@@ -192,6 +198,8 @@ public class TikDAO extends DAO{
 	
 	// add Notes, need ID - String
 	public boolean addTicketNotes(String id, String notes)  throws SQLException {
+		checkTable();
+		
 		boolean ok = false;
 		
 		String sql = "insert into ticketlog(ticketid, log) values(?,?)";
@@ -207,6 +215,7 @@ public class TikDAO extends DAO{
 	
 	// add Notes, need ID - int. Method overload
 	public boolean addTicketNotes(int id, String notes)  throws SQLException {
+		checkTable();
 		boolean ok = false;
 		
 		String sql = "insert into ticketlog(ticketid, log) values(?,?)";
@@ -222,6 +231,7 @@ public class TikDAO extends DAO{
 	
 	// update ticket with the info
 	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
+		checkTable();
 		boolean ok = false;
 		
 		String sql = "update tickets set title=?, summary=?, severity=?, state=? where id=?";
@@ -243,6 +253,28 @@ public class TikDAO extends DAO{
 		// TODO Auto-generated method stub
 		// get a handle to the Connection
 		conn = c;
+	}
+	
+	
+	private void checkTable() {
+		System.out.println("checkTable()");
+		
+		try {
+			if(tableExists(ITicket.table_name_Ticket)) {
+				System.out.println("Ticket table exists");
+			}else {
+				createTable(ITicket.create_table_Ticket);
+			}
+			
+			if(tableExists(ITicket.table_name_TicketLog)) {
+				System.out.println("TicketLog exists");
+			}else {
+				createTable(ITicket.create_table_TicketLog);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
