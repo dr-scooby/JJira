@@ -297,6 +297,12 @@ public class EmployeeDAO extends DAO{
 					createTable(IEmployee.create_employee_table);
 				}
 				
+				if(tableExists(ITeam.TABLE_TEAM)) {
+					System.out.println("Table Team exists");
+				}else {
+					createTable(ITeam.create_table_Team);
+				}
+				
 				if(tableExists(IEmployee.EMP_TYPE_TABLE)) {
 					System.out.println("Table Emp Type exists");
 				}else {
@@ -304,11 +310,7 @@ public class EmployeeDAO extends DAO{
 					createTable(IEmployee.create_emptype_table);
 				}
 				
-				if(tableExists(ITeam.TABLE_TEAM)) {
-					System.out.println("Table Team exists");
-				}else {
-					createTable(ITeam.create_table_Team);
-				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
