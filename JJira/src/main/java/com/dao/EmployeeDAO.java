@@ -4,9 +4,11 @@
 package com.dao;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.data.Employee;
@@ -28,6 +30,15 @@ public class EmployeeDAO extends DAO{
 	
 	public boolean addNewEmployee(String fname, String lname, String email)throws SQLException {
 		boolean ok = false;
+		// call super tableExists
+		if(tableExists(IEmployee.EMPLOYEE_TABLE)) {
+			System.out.println("Table employee exists");
+		}else {
+			System.out.println("Table employee NOT exists...creating..");
+			String create = IEmployee.create_table;
+			creatTable(create);
+		}
+		
 		
 		String sql_insert = "insert into employees(fname, lname,email) value(?,?,?)";
 		
@@ -241,6 +252,29 @@ public class EmployeeDAO extends DAO{
 		
 		
 	}
+	
+	
+	
+	
+	/**
+	 * Drop table from DB
+	 * @param t String name of table
+	 * @throws SQLException
+	 */
+	public void dropTable(String t)throws SQLException {
+		//connect();
+		
+		try {
+			Statement st = conn.createStatement();
+			st.execute("drop table " + t);
+		}catch(SQLException s) {
+			s.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	
 	@Override
 	public void create() throws SQLException {

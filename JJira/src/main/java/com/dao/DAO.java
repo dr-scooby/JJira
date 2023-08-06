@@ -2,9 +2,14 @@
 package com.dao;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
+ * Project: JJira
+ * 
  * @author nurali
  *
  */
@@ -29,6 +34,52 @@ public abstract class DAO {
 		
 		
 	}
+	
+	
+	/**
+	 * Check if table exists
+	 * @param targetTableName String
+	 * @return boolean true if exists, false if doens't exist
+	 * @throws SQLException
+	 */
+	public boolean tableExists(String targetTableName) throws SQLException {
+		DatabaseMetaData databaseMetaData = conn.getMetaData();
+		ResultSet resultSet = null;
+		String tableName = null;
+
+		try {
+			resultSet = databaseMetaData.getTables(conn.getCatalog(), "%", "%", null);
+			while (resultSet.next()) {
+				tableName = resultSet.getString("TABLE_NAME");
+				if (tableName.equalsIgnoreCase(targetTableName)) {
+					return true;
+				}
+			}
+		} finally {
+			resultSet.close();
+		}
+
+		return false;
+	}
+	
+	
+	/**
+	 * create a table
+	 * @param sql String
+	 */
+	public void creatTable(String sql) {
+		//System.out.println("\nDatabase.createTable() called..\n");
+		//connect(); // connect to DB, may have been closed
+		
+		try {
+			Statement state = conn.createStatement();
+			state.executeUpdate(sql) ;
+				//System.out.println("Create Table success :> " + sql);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	// -- abstract methods --
 	public abstract void create() throws SQLException ;
