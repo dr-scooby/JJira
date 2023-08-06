@@ -57,6 +57,8 @@ public class BugDAO extends DAO{
 	
 	// add a Bug to the DB
 	public boolean addBug(Bug b) {
+		checkTable();
+		
 		boolean ok = false;
 		
 		String sql_insert = "insert into Bugs(name, description ,state, severity) value(?,?,?,?)";
@@ -89,6 +91,7 @@ public class BugDAO extends DAO{
 	
 	
 	public ArrayList<Bug> findBug(String name){
+		checkTable();
 		System.out.println("findbug in BugDAO");
 		ArrayList<Bug> bugs = new ArrayList<Bug>();
 		
@@ -127,6 +130,7 @@ public class BugDAO extends DAO{
 	
 	// find bug based on description
 	public ArrayList<Bug> findBugDescription(String description){
+		checkTable();
 		System.out.println("findbug in BugDAO");
 		
 		String sql_find = "select * from Bugs where description like ? ";
@@ -166,6 +170,7 @@ public class BugDAO extends DAO{
 	
 	// find bug based on name or description
 	public ArrayList<Bug> findBug(String name, String description){
+		checkTable();
 		System.out.println("findbug in BugDAO");
 		
 		String sql_find = "select * from Bugs where name like ? or description like ? ";
@@ -205,6 +210,7 @@ public class BugDAO extends DAO{
 	
 	// find a bug
 	public ArrayList<Bug> findBug(String name, String description, String state, int severity) {
+		checkTable();
 		System.out.println("findbug in BugDAO");
 		
 		String sql_find = "select * from Bugs where name like ? or description like ? or state like ? or severity =?";
@@ -245,6 +251,8 @@ public class BugDAO extends DAO{
 	
 	// get all bugs, list all
 	public ArrayList<Bug> getAllBugs() {
+		checkTable();
+		
 		System.out.println("getting all bugs from BUGDAO");
 		
 		ArrayList<Bug> allb = new ArrayList<Bug>();
@@ -278,6 +286,8 @@ public class BugDAO extends DAO{
 	
 	// get a Bug from the ID
 	public Bug getBug(String id) {
+		checkTable();
+		
 		String sql = "select * from Bugs where id=?";
 		Bug bug = null;
 		PreparedStatement ps;
@@ -359,6 +369,7 @@ public class BugDAO extends DAO{
 	
 	// add notes to the Bug
 	public boolean addBugNotes(String id, String notes) throws SQLException {
+		checkTable();
 		boolean ok = false;
 		
 		String sql = "insert into BugLog(bugid, notes) values(?,?)";
@@ -373,6 +384,7 @@ public class BugDAO extends DAO{
 	
 	// update Bug info
 	public boolean updateBug(String id, String name, String description, String state, String sev) throws SQLException  {
+		checkTable();
 		
 		boolean ok = false;
 		
@@ -403,5 +415,27 @@ public class BugDAO extends DAO{
 		conn = c;
 		
 	}
+	
+	// check if table exists
+		private void checkTable() {
+			System.out.println("checkTable()");
+			
+			try {
+				if(tableExists(IBug.Bug_table)) {
+					System.out.println("Bug table exists");
+				}else {
+					createTable(IBug.create_table_Bug);
+				}
+				
+				if(tableExists(IBug.BugLog_table)) {
+					System.out.println("BugLog table exists");
+				}else {
+					createTable(IBug.create_table_BugLog);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 }

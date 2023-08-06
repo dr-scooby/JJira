@@ -294,20 +294,20 @@ public class EmployeeDAO extends DAO{
 				}else {
 					System.out.println("Table employee NOT exists...creating..");
 					//String create = IEmployee.create_table;
-					creatTable(IEmployee.create_employee_table);
+					createTable(IEmployee.create_employee_table);
 				}
 				
 				if(tableExists(IEmployee.EMP_TYPE_TABLE)) {
 					System.out.println("Table Emp Type exists");
 				}else {
 					System.out.println("Table EmpType NOT exists...creating..");
-					creatTable(IEmployee.create_emptype_table);
+					createTable(IEmployee.create_emptype_table);
 				}
 				
 				if(tableExists(ITeam.TABLE_TEAM)) {
 					System.out.println("Table Team exists");
 				}else {
-					creatTable(ITeam.create_table_Team);
+					createTable(ITeam.create_table_Team);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

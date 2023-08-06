@@ -36,6 +36,8 @@ public class GroupDAO extends DAO{
 	
 	// add new Group
 	public boolean addGroup(Group g) throws SQLException{
+		checkTable();
+		
 		boolean ok = false;
 		
 		String sql_insert = "insert into TeamGroups(name, email) value(?,?)";
@@ -52,6 +54,7 @@ public class GroupDAO extends DAO{
 	
 	
 	public ArrayList<Group> getAllGroups()throws SQLException{
+		checkTable();
 		System.out.println("getting all Groups in DAO");
 		
 		ArrayList<Group> grps = new ArrayList<Group>();
@@ -80,6 +83,8 @@ public class GroupDAO extends DAO{
 	
 	// get by ID
 	public Group getGroup(String id)throws SQLException {
+		checkTable();
+		
 		System.out.println("DAO getting group id:" + id);
 		
 		String sql = "select * from TeamGroups where id=?";
@@ -148,6 +153,8 @@ public class GroupDAO extends DAO{
 	
 	// update the group with new info
 	public boolean updateGroup(String id, String name, String email)throws SQLException {
+		checkTable();
+		
 		boolean ok = false;
 		
 		String sql = "update TeamGroups set name=?, email=? where id=?";
@@ -161,6 +168,23 @@ public class GroupDAO extends DAO{
 		
 		return ok;
 	}
+	
+	
+	// check if table exists
+		private void checkTable() {
+			System.out.println("checkTable()");
+			
+			try {
+				if(tableExists(IGroup.Group_table_name)) {
+					System.out.println("Table Group exists");
+				}else {
+					createTable(IGroup.create_table_Group);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 	/* --- Abstract methods --- */
 

@@ -67,7 +67,7 @@ public abstract class DAO {
 	 * create a table
 	 * @param sql String
 	 */
-	public void creatTable(String sql) {
+	public void createTable(String sql) {
 		//System.out.println("\nDatabase.createTable() called..\n");
 		//connect(); // connect to DB, may have been closed
 		
