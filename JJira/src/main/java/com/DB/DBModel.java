@@ -292,6 +292,8 @@ public class DBModel {
 	
 	// get listing of employees
 	public ArrayList<Employee> getAllEmployees() throws SQLException{
+		System.out.println("DBModel getAllEmployees()");
+		
 		if(conn == null || conn.isClosed()) {
 			connect();
 		}

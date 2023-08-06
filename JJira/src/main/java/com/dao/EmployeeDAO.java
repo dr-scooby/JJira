@@ -25,20 +25,22 @@ public class EmployeeDAO extends DAO{
 	
 	public EmployeeDAO() {
 		super();
+		System.out.println("EmployeeDAO() constructor");
+		//checkTable(); // hmmm... this method is called, but doesn't do anything in initializing
 	}
 	
 	
 	public boolean addNewEmployee(String fname, String lname, String email)throws SQLException {
 		boolean ok = false;
 		// call super tableExists
-		if(tableExists(IEmployee.EMPLOYEE_TABLE)) {
-			System.out.println("Table employee exists");
-		}else {
-			System.out.println("Table employee NOT exists...creating..");
-			String create = IEmployee.create_table;
-			creatTable(create);
-		}
-		
+//		if(tableExists(IEmployee.EMPLOYEE_TABLE)) {
+//			System.out.println("Table employee exists");
+//		}else {
+//			System.out.println("Table employee NOT exists...creating..");
+//			//String create = IEmployee.create_table;
+//			creatTable(IEmployee.create_table);
+//		}
+		checkTable();
 		
 		String sql_insert = "insert into employees(fname, lname,email) value(?,?,?)";
 		
@@ -56,6 +58,7 @@ public class EmployeeDAO extends DAO{
 	
 	// update the employee with new info
 	public boolean updateEmployee(String id, String fname, String lname, String phone, String email) throws SQLException {
+		checkTable();
 		
 		boolean ok = false;
 		
@@ -79,6 +82,7 @@ public class EmployeeDAO extends DAO{
 	
 	// get all Employees in the DB
 	public ArrayList<Employee> getAllEmployees()throws SQLException{
+		checkTable();
 		
 		ArrayList<Employee> emps = new ArrayList<Employee>();
 		
@@ -116,13 +120,17 @@ public class EmployeeDAO extends DAO{
 //			}
 			
 			emps.add(em);
+			System.out.println("Emp from DB:: " + em);
 		}
+		
+		System.out.println("Size of ArrayList:: " + emps.size());
 		
 		return emps;
 	}
 	
 	// get a listing of employees not assigned to a Group/TEam
 	public ArrayList<Employee> getUnassignedEmployees()throws SQLException{
+		checkTable();
 		ArrayList<Employee> emps = new ArrayList<Employee>();
 		
 		// get a listing of employees who are not assigned to a team
@@ -155,7 +163,7 @@ public class EmployeeDAO extends DAO{
 	
 	// get the Employee 
 	public Employee getEmployee(String id)throws SQLException{
-		
+		checkTable();
 		String sql = "select * from employees where id=?";
 		Employee emp = null;
 		/* 
@@ -190,6 +198,7 @@ public class EmployeeDAO extends DAO{
 	// add employees to team
 	// need Team ID and employee id's
 	public void addEmployeestoTeam(String teamid, String[] empids) {
+		checkTable();
 		int teamidint = Integer.parseInt(teamid);
 		
 		String sql = "insert into EmpType(groupid, empid) values(?,?)";
@@ -228,6 +237,8 @@ public class EmployeeDAO extends DAO{
 	
 	
 	private void getGroup(Employee emp) {
+		checkTable();
+		
 		String sql_getTeam = "select TeamGroups.name, employees.fname from TeamGroups\r\n"
 				+ "inner join EmpType on TeamGroups.id = EmpType.groupid\r\n"
 				+ "inner join employees on EmpType.empid = employees.id\r\n"
@@ -272,8 +283,37 @@ public class EmployeeDAO extends DAO{
 		}
 	}
 	
-	
-	
+	// check if table exists
+	private void checkTable() {
+		System.out.println("checkTable()");
+		
+		// call super tableExists
+			try {
+				if(tableExists(IEmployee.EMPLOYEE_TABLE)) {
+					System.out.println("Table employee exists");
+				}else {
+					System.out.println("Table employee NOT exists...creating..");
+					//String create = IEmployee.create_table;
+					creatTable(IEmployee.create_employee_table);
+				}
+				
+				if(tableExists(IEmployee.EMP_TYPE_TABLE)) {
+					System.out.println("Table Emp Type exists");
+				}else {
+					System.out.println("Table EmpType NOT exists...creating..");
+					creatTable(IEmployee.create_emptype_table);
+				}
+				
+				if(tableExists(ITeam.TABLE_TEAM)) {
+					System.out.println("Table Team exists");
+				}else {
+					creatTable(ITeam.create_table_Team);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	
 	
 	@Override
