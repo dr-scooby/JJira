@@ -11,7 +11,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
-<link rel='stylesheet'       href="css/style2.css">
+<link rel='stylesheet'       href="css/style2a.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -82,114 +82,28 @@
   <div class="leftcolumn">
     
     <!--  Error -->
-     <div class="empcard">
-        <h2>Error</h2>
+     <div class="errorcard">
+        <h2 class="errorh2">Error</h2>
         
         <p>
 			Message from server: <%= request.getAttribute("exception") %> 
 		</p>		
         <br>
-        <p> Stack Trace: <%= request.getAttribute("stack") %>
+        
+        <br>
+        <p> <%= request.getAttribute("error") %>
         
       </div>
     
         
-    <!-- Create new ticket -->
-    <div class="empcard">
-      <h2>Create New Ticket</h2>
-      
-      <div class="dropdown">
-        <span>Fill out New Ticket info</span>
-         <div class="dropdown-content">
-           <p>Enter full info, name, email, etc..</p>
-         </div>
-      </div>
-      <div class="form">
-      <form action="newticket" method="post">
-        <div class="formrow">
-            <div class="col-25">
-                <label for="title">Title</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="title" name="title" placeholder="Title..">
-              </div>
-        </div>
-        
-        <div class="formrow">
-            <div class="col-25">
-                <label for="summary">Summary</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="summary" name="summary" placeholder="summary..">
-              </div>
-        </div>
-
-        <div class="formrow">
-            <div class="col-25">
-                <label for="notes">Notes</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="notes" name="notes" placeholder="notes..">
-              </div>
-        </div>
-
-        <div class="formrow">
-            <div class="col-25">
-                <label for="severity">Severity Level</label>
-              </div>
-              <div class="col-75">
-                <input type="text" id="severity" name="severity" placeholder="severity Level 1,2,3">
-              </div>
-        </div>
-
-        
-        <br>
-    <div class="formrow">
-        <input type="submit" value="Submit">
-    </div>
-      </form> 
-    </div>
-      
-    </div>
+  </div>  
 
 
    
 
-    <div class="card">
-      <h2>Ticket# 102</h2>
-      <h5>Created, Sep 2, 2017</h5>
-      <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div>
-      <p>Server 2008 virus</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>Ticket# 102</h2>
-      <h5>Created, Sep 2, 2017</h5>
-      <div class="fakeimg" ><i class='bx bx-cylinder'></i>Go to Ticket</div>
-      <p>Jira Bug</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
+  
+  
 
-  <div class="rightcolumn">
-    <div class="card">
-     <h2>Ticket</h2>
-      <p><a href="listalltickets">List all tickets</a></p>
-      <p><a href="newticket.html">New ticket</a></p>
-      <p><a href="#">Search ticket</a></p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
-</div>
 <!-- 
 <div class="footer">
   <h2>Footer</h2>

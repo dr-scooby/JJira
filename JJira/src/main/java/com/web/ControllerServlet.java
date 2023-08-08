@@ -72,6 +72,7 @@ public class ControllerServlet extends HttpServlet{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			request.setAttribute("error", e.toString());
 			request.setAttribute("exception", e.getMessage());
 			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
 			try {

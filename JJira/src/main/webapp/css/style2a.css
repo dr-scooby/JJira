@@ -39,6 +39,12 @@
     font-size: 50px;
   }
   
+  
+ .row .leftcolumn .empcard .errorh2{
+  	font-size: 24px;
+  	color: red;
+  }
+  
   /* Style the top navigation bar */
   .topnav {
     overflow: hidden;
@@ -154,6 +160,22 @@
   
   .empcard:hover{
       box-shadow: 4px 4px 4px var(--shadow-over);
+  }
+  
+  .errorcard{
+  	  text-align: center;
+      background-color: white;
+      padding: 20px; 
+      padding-top: 20px;
+      padding-bottom: 50px;
+      margin-top: 20px;
+      margin-left: 5px;
+      margin-right: 5px;
+      border: 2px solid red;
+      color: red;
+      border-radius: 10px;
+      /* box-shadow: 5px 5px 5px rgb(234, 115, 115); */
+      box-shadow: 5px 5px 5px var(--shadow-color);
   }
   
   .card {      
