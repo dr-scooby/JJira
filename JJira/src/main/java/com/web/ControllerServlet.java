@@ -48,7 +48,12 @@ public class ControllerServlet extends HttpServlet{
     	dbuser = getServletConfig().getInitParameter("dbuser");
     	dbpass = getServletConfig().getInitParameter("dbpassword");
     	// pass the info to the DBModel
-    	db = new DBModel(dbname, dbuser, dbpass);
+//    	try {
+//			db = new DBModel(dbname, dbuser, dbpass);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
     
     
@@ -61,6 +66,27 @@ public class ControllerServlet extends HttpServlet{
 		String action = request.getServletPath();
 		PrintWriter out = response.getWriter();
 		
+		// pass the info to the DBModel
+    	try {
+			db = new DBModel(dbname, dbuser, dbpass);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("exception", e.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+    	
+    	
 		if(action == null) {
 		// Write the response message, in an HTML page
 		// this block is to test the Servlet & web.xml is working and configure properly.
@@ -1082,8 +1108,9 @@ public class ControllerServlet extends HttpServlet{
 	}
 
 
+	// create new ticket
 	private void newticket(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// get client data
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String notes = request.getParameter("notes");

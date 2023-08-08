@@ -46,44 +46,35 @@ public class DBModel {
 	
 	
 	// DEFAULT CONSTRUCTOR
-	public DBModel() {
+	public DBModel() throws SQLException {
 		System.out.println("init DBModel..");	
-		try {
+		
 			dburl +=DBNAME;
 			connect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 	// get a DB user and password
-	public DBModel(String user, String pass) {
+	public DBModel(String user, String pass) throws SQLException {
 		this.dbuser = user;
 		this.dbpass = pass;
 		dburl +=DBNAME;
 		System.out.println("init DBModel..");	
-		try {
+		
 			connect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
-	public DBModel(String dbname, String user, String pass) {
+	public DBModel(String dbname, String user, String pass) throws SQLException {
 		this.dbname = dbname;
 		this.dbuser = user;
 		this.dbpass = pass;
 		dburl += dbname;
 		
 		System.out.println("init DBModel..");	
-		try {
+		
 			connect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 	
