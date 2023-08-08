@@ -6,6 +6,11 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.data.Bug;
+import com.data.Employee;
+import com.data.Ticket;
 
 /**
  * Project: JJira
@@ -82,6 +87,14 @@ public abstract class DAO {
 	
 	
 	// -- abstract methods --
+	public abstract boolean addNewEmployee(String fname, String lname, String email)throws SQLException;
+	
+	public abstract ArrayList<Employee> getAllEmployees()throws SQLException;
+	
+	public abstract ArrayList<Bug> getAllBugs()throws SQLException;
+	
+	public abstract ArrayList<Ticket> getAllTickets()throws SQLException;
+	
 	public abstract void create() throws SQLException ;
 	
 	public abstract void createTable() throws SQLException ;

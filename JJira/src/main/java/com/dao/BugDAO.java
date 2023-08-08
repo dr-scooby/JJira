@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import com.data.Bug;
 import com.data.BugNotes;
+import com.data.Employee;
+import com.data.Ticket;
 
 /**
  * @author nurali
@@ -436,6 +438,27 @@ public class BugDAO extends DAO{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+
+		@Override
+		public boolean addNewEmployee(String fname, String lname, String email) throws SQLException {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+
+		@Override
+		public ArrayList<Employee> getAllEmployees() throws SQLException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public ArrayList<Ticket> getAllTickets() throws SQLException {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 }

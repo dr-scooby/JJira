@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.data.Bug;
+import com.data.Employee;
 import com.data.Ticket;
 import com.data.TicketNotes;
 
@@ -96,7 +97,7 @@ public class TikDAO extends DAO{
 		return tiks;
 	}
 	
-	public ArrayList<Ticket> getAllTickets(){
+	public ArrayList<Ticket> getAllTickets() throws SQLException{
 		checkTable();
 		
 		ArrayList<Ticket> tiks = new ArrayList<Ticket>();
@@ -105,7 +106,7 @@ public class TikDAO extends DAO{
 		
 		
 		String sql_all = "select * from tickets";
-		try {
+		
 			PreparedStatement ps = conn.prepareStatement(sql_all);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -122,9 +123,7 @@ public class TikDAO extends DAO{
 				
 				tiks.add(tik);
 		}
-		}catch(SQLException s) {
-			System.err.println(s);
-		}
+		
 		
 		
 		return tiks;
@@ -275,6 +274,24 @@ public class TikDAO extends DAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean addNewEmployee(String fname, String lname, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Employee> getAllEmployees() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Bug> getAllBugs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import com.data.Bug;
 import com.data.Employee;
 import com.data.Group;
+import com.data.Ticket;
 
 /**
  * @author nurali
@@ -211,6 +212,34 @@ public class GroupDAO extends DAO{
 		// TODO Auto-generated method stub
 		conn = c; 
 		
+	}
+
+
+	@Override
+	public boolean addNewEmployee(String fname, String lname, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public ArrayList<Employee> getAllEmployees() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<Bug> getAllBugs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<Ticket> getAllTickets() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

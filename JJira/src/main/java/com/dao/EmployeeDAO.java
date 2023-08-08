@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.data.Bug;
 import com.data.Employee;
+import com.data.Ticket;
 
 /**
  * @author nurali
@@ -340,6 +342,20 @@ public class EmployeeDAO extends DAO{
 	public void connection(Connection c) throws SQLException {
 		// TODO Auto-generated method stub
 		conn = c;
+	}
+
+
+	@Override
+	public ArrayList<Bug> getAllBugs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<Ticket> getAllTickets() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

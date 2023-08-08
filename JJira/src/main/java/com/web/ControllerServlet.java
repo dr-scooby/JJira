@@ -906,10 +906,17 @@ public class ControllerServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		
 		System.out.println("listing all tickets");
-		ArrayList<Ticket> tiks = db.listallTickets();
-		request.setAttribute("listalltik", tiks);
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/listalltickets.jsp");
+		ArrayList<Ticket> tiks = null;
 		try {
+			
+			try {
+				tiks = db.listallTickets();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listalltik", tiks);
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/listalltickets.jsp");
 			dis.forward(request, response);
 			return;
 		} catch (ServletException | IOException e1) {
@@ -949,9 +956,10 @@ public class ControllerServlet extends HttpServlet{
 		PrintWriter out;
 		System.out.println("listing all bugs. ControllerServlet");
 		
-		ArrayList<Bug> bugs = db.listallBugs();
+		
 		
 		try {
+			ArrayList<Bug> bugs = db.listallBugs();
 			request.setAttribute("listallbugs", bugs);
 			RequestDispatcher dispatch = request.getRequestDispatcher("listallBugs.jsp");
 			dispatch.forward(request, response);
@@ -962,6 +970,8 @@ public class ControllerServlet extends HttpServlet{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (SQLException sql) {
+			sql.printStackTrace();
 		}
 		
 		/*

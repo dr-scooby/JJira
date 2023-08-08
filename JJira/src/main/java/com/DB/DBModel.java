@@ -3,6 +3,8 @@
  */
 package com.DB;
 
+import com.dao.DAO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -294,14 +296,18 @@ public class DBModel {
 	public ArrayList<Employee> getAllEmployees() throws SQLException{
 		System.out.println("DBModel getAllEmployees()");
 		
-		if(conn == null || conn.isClosed()) {
+		
 			connect();
-		}
 		
-		EmployeeDAO dao = new EmployeeDAO();
-		dao.connection(conn);
 		
-		return dao.getAllEmployees();
+		DAO dd = new EmployeeDAO();
+		dd.connection(conn);
+		
+		//EmployeeDAO dao = new EmployeeDAO();
+		//dao.connection(conn);
+		
+		//return dao.getAllEmployees();
+		return dd.getAllEmployees();
 	}
 	
 	// get a listing of employees not assigned to a Group/TEam
@@ -392,33 +398,17 @@ public class DBModel {
 		return ok;
 	}
 	
-	
-	public ArrayList<Bug> listallBugs(){
+	// get a listing of all bugs
+	public ArrayList<Bug> listallBugs() throws SQLException{
 		System.out.println("list all bugs called with:> "  );
 		ArrayList<Bug> bugs = null;
+						
+		connect();	
 		
-		try {
-			if(conn == null || conn.isClosed()) {
-				try {
-					connect();
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DAO bd  = new BugDAO();
+	
+		bd.connection(conn);
 		
-		BugDAO bd  = new BugDAO();
-		try {
-			bd.connection(conn);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		bugs = bd.getAllBugs();
 		
 		try {
@@ -507,26 +497,16 @@ public class DBModel {
 	}
 	
 	// get all Tickets
-	public ArrayList<Ticket> listallTickets(){
+	public ArrayList<Ticket> listallTickets()throws SQLException{
 		System.out.println("listing all tickets from DBModel...");
 		ArrayList<Ticket> tiks = null;
 		
-		try {
-			if(conn == null || conn.isClosed()) {
-				try {
+		
 					connect();
 					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				
 		
-		TikDAO tdao = new TikDAO(conn);
+		DAO tdao = new TikDAO(conn);
 		tiks = tdao.getAllTickets();
 		
 		try {
