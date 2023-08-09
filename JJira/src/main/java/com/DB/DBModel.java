@@ -256,7 +256,7 @@ public class DBModel {
 			e.printStackTrace();
 		}
 		
-		EmployeeDAO dao = new EmployeeDAO();
+		DAO dao = new EmployeeDAO();
 		dao.connection(conn);
 		ok = dao.addNewEmployee(fname, lname, email);
 		
