@@ -107,9 +107,10 @@ public abstract class DAO {
 	
 	public abstract boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException;
 	
-	
-	
 	public abstract boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException;
+	
+	
+	public abstract boolean addBug(Bug b)throws SQLException;
 	
 	public abstract void create() throws SQLException ;
 	

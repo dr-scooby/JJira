@@ -317,4 +317,10 @@ public class TikDAO extends DAO{
 		return null;
 	}
 
+	@Override
+	public boolean addBug(Bug b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

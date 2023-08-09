@@ -1314,24 +1314,41 @@ public class ControllerServlet extends HttpServlet{
 //					e.printStackTrace();
 //	      }
 	      // hand client data to the DBModel to process
-	      if(db.anewBug(bugname, description, severity, state)) {
-	    	  // success
-	    	  try {
-	    		Bug bug = new Bug(bugname, description, Integer.parseInt(severity));  
-	  			request.setAttribute("bug", bug);
-	  			RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/jsp/successnewbug.jsp");
-	  			dispatch.forward(request, response);
-	  			return;
-	  		} catch (ServletException e1) {
-	  			// TODO Auto-generated catch block
-	  			e1.printStackTrace();
-	  		} catch (IOException e1) {
-	  			// TODO Auto-generated catch block
-	  			e1.printStackTrace();
-	  		}
-	      }else {
-	    	  // failed to add
-	      }
+	      try {
+			if(db.anewBug(bugname, description, severity, state)) {
+				  // success
+				  try {
+					Bug bug = new Bug(bugname, description, Integer.parseInt(severity));  
+					request.setAttribute("bug", bug);
+					RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/jsp/successnewbug.jsp");
+					dispatch.forward(request, response);
+					return;
+				} catch (ServletException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			  }else {
+				  // failed to add
+			  }
+		} catch (NumberFormatException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("exception", e.getMessage());
+			RequestDispatcher diserror = request.getRequestDispatcher("/WEB-INF/jsp/Error.jsp");
+			try {
+				diserror.forward(request, response);
+				return;
+			} catch (ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 

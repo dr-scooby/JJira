@@ -311,7 +311,7 @@ public class DBModel {
 			connect();
 		}
 		
-		EmployeeDAO dao = new EmployeeDAO();
+		DAO dao = new EmployeeDAO();
 		dao.connection(conn);
 		
 		ArrayList<Employee> emps = dao.getUnassignedEmployees();
@@ -323,63 +323,30 @@ public class DBModel {
 	}
 	
 	// create a new bug
-	public boolean anewBug(String name, String description, String severity, String state) {
+	public boolean anewBug(String name, String description, String severity, String state)throws SQLException {
 		boolean ok = false;
 		
 		System.out.println("\n a New Bug called in DBModel..");
 		int number = Integer.parseInt(severity);
-		try {
-			try {
+	
 				if(conn == null || conn.isClosed()) {
-					try {
+					
 						connect();
 						
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			
 			Bug b = new Bug(name, description, number, state);
-			BugDAO bd = new BugDAO();
+			DAO bd = new BugDAO();
 			bd.connection(conn);
 			if(bd.addBug(b)) {
 				ok = true;
 				System.out.println("success adding bug to DB");
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
 		
 		
-//		String sql_insert = "insert into Bugs(name, description ,state) value(?,?,?)";
-//		
-//		if(conn == null) {
-//			try {
-//				connect();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		try {
-//			PreparedStatement ps = conn.prepareStatement(sql_insert);
-//			ps.setString(1, name);
-//			ps.setString(2, description);
-//			ps.setString(3, state);
-//			
-//			
-//			ok = ps.executeUpdate() > 0;
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
 		try {
 			conn.close();

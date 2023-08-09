@@ -58,35 +58,21 @@ public class BugDAO extends DAO{
 
 	
 	// add a Bug to the DB
-	public boolean addBug(Bug b) {
+	public boolean addBug(Bug b) throws SQLException{
 		checkTable();
 		
 		boolean ok = false;
 		
 		String sql_insert = "insert into Bugs(name, description ,state, severity) value(?,?,?,?)";
 		
-//		if(conn == null) {
-//			try {
-//				connect();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
-		try {
 			PreparedStatement ps = conn.prepareStatement(sql_insert);
 			ps.setString(1, b.getName());
 			ps.setString(2, b.getDescription());
 			ps.setString(3, b.getState());
 			ps.setInt(4, b.getSeverity());
 			
-			ok = ps.executeUpdate() > 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			ok = ps.executeUpdate() > 0;			
+		
 		
 		return ok;
 	}

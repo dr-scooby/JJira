@@ -401,4 +401,11 @@ public class EmployeeDAO extends DAO{
 		return false;
 	}
 
+
+	@Override
+	public boolean addBug(Bug b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
