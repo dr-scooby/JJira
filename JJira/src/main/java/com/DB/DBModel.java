@@ -188,7 +188,7 @@ public class DBModel {
 			connect();
 		}
 		
-		TikDAO tdao = new TikDAO(conn);
+		DAO tdao = new TikDAO(conn);
 		Ticket t = tdao.getTicket(id);
 		
 		return t;
