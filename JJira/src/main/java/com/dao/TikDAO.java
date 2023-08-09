@@ -311,4 +311,10 @@ public class TikDAO extends DAO{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Employee> getUnassignedEmployees() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

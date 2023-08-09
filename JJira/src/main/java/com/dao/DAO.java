@@ -91,6 +91,8 @@ public abstract class DAO {
 	
 	public abstract ArrayList<Employee> getAllEmployees()throws SQLException;
 	
+	public abstract ArrayList<Employee> getUnassignedEmployees()throws SQLException;
+	
 	public abstract ArrayList<Bug> getAllBugs()throws SQLException;
 	
 	public abstract ArrayList<Ticket> getAllTickets()throws SQLException;

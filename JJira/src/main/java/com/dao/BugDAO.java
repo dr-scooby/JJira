@@ -505,4 +505,11 @@ public class BugDAO extends DAO{
 			return false;
 		}
 
+
+		@Override
+		public ArrayList<Employee> getUnassignedEmployees() throws SQLException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }
