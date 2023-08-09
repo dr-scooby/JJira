@@ -95,6 +95,18 @@ public abstract class DAO {
 	
 	public abstract ArrayList<Ticket> getAllTickets()throws SQLException;
 	
+	public abstract ArrayList<Ticket> findTitle(String s);
+	
+	public abstract Ticket getTicket(int id) throws SQLException;
+	
+	public abstract boolean addTicketNotes(String id, String notes)  throws SQLException;
+	
+	public abstract boolean addTicketNotes(int id, String notes)  throws SQLException ;
+	
+	public abstract boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException;
+	
+	public abstract boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException;
+	
 	public abstract void create() throws SQLException ;
 	
 	public abstract void createTable() throws SQLException ;

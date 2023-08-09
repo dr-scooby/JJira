@@ -358,4 +358,47 @@ public class EmployeeDAO extends DAO{
 		return null;
 	}
 
+
+	@Override
+	public ArrayList<Ticket> findTitle(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Ticket getTicket(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean addTicketNotes(String id, String notes) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean addTicketNotes(int id, String notes) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean anewTicket(String title, String summary, String notes, int severity, String state)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

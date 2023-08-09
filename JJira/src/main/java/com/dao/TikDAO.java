@@ -50,6 +50,23 @@ public class TikDAO extends DAO{
 		return false;
 	}
 	
+	// add a new Ticket to the DB
+	public boolean anewTicket(String title, String summary, String notes, int severity, String state) throws SQLException{
+		boolean ok = false;
+		
+		String sql_insert = "insert into tickets(title, summary,notes, severity, state) value(?,?,?,?, ?)";
+		
+		PreparedStatement ps = conn.prepareStatement(sql_insert);
+		ps.setString(1, title);
+		ps.setString(2, summary);
+		ps.setString(3, notes);
+		ps.setInt(4, severity);
+		ps.setString(5, state);
+		
+		ok = ps.executeUpdate() > 0;
+		
+		return ok;
+	}
 	
 	// search Ticket by Title
 	public ArrayList<Ticket> findTitle(String s){

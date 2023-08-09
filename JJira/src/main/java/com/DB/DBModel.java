@@ -101,7 +101,7 @@ public class DBModel {
 			connect();
 		}
 		
-		TikDAO tik = new TikDAO(conn);
+		DAO tik = new TikDAO(conn);
 		
 		
 		return ok = tik.addTicketNotes(id, notes);
@@ -115,7 +115,7 @@ public class DBModel {
 			connect();
 		}
 		
-		TikDAO tik = new TikDAO(conn);
+		DAO tik = new TikDAO(conn);
 		
 		
 		return ok = tik.addTicketNotes(id, notes);
@@ -126,8 +126,9 @@ public class DBModel {
 	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
 		boolean ok = false;
 		
-				
-		TikDAO tik = new TikDAO(conn);
+		connect();
+		
+		DAO tik = new TikDAO(conn);
 		
 		
 		return ok = tik.updateTicket(id, title, summary, sev, state);
@@ -138,7 +139,7 @@ public class DBModel {
 		System.out.println("\n a New ticket called in DBModel..");
 		boolean ok = false;
 		
-		String sql_insert = "insert into tickets(title, summary,notes, severity, state) value(?,?,?,?, ?)";
+		//String sql_insert = "insert into tickets(title, summary,notes, severity, state) value(?,?,?,?, ?)";
 		
 		try {
 			if(conn == null || conn.isClosed()) {
@@ -156,16 +157,18 @@ public class DBModel {
 		}
 		
 		
-			PreparedStatement ps = conn.prepareStatement(sql_insert);
-			ps.setString(1, title);
-			ps.setString(2, summary);
-			ps.setString(3, notes);
-			ps.setInt(4, severity);
-			ps.setString(5, state);
+//			PreparedStatement ps = conn.prepareStatement(sql_insert);
+//			ps.setString(1, title);
+//			ps.setString(2, summary);
+//			ps.setString(3, notes);
+//			ps.setInt(4, severity);
+//			ps.setString(5, state);
+//			
+//			ok = ps.executeUpdate() > 0;
 			
-			ok = ps.executeUpdate() > 0;
-			
-		
+		DAO da = new TikDAO();
+		da.connection(conn);
+		ok = da.anewTicket(title, summary, notes, severity, state);
 		
 		try {
 			conn.close();
