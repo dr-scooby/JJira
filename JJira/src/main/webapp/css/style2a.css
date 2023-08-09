@@ -141,6 +141,42 @@
   }
   /***********************************************/
   
+  /* Table formating */
+  .tablediv{
+    box-shadow: 1px 1px 1px 1px var(--shadow-color);
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bugtable{
+    width: 100%;
+    border: 1px solid rgb(254, 0, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .bugtable th{
+    text-align: center;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .bugtable th, td{
+    /* border-collapse: collapse; */
+    border: 1px solid #dddddd;
+  }
+
+  .bugtable tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .bugtable tr:hover{
+    background-color: #0f59d8;
+    color: white;
+  }
+/* ------------------------------------------ */
+
+  
   /* Add a card effect for the 2 columns card */
   .empcard{
     
@@ -301,13 +337,6 @@
     height: 40%;
 }
 
-/* Table formating */
-  .tablediv{
-    box-shadow: 1px 1px 1px 1px var(--shadow-color);
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-  }
 
  
 .addemptable{

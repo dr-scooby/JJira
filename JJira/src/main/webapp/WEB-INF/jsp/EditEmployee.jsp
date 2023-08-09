@@ -138,7 +138,7 @@ function validateForm() {
             	</tr>
             	<tr>
             	 <th> Group: </th>
-            	 	<td> <input type="text" name="Group"  value="<c:out value='${employee.group}' />"  required/></td>
+            	 	<td> <input type="text" name="Group"  value="<c:out value='${employee.group}' />"  /></td>
             	</tr>
             	<tr>
             	    <th> Update: </th>

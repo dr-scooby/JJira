@@ -11,7 +11,7 @@
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
-<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="css/style2a.css">
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -201,8 +201,10 @@
       
     </div>
     <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
+     <h2>Employee</h2>
+      <p><a href="listallemployees">List all Employees</a></p>
+      <p><a href="employeepage.html">New Employee</a></p>
+      <p><a href="employeepage.html">Search Employee</a></p>
     </div>
   </div>
 </div>
