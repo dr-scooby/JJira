@@ -900,6 +900,7 @@ public class ControllerServlet extends HttpServlet{
 		// get the Ticket ID from the client
 		int id = Integer.parseInt(request.getParameter("id"))  ;
 		try {
+			// need to get list of groups and set to ticket
 			Ticket tik = db.getTicket(id); // get data from DB
 			request.setAttribute("tik", tik);
 			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/jsp/EditTicket.jsp"); // send to the JSP page for editing

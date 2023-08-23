@@ -137,6 +137,14 @@ function validateForm() {
             	 	<td> <input type="text" name="state"  value="<c:out value='${tik.state}' />"  required/></td>
             	</tr>
             	<tr>
+            	 <th> Group: </th>
+            	 	<td> <input type="text" name="group"  value="<c:out value='${tik.groupname}' />"  /></td>
+            	</tr>
+            	<tr>
+            	 <th> Tech Assigned: </th>
+            	 	<td> <input type="text" name="tech"  value="<c:out value='${tik.empassigned}' />"  /></td>
+            	</tr>
+            	<tr>
             	    <th> Update: </th>
             		<td> <input type="submit" value="Submit" > </td>
             	</tr>

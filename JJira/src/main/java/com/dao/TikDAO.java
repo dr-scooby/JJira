@@ -206,10 +206,33 @@ public class TikDAO extends DAO{
 			tik.addTicketNote(tiknotes);
 		}
 		
-		
+		// get the group and employee assigned to ticket
+		getGroupEmp(tik, id);
 		
 				
 		return tik;
+	}
+	
+	// get the group and employee assigned to ticket
+	private void getGroupEmp(Ticket tik, int id)throws SQLException{
+		String sql = "select tickets.emptype_id, tickets.title, TeamGroups.name, employees.fname, employees.lname  from tickets \r\n"
+				+ "inner join EmpType on tickets.emptype_id = EmpType.id\r\n"
+				+ "inner join TeamGroups on TeamGroups.id = EmpType.groupid\r\n"
+				+ "inner join employees on EmpType.empid = employees.id\r\n"
+				+ "where tickets.id = ?";
+		
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, id);
+		ResultSet rs = pst.executeQuery();
+		while(rs.next()) {
+			String groupname = rs.getString(3);
+			tik.setGroupname(groupname);
+			String empname = rs.getString(4);
+			empname += " " + rs.getString(5);
+			tik.setEmpassigned(empname);
+		}
+		
+		System.out.println("TikDAO: Group assigned: " + tik.getGroupname() + " : " + tik.getEmpassigned());
 	}
 	
 	// add Notes, need ID - String

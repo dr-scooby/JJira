@@ -112,7 +112,7 @@ public class EmployeeDAO extends DAO{
 			em.setEmail(email);
 			em.setPhone(phone);
 			em.setId(id);
-			getGroup(em);
+			getGroup(em); // get the group this employee belongs to
 //			pst2 = conn2.prepareStatement(sql_getTeam, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //			pst2.setInt(1, id);
 //			ResultSet rs2 = pst2.executeQuery();
@@ -190,7 +190,7 @@ public class EmployeeDAO extends DAO{
 			emp.setEmail(email);
 			emp.setPhone(phone);
 			emp.setId(empid);
-			getGroup(emp);
+			getGroup(emp); // get the group this employee belongs to
 		}
 		
 		
@@ -237,7 +237,7 @@ public class EmployeeDAO extends DAO{
 		}
 	}
 	
-	
+	// get the Group/Team this employee belongs to
 	private void getGroup(Employee emp) {
 		checkTable();
 		

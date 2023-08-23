@@ -20,6 +20,8 @@ public class Ticket {
 	private int severity;
 	private String date;
 	private String adate;
+	private String groupname;
+	private String empassigned;
 	
 	private ArrayList<TicketNotes> tiknotes;
 	
@@ -31,6 +33,8 @@ public class Ticket {
 		state = "";
 		date = "";
 		severity = 0;
+		groupname = "";
+		empassigned = "";
 		tiknotes = new ArrayList<TicketNotes>();
 	}
 
@@ -209,6 +213,40 @@ public class Ticket {
 	 */
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	
+
+
+	/**
+	 * @return the groupname
+	 */
+	public String getGroupname() {
+		return groupname;
+	}
+
+
+	/**
+	 * @param groupname the groupname to set
+	 */
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+
+	/**
+	 * @return the empassigned
+	 */
+	public String getEmpassigned() {
+		return empassigned;
+	}
+
+
+	/**
+	 * @param empassigned the empassigned to set
+	 */
+	public void setEmpassigned(String empassigned) {
+		this.empassigned = empassigned;
 	}
 
 
