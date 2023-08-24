@@ -159,41 +159,41 @@ function validateForm() {
     
    
    <!-- Form to add Bug notes -->
-   <div class="tiktoknotes">
+  <!--  <div class="tiktoknotes">  -->
    
-   	<h1>Add Notes:</h1>
-   	 <form name="formName"  action="addnotesbug" method="post" onsubmit="return validateForm()" required>
+<!--    	<h1>Add Notes:</h1> -->
+<!--    	 <form name="formName"  action="addnotesbug" method="post" onsubmit="return validateForm()" required> -->
    	 	
-   	 	<input type="hidden" name="bugid" value="<c:out value='${bug.id}' />">
-   	 	Notes: <input type="text" name="bugnotes" required>
-   	  <!-- 	<textarea name="tiknotesta" id="tiknotes" required> </textarea>  -->
+<%--    	 	<input type="hidden" name="bugid" value="<c:out value='${bug.id}' />"> --%>
+<!--    	 	Notes: <input type="text" name="bugnotes" required> -->
+<!--    	  	<textarea name="tiknotesta" id="tiknotes" required> </textarea>  -->
    	 	
-   	 	<input type="submit" value="Submit" name="addLog">
-   	 </form>
-   </div><!-- End Form to add Bug notes -->
+<!--    	 	<input type="submit" value="Submit" name="addLog"> -->
+<!--    	 </form> -->
+<!--    </div>End Form to add Bug notes -->
    
-   <br>
+<!--    <br> -->
     
-    <!--  use a for loop to get all the notes for this ticket -->
-     <c:forEach var="buglog" items="${bug.bugnotes}">
-    	<div class="tikcard">
-    		<h2>Notes</h2>
-    		<p> <c:out value='${buglog.notes}' /> </p>
+<!--      use a for loop to get all the notes for this ticket -->
+<%--      <c:forEach var="buglog" items="${bug.bugnotes}"> --%>
+<!--     	<div class="tikcard"> -->
+<!--     		<h2>Notes</h2> -->
+<%--     		<p> <c:out value='${buglog.notes}' /> </p> --%>
     		
-    		<h2>Date Created</h2>
-    		<p> <c:out value='${buglog.datecreated}' /> </p>
+<!--     		<h2>Date Created</h2> -->
+<%--     		<p> <c:out value='${buglog.datecreated}' /> </p> --%>
     		
-    		<h2>Log ID</h2>
-    		<p> <c:out value='${buglog.logid}' /> </p>
+<!--     		<h2>Log ID</h2> -->
+<%--     		<p> <c:out value='${buglog.logid}' /> </p> --%>
     		
-    	</div>
-    </c:forEach> 
+<!--     	</div> -->
+<%--     </c:forEach>  --%>
      
      
      
     
-  </div> <!-- END leftcolumn card -->
-
+  <!--  </div>   -->
+</div><!--  END leftcolumn card  -->
  
  
  <!-- Right Column -->
@@ -218,7 +218,7 @@ function validateForm() {
       <p><a href="employeepage.html">Search Employee</a></p>
     </div>
   </div>
-</div>
+
 <!-- 
 <div class="footer">
   <h2>Footer</h2>

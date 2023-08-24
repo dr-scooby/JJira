@@ -207,6 +207,26 @@ function validateForm() {
  
  <!-- Right Column -->
   <div class="rightcolumn">
+  
+  	<div class="card">
+      <h3>Assign Team & Tech</h3>
+      <p>Select Team</p>
+      
+      <div>
+      	<select id="selectTeam">
+      		<option>Select Team</option>
+      	</select>
+      </div>
+      <br>
+      <p>Select Tech</p>
+       <div>
+      	<select id="selectTech">
+      		<option>Select Tech</option>
+      	</select>
+      </div>
+      
+    </div> <!-- End card -->
+    
      <div class="card">
       <h2>Ticket</h2>
       <p><a href="listalltickets">List all tickets</a></p>
@@ -228,24 +248,7 @@ function validateForm() {
       
     </div>
     
-    <div class="card">
-      <h3>Assign Team & Tech</h3>
-      <p>Select Team</p>
-      
-      <div>
-      	<select id="selectTeam">
-      		<option>Select Team</option>
-      	</select>
-      </div>
-      <br>
-      <p>Select Tech</p>
-       <div>
-      	<select id="selectTech">
-      		<option>Select Tech</option>
-      	</select>
-      </div>
-      
-    </div> <!-- End card -->
+    
   
   </div>
 </div>

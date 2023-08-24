@@ -123,7 +123,7 @@
 
 
     <div class="empcard">
-        <h2>Search Bug</h2>
+        <h2>Search Employee</h2>
         
         <div class="dropdown">
           <span>Fill out  info to search</span>
@@ -132,33 +132,34 @@
            </div>
         </div>
         <div class="form">
-        <form action="searchbug" method="post">
+        <form action="searchemployee" method="post">
           <div class="formrow">
               <div class="col-25">
-                  <label for="name">Name</label>
+                  <label for="fname">First Name</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="name" name="name" placeholder="Bug name..">
+                  <input type="text" id="fname" name="fname" placeholder="First name..">
                 </div>
           </div>
           
           <div class="formrow">
               <div class="col-25">
-                  <label for="description">Description</label>
+                  <label for="name">Last Name</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="description" name="description" placeholder="enter some words..">
+                  <input type="text" id="lname" name="lname" placeholder="Last name..">
                 </div>
           </div>
-  
+          
           <div class="formrow">
               <div class="col-25">
-                  <label for="severity">Severity Level</label>
+                  <label for="email">Email</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="severity" name="severity" placeholder="severity level..">
+                  <input type="text" id="email" name="email" placeholder="enter email..">
                 </div>
           </div>
+    
   
                   
           <br>

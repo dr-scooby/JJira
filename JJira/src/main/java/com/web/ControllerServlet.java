@@ -63,8 +63,8 @@ public class ControllerServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html;charset=UTF-8");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.setContentType("text/html;charset=UTF-8");
 		String action = request.getServletPath();
 		PrintWriter out = response.getWriter();
 		
@@ -89,25 +89,7 @@ public class ControllerServlet extends HttpServlet{
 			}
 		}
     	
-    	// get the operation, used for the JQuery/ajax
-    	String operation = request.getParameter("operation");
-    	if(operation != null) {
-    		System.out.println("\nOperation not null\n");
-	    	if(operation.equals("teamlisting")) {
-	    		try {
-					ArrayList<Group> grplist = db.getallGroups();
-					Gson json = new Gson();
-					String list = json.toJson(grplist);
-					response.setContentType("text/html");
-					response.getWriter().write(list);
-					response.flushBuffer();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	    		
-	    	}
-    	}
+    	
     	
 		if(action == null) {
 		// Write the response message, in an HTML page
