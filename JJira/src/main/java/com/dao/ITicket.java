@@ -17,8 +17,10 @@ public interface ITicket {
 			+ "notes varchar(200),\r\n"
 			+ "severity int,\r\n"
 			+ "state varchar(20) not null,\r\n"
+			+ "emptype_id int,\r\n"
 			+ "created_at datetime default current_timestamp,\r\n"
 			+ "updated_at timestamp default current_timestamp on update current_timestamp\r\n"
+			+ "foreign key(emptype_id) references EmpType(id)\r\n"
 			+ ")";
 	
 	String table_name_TicketLog = "ticketlog";
