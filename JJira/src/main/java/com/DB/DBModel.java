@@ -771,6 +771,26 @@ public class DBModel {
 		
 	}
 	
+	// get Team member for the Group
+	public ArrayList<Employee> getEmployeeforGroup(String groupid) throws SQLException{
+		ArrayList<Employee> emps = null;
+		
+		if(conn == null || conn.isClosed()) {
+			try {
+				connect();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		GroupDAO dao = new GroupDAO();
+		dao.connection(conn);
+		emps = dao.getEmployeeforGroup(groupid);
+		
+		return emps;
+	}
 	
 	// edit Group with new info
 	public boolean editGroup(String id, String name, String email) throws SQLException {

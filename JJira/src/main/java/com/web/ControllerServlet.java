@@ -18,6 +18,8 @@ import com.data.Employee;
 import com.data.Group;
 import com.data.Ticket;
 
+import com.google.gson.Gson;
+
 /**
  * JIRA Project
  * Java version 1.7
@@ -87,6 +89,25 @@ public class ControllerServlet extends HttpServlet{
 			}
 		}
     	
+    	// get the operation, used for the JQuery/ajax
+    	String operation = request.getParameter("operation");
+    	if(operation != null) {
+    		System.out.println("\nOperation not null\n");
+	    	if(operation.equals("teamlisting")) {
+	    		try {
+					ArrayList<Group> grplist = db.getallGroups();
+					Gson json = new Gson();
+					String list = json.toJson(grplist);
+					response.setContentType("text/html");
+					response.getWriter().write(list);
+					response.flushBuffer();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    		
+	    	}
+    	}
     	
 		if(action == null) {
 		// Write the response message, in an HTML page

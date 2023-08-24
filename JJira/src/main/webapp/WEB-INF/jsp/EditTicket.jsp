@@ -6,6 +6,7 @@
 
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jira Project</title>
@@ -228,9 +229,24 @@ function validateForm() {
     </div>
     
     <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+      <h3>Assign Team & Tech</h3>
+      <p>Select Team</p>
+      
+      <div>
+      	<select id="selectTeam">
+      		<option>Select Team</option>
+      	</select>
+      </div>
+      <br>
+      <p>Select Tech</p>
+       <div>
+      	<select id="selectTech">
+      		<option>Select Tech</option>
+      	</select>
+      </div>
+      
+    </div> <!-- End card -->
+  
   </div>
 </div>
 <!-- 
@@ -239,6 +255,68 @@ function validateForm() {
 </div>
 -->
 
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$.ajax({
+	      url: "TeamController",
+	      method: "GET",
+	      data: {
+	        operation: "teamlisting",
+	      },
+	      success: function (data, textStatus, jqXHR) {
+	        console.log(data);
+	        let obj = $.parseJSON(data);
+	        $.each(obj, function (key, value) {
+		        console.log(key);
+		        console.log(value.id);
+		        console.log(value.name);
+	          $("#selectTeam").append(
+	            '<option value="' + value.id + '">' + value.name + "</option>"
+	          );
+	        });
+	        $("select").formSelect();
+	      },
+	      error: function (jqXHR, textStatus, errorThrown) {
+	        $("#selectTeam").append("<option>Team data Unavailable</option>");
+	      },
+	      cache: false,
+	    });
+
+    $("#selectTeam").change(function(){
+		$("#selectTech").find("option").remove();
+		$("#selectTech").append("<option>Select Tech</option>");
+
+		let cid = $("#selectTeam").val();
+		let data = {
+		          operation: "teamtech",
+		          id: cid,
+		 };
+		$.ajax({
+            url: "TeamController",
+            method: "GET",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+              console.log(data);
+              let obj = $.parseJSON(data);
+              $.each(obj, function (key, value) {
+                $("#selectTech").append(
+                  '<option value="' + value.id + '">' + value.fname + "</option>"
+                );
+              });
+              $("select").formSelect();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              $("#selectTech").append("<option>Tech data Unavailable</option>");
+            },
+            cache: false,
+          });
+        });
+    
+	console.log("web");
+});
+
+</script>
 
 </body>
 </html>

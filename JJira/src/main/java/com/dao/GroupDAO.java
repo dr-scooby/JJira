@@ -152,6 +152,34 @@ public class GroupDAO extends DAO{
 		return grp;
 	}
 	
+	// get Team members listing for the Group
+	public ArrayList<Employee> getEmployeeforGroup(String groupid) throws SQLException{
+		ArrayList<Employee> emps = new ArrayList<Employee>();
+		
+		String sql = "select TeamGroups.name, employees.fname, employees.lname, employees.email, employees.id from TeamGroups\r\n"
+				+ "inner join EmpType on TeamGroups.id = EmpType.groupid \r\n"
+				+ "inner join employees on EmpType.empid = employees.id\r\n"
+				+ "where TeamGroups.id = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		ps.setInt(1, Integer.parseInt(groupid));
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			String fname = rs.getString("fname");
+			String lname = rs.getString("lname");
+			int i = rs.getInt("id");
+			
+			// make the employee object
+			Employee emp = new Employee();
+			emp.setId(i);
+			emp.setFname(fname);
+			emp.setLname(lname);
+			emps.add(emp);
+		}
+		
+		return emps;
+	}
+	
 	// update the group with new info
 	public boolean updateGroup(String id, String name, String email)throws SQLException {
 		checkTable();

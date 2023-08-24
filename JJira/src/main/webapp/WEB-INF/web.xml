@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>  
+  <servlet>
+  	<servlet-name>TeamController</servlet-name>
+  	<servlet-class>com.web.TeamController</servlet-class>
+  </servlet>
   
   <servlet>
   	<servlet-name>Controller</servlet-name>
@@ -37,6 +41,16 @@
   </servlet>
   
   <!-- Start URL mappings for web app -->
+   <servlet-mapping>
+  	<servlet-name>TeamController</servlet-name>
+  	<url-pattern>/TeamController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/ControllerServlet</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>Controller</servlet-name>
   	<url-pattern>/main</url-pattern>
