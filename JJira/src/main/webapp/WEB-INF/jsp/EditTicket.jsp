@@ -119,7 +119,7 @@ function validateForm() {
       	<table class="tiktable" id="tikTable">
       		<tr>
             	 <th> ID: </th>
-            	 	<td class="tikid"> <input class="tikid" type="text" name="id"  value="<c:out value='${tik.id}' />"  /> </td>
+            	 	<td class="tikid"> <input class="tikid" type="text" name="id" id="ticketID" value="<c:out value='${tik.id}' />"  /> </td>
             </tr>
             <tr>
             	 <th> Severity: </th>
@@ -208,10 +208,10 @@ function validateForm() {
  <!-- Right Column -->
   <div class="rightcolumn">
   
-  	<div class="card">
+  	<div class="teamselectcard">
       <h3>Assign Team & Tech</h3>
+      <br>
       <p>Select Team</p>
-      
       <div>
       	<select id="selectTeam">
       		<option>Select Team</option>
@@ -224,7 +224,9 @@ function validateForm() {
       		<option>Select Tech</option>
       	</select>
       </div>
-      
+      <br>
+      <input type="submit" value="Save" onclick="saveinfo()">
+     
     </div> <!-- End card -->
     
      <div class="card">
@@ -321,6 +323,31 @@ $(document).ready(function () {
 
 </script>
 
+<script>
+	function saveinfo(){
+		// get the data values
+			var techteam = $("#selectTeam").val();
+			var techname = $("#selectTech").val();
+			var ticketid = $("#ticketID").val();
+		// display to console to test
+			console.log("click techteam: " + techteam);
+			console.log("click techname: " + techname);
+			console.log("click ticketid: " + ticketid);
+		// ajax thingy
+			$.ajax({
+				url: "TeamController",
+				method: "POST",
+				data: {techteamid:techteam, techid:techname, ticketID:ticketid},
+				success: function(data){
+					console.log(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.loge("error");
+					},
+					cache: false,
+			});
+	}
+</script>
 </body>
 </html>
 

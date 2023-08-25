@@ -19,7 +19,7 @@
 
 <div class="header">
   <h1>Jira - Bug Tracking and Inventory DB</h1>
-  <h2>Listing all Bugs</h2>
+  <h2>Listing all Employees</h2>
 </div>
 
 <div class="topnav">

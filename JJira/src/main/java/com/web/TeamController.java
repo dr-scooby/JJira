@@ -67,6 +67,25 @@ public class TeamController extends HttpServlet{
 			e.printStackTrace();
 		}
 		
+		String teamid = request.getParameter("techteamid");
+		String techid = request.getParameter("techid");
+		String ticketid = request.getParameter("ticketID");
+		
+		if(teamid !=null || techid!=null || ticketid!=null) {
+			if( (!teamid.isEmpty() || !techid.isEmpty() || !ticketid.isEmpty())  ) {
+				System.out.println("Got data:");
+				System.out.println("teamid:" + teamid);
+				System.out.println("techid:" + techid);
+				System.out.println("ticketid:" + ticketid);
+				
+				response.setContentType("text/html");
+				response.getWriter().write("success, data received");
+				response.flushBuffer();
+			}
+		}
+		
+		
+		
 		// get the operation, used for the JQuery/ajax
     	String operation = request.getParameter("operation");
     	if(operation != null) {
