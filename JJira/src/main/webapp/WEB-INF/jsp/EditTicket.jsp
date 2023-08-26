@@ -226,7 +226,8 @@ function validateForm() {
       </div>
       <br>
       <input type="submit" value="Save" onclick="saveinfo()">
-     
+      <br>
+      <div id="error"></div>
     </div> <!-- End card -->
     
      <div class="card">
@@ -333,19 +334,34 @@ $(document).ready(function () {
 			console.log("click techteam: " + techteam);
 			console.log("click techname: " + techname);
 			console.log("click ticketid: " + ticketid);
-		// ajax thingy
-			$.ajax({
-				url: "TeamController",
-				method: "POST",
-				data: {techteamid:techteam, techid:techname, ticketID:ticketid},
-				success: function(data){
-					console.log(data);
-				},
-				error: function(jqXHR, textStatus, errorThrown){
-					console.loge("error");
+			// check if user selected a valid Team name and Tech name
+			if(techteam === "Select Team"  ){
+				$("#error").html("Please select Team");
+			}else if(techname === "Select Tech"){
+				$("#error").html("Please select Tech");
+			}
+			else{ 
+				// we are good, send data to Servlet
+				// ajax thingy
+				$.ajax({
+					url: "TeamController",
+					method: "POST",
+					data: {techteamid:techteam, techid:techname, ticketID:ticketid},
+					success: function(data){
+						console.log(data);
+						if(data === "Fail, make a selection"){
+							console.log("please make a selection")
+						}
 					},
-					cache: false,
-			});
+					error: function(jqXHR, textStatus, errorThrown){
+						console.loge("error");
+						},
+						cache: false,
+				});
+
+
+				}
+		
 	}
 </script>
 </body>

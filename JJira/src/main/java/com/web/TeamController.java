@@ -77,10 +77,16 @@ public class TeamController extends HttpServlet{
 				System.out.println("teamid:" + teamid);
 				System.out.println("techid:" + techid);
 				System.out.println("ticketid:" + ticketid);
+				if(teamid.equals("Select Team") || techid.equals("Select Tech")) {
+					response.setContentType("text/html");
+					response.getWriter().write("Fail, make selection");
+					response.flushBuffer();
+				}else {
 				
-				response.setContentType("text/html");
-				response.getWriter().write("success, data received");
-				response.flushBuffer();
+					response.setContentType("text/html");
+					response.getWriter().write("success, data received");
+					response.flushBuffer();
+				}
 			}
 		}
 		
