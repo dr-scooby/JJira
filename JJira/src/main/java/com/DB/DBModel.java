@@ -122,6 +122,21 @@ public class DBModel {
 	}
 	
 	
+	// assign a team and tech to ticket
+	public boolean assignTeam(String teamid, String techid, String ticketid) throws SQLException {
+		boolean ok = false;
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		TikDAO tik = new TikDAO(conn);
+		ok = tik.assignTeam(teamid, techid, ticketid);
+		
+		
+		return ok;
+	}
+	
 	// update a ticket with new info
 	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {
 		boolean ok = false;

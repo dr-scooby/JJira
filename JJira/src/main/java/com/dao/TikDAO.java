@@ -215,10 +215,11 @@ public class TikDAO extends DAO{
 	
 	// get the group and employee assigned to ticket
 	private void getGroupEmp(Ticket tik, int id)throws SQLException{
-		String sql = "select tickets.emptype_id, tickets.title, TeamGroups.name, employees.fname, employees.lname  from tickets \r\n"
-				+ "inner join EmpType on tickets.emptype_id = EmpType.id\r\n"
-				+ "inner join TeamGroups on TeamGroups.id = EmpType.groupid\r\n"
+		String sql = "select employees.fname, employees.lname, TeamGroups.name from tickets \r\n"
+				+ "inner join Ticket_assigned on Ticket_assigned.id = tickets.id\r\n"
+				+ "inner join EmpType on Ticket_assigned.EmpType_id = EmpType.id\r\n"
 				+ "inner join employees on EmpType.empid = employees.id\r\n"
+				+ "inner join TeamGroups on EmpType.groupid = TeamGroups.id\r\n"
 				+ "where tickets.id = ?";
 		
 		PreparedStatement pst = conn.prepareStatement(sql);
@@ -227,8 +228,8 @@ public class TikDAO extends DAO{
 		while(rs.next()) {
 			String groupname = rs.getString(3);
 			tik.setGroupname(groupname);
-			String empname = rs.getString(4);
-			empname += " " + rs.getString(5);
+			String empname = rs.getString(1);
+			empname += " " + rs.getString(2);
 			tik.setEmpassigned(empname);
 		}
 		
@@ -267,6 +268,64 @@ public class TikDAO extends DAO{
 		
 		return ok;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// add/assign team and tech to ticket
+	public boolean assignTeam(String teamid, String techid, String ticketid)throws SQLException{
+		boolean ok = false;
+		
+		String sql_update_ticket = "update tickets set ticket_assigned =? where id=?";
+		
+		String sql_insert_emptype = "insert into Ticket_assigned(Ticket_id, EmpType_id) values(?,?)";
+		
+		
+		return ok;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// update ticket with the info
 	public boolean updateTicket(String id, String title, String summary, String sev, String state) throws SQLException {

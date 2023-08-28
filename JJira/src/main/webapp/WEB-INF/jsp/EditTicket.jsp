@@ -139,11 +139,11 @@ function validateForm() {
             	</tr>
             	<tr>
             	 <th> Group: </th>
-            	 	<td> <input type="text" name="group"  value="<c:out value='${tik.groupname}' />"  /></td>
+            	 	<td> <input type="text" name="group" id="GroupName" value="<c:out value='${tik.groupname}' />"  /></td>
             	</tr>
             	<tr>
             	 <th> Tech Assigned: </th>
-            	 	<td> <input type="text" name="tech"  value="<c:out value='${tik.empassigned}' />"  /></td>
+            	 	<td> <input type="text" name="tech" id="AssignedTech" value="<c:out value='${tik.empassigned}' />"  /></td>
             	</tr>
             	<tr>
             	    <th> Update: </th>
@@ -348,10 +348,17 @@ $(document).ready(function () {
 					method: "POST",
 					data: {techteamid:techteam, techid:techname, ticketID:ticketid},
 					success: function(data){
+						$("#error").html("");
+						document.getElementById("GroupName").value = techteam;
+						//document.getElementById("AssignedTech").innerHTML = techname;
+						//$("#GroupName").append(techteam);
+						//$("#GroupName").innerHTML(techteam);
+						//$("#AssignedTech").innerHTML(techname);
 						console.log(data);
 						if(data === "Fail, make a selection"){
 							console.log("please make a selection")
 						}
+						
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						console.loge("error");
