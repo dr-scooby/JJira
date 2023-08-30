@@ -334,6 +334,14 @@ public class TikDAO extends DAO{
 			System.out.println("rs NOT next");
 			
 		}
+		
+		String sql_delete = "delete from Ticket_assigned where Ticket_id=?";
+		pst = conn.prepareStatement(sql_delete);
+		pst.setInt(1, Integer.parseInt(ticketid));
+		int x = pst.executeUpdate();
+		System.out.println("rows deleted: " + x);
+		
+		
 		// insert into the Ticket_assigned
 		pst = conn.prepareStatement(sql_insert_Ticket_assigned);
 		pst.setString(1, refid);
