@@ -349,19 +349,20 @@ $(document).ready(function () {
 					data: {techteamid:techteam, techid:techname, ticketID:ticketid},
 					success: function(data){
 						$("#error").html("");
-						document.getElementById("GroupName").value = techteam;
-						//document.getElementById("AssignedTech").innerHTML = techname;
-						//$("#GroupName").append(techteam);
-						//$("#GroupName").innerHTML(techteam);
-						//$("#AssignedTech").innerHTML(techname);
+						//document.getElementById("GroupName").value = techteam;
+						console.log("data from server...");
 						console.log(data);
 						if(data === "Fail, make a selection"){
 							console.log("please make a selection")
 						}
+
+						var obj = JSON.parse(data);
+						document.getElementById("GroupName").value = obj[0].groupname;
+						document.getElementById("AssignedTech").value = obj[0].techname;
 						
 					},
 					error: function(jqXHR, textStatus, errorThrown){
-						console.loge("error");
+						console.log("error");
 						},
 						cache: false,
 				});

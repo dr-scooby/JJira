@@ -13,6 +13,7 @@ import com.data.Bug;
 import com.data.Employee;
 import com.data.Ticket;
 import com.data.TicketNotes;
+import com.data.UtilID;
 
 /**
  * @author nurali
@@ -215,8 +216,8 @@ public class TikDAO extends DAO{
 	
 	// get the group and employee assigned to ticket
 	private void getGroupEmp(Ticket tik, int id)throws SQLException{
-		String sql = "select employees.fname, employees.lname, TeamGroups.name from tickets \r\n"
-				+ "inner join Ticket_assigned on Ticket_assigned.id = tickets.id\r\n"
+		String sql = "select employees.fname, employees.lname, TeamGroups.name, tickets.id, tickets.refid from tickets \r\n"
+				+ "inner join Ticket_assigned on Ticket_assigned.refid = tickets.refid\r\n"
 				+ "inner join EmpType on Ticket_assigned.EmpType_id = EmpType.id\r\n"
 				+ "inner join employees on EmpType.empid = employees.id\r\n"
 				+ "inner join TeamGroups on EmpType.groupid = TeamGroups.id\r\n"
@@ -294,11 +295,51 @@ public class TikDAO extends DAO{
 	// add/assign team and tech to ticket
 	public boolean assignTeam(String teamid, String techid, String ticketid)throws SQLException{
 		boolean ok = false;
+		System.out.println("TikDAO");
+		System.out.println("teamid:" + teamid);
+		System.out.println("techid:" + techid);
+		System.out.println("ticketid:" + ticketid);
+		String refid = UtilID.makeID(); // get a random refid
+		// set the reference id to the ticket field
+		String sql_update_ticket = "update tickets set refid =? where id=?";
 		
-		String sql_update_ticket = "update tickets set ticket_assigned =? where id=?";
+		/* insert into the Ticket_assigned the reference ID */
+		String sql_insert_Ticket_assigned = "insert into Ticket_assigned(refid, Ticket_id, Emptype_id) values(?,?,?)";
 		
-		String sql_insert_emptype = "insert into Ticket_assigned(Ticket_id, EmpType_id) values(?,?)";
+		//String sql_getEmpType = "select id from EmpType where empid=?";
 		
+		
+		PreparedStatement pst = conn.prepareStatement(sql_update_ticket);
+		pst.setString(1, refid);
+		pst.setInt(2, Integer.parseInt(ticketid));
+		pst.executeUpdate();
+		
+		// get the EmpType ID
+		String sql_getEmpid = "select id from EmpType where empid=?";
+		String theempid = "";
+		int empid = 0;
+		pst = conn.prepareStatement(sql_getEmpid, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		pst.setInt(1, Integer.parseInt(techid));
+		
+		ResultSet rs = pst.executeQuery();
+		if(rs.next()) {
+			System.out.println("rs next");
+			rs.beforeFirst();
+			while(rs.next()) {
+				empid = rs.getInt("id");
+				System.out.println("EmpType id:>> " + empid);
+			}
+			
+		}else {
+			System.out.println("rs NOT next");
+			
+		}
+		// insert into the Ticket_assigned
+		pst = conn.prepareStatement(sql_insert_Ticket_assigned);
+		pst.setString(1, refid);
+		pst.setInt(2, Integer.parseInt(ticketid) );
+		pst.setInt(3, empid );
+		ok = pst.executeUpdate() > 0;
 		
 		return ok;
 	}

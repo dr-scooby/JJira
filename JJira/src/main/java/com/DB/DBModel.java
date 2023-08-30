@@ -196,7 +196,7 @@ public class DBModel {
 	}
 	
 	
-	// get a ticket from the id
+	// get a ticket from the id using int
 	public Ticket getTicket(int id) throws SQLException {
 		
 		if(conn == null || conn.isClosed()) {
@@ -205,6 +205,19 @@ public class DBModel {
 		
 		DAO tdao = new TikDAO(conn);
 		Ticket t = tdao.getTicket(id);
+		
+		return t;
+	}
+	
+	// get a ticket from the id using String
+	public Ticket getTicket(String id) throws SQLException {
+		
+		if(conn == null || conn.isClosed()) {
+			connect();
+		}
+		
+		//DAO tdao = new TikDAO(conn);
+		Ticket t = getTicket(Integer.parseInt(id));
 		
 		return t;
 	}

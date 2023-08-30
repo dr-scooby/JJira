@@ -5,6 +5,7 @@
 package com.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,9 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.DB.DBModel;
 import com.data.Employee;
 import com.data.Group;
+import com.data.Ticket;
 import com.google.gson.Gson;
 
 public class TeamController extends HttpServlet{
@@ -82,10 +87,36 @@ public class TeamController extends HttpServlet{
 					response.getWriter().write("Fail, make selection");
 					response.flushBuffer();
 				}else {
-				
-					response.setContentType("text/html");
-					response.getWriter().write("success, data received");
-					response.flushBuffer();
+				    try {
+						boolean ok = db.assignTeam(teamid, techid, ticketid);
+						if(ok) {
+							System.out.println("ok");
+							Ticket ti = db.getTicket(ticketid);
+							String groupname = ti.getGroupname();
+							String techname = ti.getEmpassigned();
+							JSONObject json = new JSONObject();
+							json.put("groupname", groupname);
+							json.put("techname", techname);
+							JSONArray list = new JSONArray();
+							list.add(json);
+							
+							PrintWriter out = response.getWriter();
+							out.println(list.toJSONString());
+							out.flush();
+							//response.setContentType("text/html");
+							//response.getWriter().write("success, data received");
+							//response.flushBuffer();
+							
+						}else {
+							System.out.println("not ok");
+						}
+						
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 			}
 		}
